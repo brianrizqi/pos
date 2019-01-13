@@ -151,7 +151,7 @@ class BarangController extends Controller
                 $barang->stok_empat = $request->stok_empat;
                 $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
             } else if ($request->satuan_turunan_tiga == $request->satuan_satu) {
-                $stokbaru = $request->stok* $request->stok_tiga * $request->stok_empat;
+                $stokbaru = $request->stok * $request->stok_tiga * $request->stok_empat;
                 $barang->stok = $stokbaru;
                 $barang->satuan_terakhir = $request->satuan_terakhir;
                 $barang->satuan_satu = $request->satuan_satu;
@@ -214,7 +214,28 @@ class BarangController extends Controller
                 $join->on('barangs.id_kategori', '=', 'kategoris.id_kategori');
             })
             ->where('id_barang', $id_barang)->first();
-        return view('edit_barang', ['barang' => $barang], ['supplier' => $supplier, 'kategori' => $kategori]);
+        if ($barang->satuan_terakhir == $barang->satuan_satu) {
+            $stok = $barang->stok;
+        } else if ($barang->satuan_terakhir == $barang->satuan_dua) {
+            $stok = $barang->stok / $barang->stok_dua;
+        } else if ($barang->satuan_terakhir == $barang->satuan_tiga) {
+            if ($barang->satuan_turunan_tiga == $barang->satuan_satu) {
+                $stok = $barang->stok / $barang->stok_tiga;
+            } else {
+                $stok = $barang->stok / $barang->stok_tiga / $barang->stok_dua;
+            }
+        } else if ($barang->satuan_terakhir == $barang->satuan_empat) {
+            if ($barang->satuan_turunan_empat == $barang->satuan_satu) {
+                $stok = $barang->stok / $barang->stok_empat;
+            } else if ($barang->satuan_turunan_empat == $barang->satuan_dua) {
+                $stok = $barang->stok / $barang->stok_dua / $barang->stok_empat;
+            } else if ($barang->satuan_turunan_tiga == $barang->satuan_satu) {
+                $stok = $barang->stok / $barang->stok_tiga / $barang->stok_empat;
+            } else {
+                $stok = $barang->stok / $barang->stok_empat / $barang->stok_tiga / $barang->stok_dua;
+            }
+        }
+        return view('edit_barang', ['barang' => $barang, 'stok' => $stok, 'supplier' => $supplier, 'kategori' => $kategori]);
     }
 
     /**
@@ -226,16 +247,29 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'nama_barang' => 'required|string|max:255',
-            'id_supplier' => 'required|integer',
-            'id_kategori' => 'required|integer',
-            'harga_beli' => 'required|integer',
-            'harga_jual' => 'required|integer',
-            'ukuran' => 'required|string',
-            'stok' => 'required|integer'
-        ]);
         $laba = (($request->harga_jual - $request->harga_beli) / $request->harga_beli) * 100;
+        if ($request->satuan_terakhir == $request->satuan_satu) {
+            $stokbaru = $request->stok;
+        } else if ($request->satuan_terakhir == $request->satuan_dua) {
+            $stokbaru = $request->stok * $request->stok_dua;
+        } else if ($request->satuan_terakhir == $request->satuan_tiga) {
+            if ($request->satuan_turunan_tiga == $request->satuan_satu) {
+                $stokbaru = $request->stok * $request->stok_tiga;
+            } else {
+                $stokbaru = $request->stok * $request->stok_dua * $request->stok_tiga;
+            }
+        } else if ($request->satuan_terakhir == $request->satuan_empat) {
+            if ($request->satuan_turunan_empat == $request->satuan_satu) {
+                $stokbaru = $request->stok * $request->stok_empat;
+            } else if ($request->satuan_turunan_empat == $request->satuan_dua) {
+                $stokbaru = $request->stok * $request->stok_dua * $request->stok_empat;
+            } else if ($request->satuan_turunan_tiga == $request->satuan_satu) {
+                $stokbaru = $request->stok * $request->stok_tiga * $request->stok_empat;
+            } else {
+                $stokbaru = $request->stok * $request->stok_dua * $request->stok_tiga * $request->stok_empat;
+            }
+
+        }
         $barang = DB::table('barangs')
             ->where('id_barang', $id)->
             update([
@@ -245,8 +279,17 @@ class BarangController extends Controller
                 'harga_beli' => $request->harga_beli,
                 'harga_jual' => $request->harga_jual,
                 'laba' => $laba,
-                'ukuran' => $request->ukuran,
-                'stok' => $request->stok
+                'stok' => $stokbaru,
+                'satuan_satu' => $request->satuan_satu,
+                'satuan_dua' => $request->satuan_dua,
+                'stok_dua' => $request->stok_dua,
+                'satuan_turunan_dua' => $request->satuan_turunan_dua,
+                'satuan_tiga' => $request->satuan_tiga,
+                'stok_tiga' => $request->stok_tiga,
+                'satuan_turunan_tiga' => $request->satuan_turunan_tiga,
+                'satuan_empat' => $request->satuan_empat,
+                'stok_empat' => $request->stok_empat,
+                'satuan_turunan_empat' => $request->satuan_turunan_empat,
             ]);
         return redirect('barang');
     }

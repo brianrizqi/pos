@@ -30,14 +30,20 @@
                                         <th>Harga Beli</th>
                                         <th>Harga Jual</th>
                                         <th>Laba</th>
-                                        <th>Stok</th>
+                                        {{--<th>Stok</th>--}}
+                                        <th>Satuan Satu</th>
+                                        <th>Satuan Dua</th>
+                                        <th>Satuan Tiga</th>
+                                        <th>Satuan Empat</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php $no = 0?>
                                     @foreach($barang as $item)
-                                        <?php $no++?>
+                                        <?php
+
+                                        $no++?>
                                         <tr>
                                             <td>{{$no}}</td>
                                             <td>{{$item->nama_barang}}</td>
@@ -46,14 +52,65 @@
                                             <td>Rp. {{number_format($item->harga_beli,0,".",".")}}</td>
                                             <td>Rp. {{number_format($item->harga_jual,0,".",".")}}</td>
                                             <td>{{$item->laba}} %</td>
-                                            <td>{{$item->stok}}</td>
+                                            {{--<td>{{$item->stok}}</td>--}}
+                                            @if($item->satuan_terakhir == $item->satuan_satu)
+                                                <td>{{$item->stok ." ".$item->satuan_satu}}</td>
+                                                <td>{{$item->satuan_dua}}</td>
+                                                <td>{{$item->satuan_tiga}}</td>
+                                                <td>{{$item->satuan_empat}}</td>
+                                            @elseif($item->satuan_terakhir == $item->satuan_dua)
+                                                <td>{{$item->stok ." ".$item->satuan_satu}}</td>
+                                                <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
+                                                <td>{{$item->satuan_tiga}}</td>
+                                                <td>{{$item->satuan_empat}}</td>
+                                            @elseif($item->satuan_terakhir == $item->satuan_tiga)
+                                                @if($item->satuan_turunan_tiga == $item->satuan_satu)
+                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_tiga)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
+                                                    <td>{{$item->satuan_empat}}</td>
+                                                @else
+                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
+                                                    <td>{{$item->satuan_empat}}</td>
+                                                @endif
+                                            @elseif($item->satuan_terakhir == $item->satuan_empat)
+                                                @if($item->satuan_turunan_empat == $item->satuan_satu)
+                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
+                                                    <td>{{floor($item->stok / $item->stok_empat)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
+                                                @elseif($item->satuan_turunan_empat == $item->satuan_dua)
+                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
+                                                    <td>{{floor($item->stok / $item->stok_dua / $item->stok_empat)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
+                                                @elseif($item->satuan_turunan_tiga == $item->satuan_satu)
+                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
+                                                    <td>{{floor($item->stok / $item->stok_tiga / $item->stok_empat)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
+                                                @else
+                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
+                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
+                                                    <td>{{floor($item->stok / $item->stok_empat / $item->stok_tiga / $item->stok_dua)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
+                                                @endif
+                                            @endif
                                             <td>
-                                                <a href="/barang/edit/{{$item->id_barang}}" class="btn btn-primary">
-                                                    <i class="fa fa-pencil-square-o" style="color: #fff;"></i>
-                                                </a>
+                                                <form action="/barang/edit/{{$item->id_barang}}" method="get">
+                                                    <button class="btn btn-primary" style="width: 37px;">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </button>
+                                                </form>
+                                                {{--<a href="/barang/edit/{{$item->id_barang}}" class="btn btn-primary">--}}
+                                                {{--<i class="fa fa-pencil-square-o" style="color: #fff;"></i>--}}
+                                                {{--</a>--}}
                                                 <form action="/barang/{{$item->id_barang}}" method="POST">
-                                                    <input class="btn btn-danger" type="submit" name="submit"
-                                                           value="Delete">
+                                                    <button class="btn btn-danger">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                     {{csrf_field()}}
                                                     <input type="hidden" name="_method" value="DELETE">
                                                 </form>

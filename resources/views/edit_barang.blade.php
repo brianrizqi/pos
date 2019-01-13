@@ -25,7 +25,9 @@
                                                                 Barang</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="nama_barang" placeholder="Nama Barang" value="{{$barang->nama_barang}}"/>
+                                                            <input type="text" class="form-control" name="nama_barang"
+                                                                   placeholder="Nama Barang"
+                                                                   value="{{$barang->nama_barang}}"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -76,7 +78,8 @@
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp.</span>
                                                                 <input type="number" id="beli" placeholder="Harga Beli"
-                                                                       class="form-control harga" name="harga_beli" value="{{$barang->harga_beli}}">
+                                                                       class="form-control harga" name="harga_beli"
+                                                                       value="{{$barang->harga_beli}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -91,7 +94,8 @@
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp.</span>
                                                                 <input type="number" id="jual" placeholder="Harga Jual"
-                                                                       class="form-control harga" name="harga_jual" value="{{$barang->harga_jual}}">
+                                                                       class="form-control harga" name="harga_jual"
+                                                                       value="{{$barang->harga_jual}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -104,8 +108,10 @@
                                                         </div>
                                                         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
-                                                                <input type="number" id="laba" name="laba" placeholder="0"
-                                                                       class="form-control" disabled value="{{$barang->laba}}">
+                                                                <input type="number" id="laba" name="laba"
+                                                                       placeholder="0"
+                                                                       class="form-control" disabled
+                                                                       value="{{$barang->laba}}">
                                                                 <span class="input-group-addon">%</span>
                                                             </div>
                                                         </div>
@@ -114,15 +120,124 @@
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Satuan</label>
+                                                            <label class="login2 pull-right pull-right-pro">Satuan
+                                                                1</label>
                                                         </div>
                                                         <div class="col-lg-9">
                                                             <div class="form-select-list">
-                                                                <select class="form-control custom-select-value"
-                                                                        name="ukuran">
-                                                                    <option>{{$barang->ukuran}}</option>
-                                                                    <option>Pack</option>
-                                                                    <option>Berat</option>
+                                                                <select id="ddSatuan_satu"
+                                                                        class="form-control custom-select-value"
+                                                                        name="satuan_satu"
+                                                                        onclick="satuanDua();">
+                                                                    <option value="{{$barang->satuan_satu}}">{{$barang->satuan_satu}}</option>
+                                                                    <option value="PCS">PCS</option>
+                                                                    <option value="Gr">Gr</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label class="login2 pull-right pull-right-pro">Satuan
+                                                                2</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="input-group">
+                                                                <input id="txtSatuan_dua" type="text"
+                                                                       onclick="satuanTiga();"
+                                                                       placeholder="Satuan"
+                                                                       class="form-control satuandua" name="satuan_dua"
+                                                                       value="{{$barang->satuan_dua}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <h1>=</h1>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <div class="input-group">
+                                                                <input type="text" id="beli" placeholder="Stok"
+                                                                       class="form-control harga" name="stok_dua"
+                                                                       value="{{$barang->stok_dua}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="form-select-list">
+                                                                <select id="ddSatuan_dua"
+                                                                        class="form-control custom-select-value"
+                                                                        name="satuan_turunan_dua">
+                                                                    <option>{{$barang->satuan_turunan_dua}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label class="login2 pull-right pull-right-pro">Satuan
+                                                                3</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="input-group">
+                                                                <input id="txtSatuan_tiga" type="text"
+                                                                       onkeyup="satuanEmpat();" placeholder="Satuan"
+                                                                       class="form-control harga" name="satuan_tiga"
+                                                                       value="{{$barang->satuan_tiga}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <h1>=</h1>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <div class="input-group">
+                                                                <input type="text" id="beli" placeholder="Stok"
+                                                                       class="form-control harga" name="stok_tiga"
+                                                                       value="{{$barang->stok_tiga}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="form-select-list">
+                                                                <select id="ddSatuan_tiga"
+                                                                        class="form-control custom-select-value"
+                                                                        name="satuan_turunan_tiga">
+                                                                    <option>{{$barang->satuan_turunan_tiga}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label class="login2 pull-right pull-right-pro">Satuan
+                                                                4</label>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="input-group">
+                                                                <input id="txtSatuan_empat" type="text"
+                                                                       onkeyup="satuansatuan()" placeholder="Satuan"
+                                                                       class="form-control harga" name="satuan_empat"
+                                                                       value="{{$barang->satuan_empat}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <h1>=</h1>
+                                                        </div>
+                                                        <div class="col-lg-1">
+                                                            <div class="input-group">
+                                                                <input type="text" id="beli" placeholder="Stok"
+                                                                       class="form-control harga" name="stok_empat"
+                                                                       value="{{$barang->stok_empat}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <div class="form-select-list">
+                                                                <select id="ddSatuan_empat"
+                                                                        class="form-control custom-select-value"
+                                                                        name="satuan_turunan_empat">
+                                                                    <option>{{$barang->satuan_turunan_empat}}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -133,8 +248,16 @@
                                                         <div class="col-lg-3">
                                                             <label class="login2 pull-right pull-right-pro">Stok</label>
                                                         </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="number" class="form-control" placeholder="Stok" name="stok" value="{{$barang->stok}}"/>
+                                                        <div class="col-lg-2">
+                                                            <input type="number" class="form-control" placeholder="Stok"
+                                                                   name="stok" value="{{$stok}}"/>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                            <select id="ddStok"
+                                                                    class="form-control custom-select-value"
+                                                                    name="satuan_terakhir">
+                                                                <option>{{$barang->satuan_terakhir}}</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -169,7 +292,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
+    <script type="text/javascript">
         $('.input-group').on('input', '.harga', function () {
             var laba = 0;
             $('.input-group .harga').each(function () {
@@ -177,11 +300,104 @@
                 var jual = $('#jual').val();
                 var input = $(this).val();
                 if ($.isNumeric(input)) {
-                    // laba += parseFloat(input);
                     laba = parseFloat((jual - beli) / beli) * 100;
                 }
             })
             $('#laba').val(laba);
         })
+    </script>
+    <script>
+        function satuanDua() {
+            var s1 = document.getElementById("ddSatuan_satu").value;
+            var s2 = document.getElementById("ddSatuan_dua");
+            var stok = document.getElementById("ddStok");
+            s2.innerHTML = "";
+            if (s1 == "PCS") {
+                var optionArray = ["|", "PCS|PCS"];
+            } else {
+                var optionArray = ["|", "Gr|Gr"];
+            }
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair [1];
+                s2.options.add(newOption);
+            }
+            stok.innerHTML = "";
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair [1];
+                stok.options.add(newOption);
+            }
+        }
+
+        function satuanTiga() {
+            var s2 = $('#txtSatuan_dua').val();
+            var s1 = document.getElementById("ddSatuan_satu").value;
+            var s3 = document.getElementById("ddSatuan_tiga");
+            var stok = document.getElementById("ddStok");
+            s3.innerHTML = '';
+            var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2];
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair [1];
+                s3.options.add(newOption);
+            }
+            stok.innerHTML = "";
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair [1];
+                stok.options.add(newOption);
+            }
+        }
+
+        function satuanEmpat() {
+            var s3 = $('#txtSatuan_tiga').val();
+            var s1 = document.getElementById("ddSatuan_satu").value;
+            var s2 = document.getElementById("txtSatuan_dua").value;
+            var s4 = document.getElementById("ddSatuan_empat");
+            var stok = document.getElementById("ddStok");
+            s4.innerHTML = '';
+            var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3];
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair [1];
+                s4.options.add(newOption);
+            }
+            stok.innerHTML = "";
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair [1];
+                stok.options.add(newOption);
+            }
+        }
+
+        function satuansatuan() {
+            var s4 = $('#txtSatuan_empat').val();
+            var s3 = document.getElementById("txtSatuan_tiga").value;
+            var s1 = document.getElementById("ddSatuan_satu").value;
+            var s2 = document.getElementById("txtSatuan_dua").value;
+            var stok = document.getElementById("ddStok");
+            var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3, s4 + "|" + s4];
+            stok.innerHTML = "";
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair [1];
+                stok.options.add(newOption);
+            }
+        }
     </script>
 @endsection
