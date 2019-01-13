@@ -19,7 +19,8 @@
                                         Tambah
                                     </a>
                                 </div>
-                                <table id="table" data-toggle="table" data-pagination="true" data-search="true"  data-toolbar="#toolbar">
+                                <table id="table" data-toggle="table" data-pagination="true" data-search="true"
+                                       data-toolbar="#toolbar">
                                     <thead>
                                     <tr>
                                         <th>No</th>
@@ -32,16 +33,29 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                    </tr>
-
+                                    <?php $no = 0?>
+                                    @foreach($customer as $item)
+                                        <?php $no++?>
+                                        <tr>
+                                            <td>{{$no}}</td>
+                                            <td>{{$item->nama}}</td>
+                                            <td>{{$item->email}}</td>
+                                            <td>{{$item->alamat}}</td>
+                                            <td>{{$item->telepon}}</td>
+                                            <td>{{$item->keterangan}}</td>
+                                            <td>
+                                                <a href="/customer/edit/{{$item->id_customer}}" class="btn btn-primary">
+                                                    <i class="fa fa-pencil-square-o" style="color: #fff;"></i>
+                                                </a>
+                                                <form action="/customer/{{$item->id_customer}}" method="POST">
+                                                    <input class="btn btn-danger" type="submit" name="submit"
+                                                           value="delete">
+                                                    {{csrf_field()}}
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

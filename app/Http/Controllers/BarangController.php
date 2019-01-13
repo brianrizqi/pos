@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
-use App\Kategori;
 use App\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +17,8 @@ class BarangController extends Controller
     public function index()
     {
         $barang = Barang::join('suppliers', function ($join) {
-                $join->on('barangs.id_supplier', '=', 'suppliers.id');
-            })
+            $join->on('barangs.id_supplier', '=', 'suppliers.id');
+        })
             ->join('kategoris', function ($join) {
                 $join->on('barangs.id_kategori', '=', 'kategoris.id_kategori');
             })
@@ -53,8 +52,9 @@ class BarangController extends Controller
             'id_kategori' => 'required|integer',
             'harga_beli' => 'required|integer',
             'harga_jual' => 'required|integer',
-            'ukuran' => 'required|string',
-            'stok' => 'required|integer'
+            'satuan_satu' => 'required|string',
+            'stok' => 'required|integer',
+            'satuan_terakhir' => 'required|string'
         ]);
         $barang = new Barang();
         $barang->nama_barang = $request->nama_barang;
@@ -64,8 +64,123 @@ class BarangController extends Controller
         $barang->harga_jual = $request->harga_jual;
         $laba = (($request->harga_jual - $request->harga_beli) / $request->harga_beli) * 100;
         $barang->laba = $laba;
-        $barang->ukuran = $request->ukuran;
-        $barang->stok = $request->stok;
+        if ($request->satuan_terakhir == $request->satuan_satu) {
+            $barang->stok = $request->stok;
+            $barang->satuan_terakhir = $request->satuan_terakhir;
+            $barang->satuan_satu = $request->satuan_satu;
+            $barang->satuan_dua = $request->satuan_dua;
+            $barang->stok_dua = $request->stok_dua;
+            $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
+            $barang->satuan_tiga = $request->satuan_tiga;
+            $barang->stok_tiga = $request->stok_tiga;
+            $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
+            $barang->satuan_empat = $request->satuan_empat;
+            $barang->stok_empat = $request->stok_empat;
+            $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
+        } else if ($request->satuan_terakhir == $request->satuan_dua) {
+            $stokbaru = $request->stok * $request->stok_dua;
+            $barang->stok = $stokbaru;
+            $barang->satuan_terakhir = $request->satuan_terakhir;
+            $barang->satuan_satu = $request->satuan_satu;
+            $barang->satuan_dua = $request->satuan_dua;
+            $barang->stok_dua = $request->stok_dua;
+            $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
+            $barang->satuan_tiga = $request->satuan_tiga;
+            $barang->stok_tiga = $request->stok_tiga;
+            $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
+            $barang->satuan_empat = $request->satuan_empat;
+            $barang->stok_empat = $request->stok_empat;
+            $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
+        } else if ($request->satuan_terakhir == $request->satuan_tiga) {
+            if ($request->satuan_turunan_tiga == $request->satuan_satu) {
+                $stokbaru = $request->stok * $request->stok_tiga;
+                $barang->stok = $stokbaru;
+                $barang->satuan_terakhir = $request->satuan_terakhir;
+                $barang->satuan_satu = $request->satuan_satu;
+                $barang->satuan_dua = $request->satuan_dua;
+                $barang->stok_dua = $request->stok_dua;
+                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
+                $barang->satuan_tiga = $request->satuan_tiga;
+                $barang->stok_tiga = $request->stok_tiga;
+                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
+                $barang->satuan_empat = $request->satuan_empat;
+                $barang->stok_empat = $request->stok_empat;
+                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
+            } else {
+                $stokbaru = $request->stok * $request->stok_dua * $request->stok_tiga;
+                $barang->stok = $stokbaru;
+                $barang->satuan_terakhir = $request->satuan_terakhir;
+                $barang->satuan_satu = $request->satuan_satu;
+                $barang->satuan_dua = $request->satuan_dua;
+                $barang->stok_dua = $request->stok_dua;
+                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
+                $barang->satuan_tiga = $request->satuan_tiga;
+                $barang->stok_tiga = $request->stok_tiga;
+                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
+                $barang->satuan_empat = $request->satuan_empat;
+                $barang->stok_empat = $request->stok_empat;
+                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
+            }
+        } else if ($request->satuan_terakhir == $request->satuan_empat) {
+            if ($request->satuan_turunan_empat == $request->satuan_satu) {
+                $stokbaru = $request->stok * $request->stok_empat;
+                $barang->stok = $stokbaru;
+                $barang->satuan_terakhir = $request->satuan_terakhir;
+                $barang->satuan_satu = $request->satuan_satu;
+                $barang->satuan_dua = $request->satuan_dua;
+                $barang->stok_dua = $request->stok_dua;
+                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
+                $barang->satuan_tiga = $request->satuan_tiga;
+                $barang->stok_tiga = $request->stok_tiga;
+                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
+                $barang->satuan_empat = $request->satuan_empat;
+                $barang->stok_empat = $request->stok_empat;
+                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
+            } else if ($request->satuan_turunan_empat == $request->satuan_dua) {
+                $stokbaru = $request->stok * $request->stok_dua * $request->stok_empat;
+                $barang->stok = $stokbaru;
+                $barang->satuan_terakhir = $request->satuan_terakhir;
+                $barang->satuan_satu = $request->satuan_satu;
+                $barang->satuan_dua = $request->satuan_dua;
+                $barang->stok_dua = $request->stok_dua;
+                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
+                $barang->satuan_tiga = $request->satuan_tiga;
+                $barang->stok_tiga = $request->stok_tiga;
+                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
+                $barang->satuan_empat = $request->satuan_empat;
+                $barang->stok_empat = $request->stok_empat;
+                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
+            } else if ($request->satuan_turunan_tiga == $request->satuan_satu) {
+                $stokbaru = $request->stok* $request->stok_tiga * $request->stok_empat;
+                $barang->stok = $stokbaru;
+                $barang->satuan_terakhir = $request->satuan_terakhir;
+                $barang->satuan_satu = $request->satuan_satu;
+                $barang->satuan_dua = $request->satuan_dua;
+                $barang->stok_dua = $request->stok_dua;
+                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
+                $barang->satuan_tiga = $request->satuan_tiga;
+                $barang->stok_tiga = $request->stok_tiga;
+                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
+                $barang->satuan_empat = $request->satuan_empat;
+                $barang->stok_empat = $request->stok_empat;
+                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
+            } else {
+                $stokbaru = $request->stok * $request->stok_dua * $request->stok_tiga * $request->stok_empat;
+                $barang->stok = $stokbaru;
+                $barang->satuan_terakhir = $request->satuan_terakhir;
+                $barang->satuan_satu = $request->satuan_satu;
+                $barang->satuan_dua = $request->satuan_dua;
+                $barang->stok_dua = $request->stok_dua;
+                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
+                $barang->satuan_tiga = $request->satuan_tiga;
+                $barang->stok_tiga = $request->stok_tiga;
+                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
+                $barang->satuan_empat = $request->satuan_empat;
+                $barang->stok_empat = $request->stok_empat;
+                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
+            }
+
+        }
         $barang->save();
         return redirect('barang');
     }
@@ -144,7 +259,7 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = Barang::where('id_barang',$id);
+        $supplier = Barang::where('id_barang', $id);
         $supplier->delete();
         return redirect('barang');
     }

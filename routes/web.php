@@ -30,3 +30,7 @@ Route::delete('/supplier/{id}', 'SupplierController@destroy');
 
 Route::get('/customer', 'CustomerController@index');
 Route::get('/customer/create', 'CustomerController@create');
+Route::post('/customer', 'CustomerController@store');
+Route::get('/customer/edit/{id}', 'CustomerController@edit');
+Route::put('/customer/{id}/edit/', 'CustomerController@update');
+Route::delete('/customer/{id}', 'CustomerController@destroy');

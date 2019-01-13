@@ -149,8 +149,8 @@
                                                                     <option value="PCS">PCS</option>
                                                                     <option value="Gr">Gr</option>
                                                                 </select>
-                                                                @if($errors->has('ukuran'))
-                                                                    <p>{{$errors->first('ukuran')}}</p>
+                                                                @if($errors->has('satuan_satu'))
+                                                                    <p>{{$errors->first('satuan_satu')}}</p>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -167,8 +167,8 @@
                                                                 <input id="txtSatuan_dua" type="text"
                                                                        onkeyup="satuanTiga();"
                                                                        placeholder="Satuan"
-                                                                       class="form-control satuandua" name="harga_beli"
-                                                                       value="{{old('harga_beli')}}">
+                                                                       class="form-control satuandua" name="satuan_dua"
+                                                                       value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-1">
@@ -177,19 +177,16 @@
                                                         <div class="col-lg-1">
                                                             <div class="input-group">
                                                                 <input type="text" id="beli" placeholder="Stok"
-                                                                       class="form-control harga" name="harga_beli"
-                                                                       value="{{old('harga_beli')}}">
+                                                                       class="form-control harga" name="stok_dua"
+                                                                       value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <div class="form-select-list">
                                                                 <select id="ddSatuan_dua"
                                                                         class="form-control custom-select-value"
-                                                                        name="satuan_dua">
+                                                                        name="satuan_turunan_dua">
                                                                 </select>
-                                                                @if($errors->has('ukuran'))
-                                                                    <p>{{$errors->first('ukuran')}}</p>
-                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -204,8 +201,8 @@
                                                             <div class="input-group">
                                                                 <input id="txtSatuan_tiga" type="text"
                                                                        onkeyup="satuanEmpat();" placeholder="Satuan"
-                                                                       class="form-control harga" name="harga_beli"
-                                                                       value="{{old('harga_beli')}}">
+                                                                       class="form-control harga" name="satuan_tiga"
+                                                                       value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-1">
@@ -214,19 +211,16 @@
                                                         <div class="col-lg-1">
                                                             <div class="input-group">
                                                                 <input type="text" id="beli" placeholder="Stok"
-                                                                       class="form-control harga" name="harga_beli"
-                                                                       value="{{old('harga_beli')}}">
+                                                                       class="form-control harga" name="stok_tiga"
+                                                                       value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <div class="form-select-list">
                                                                 <select id="ddSatuan_tiga"
                                                                         class="form-control custom-select-value"
-                                                                        name="ukuran">
+                                                                        name="satuan_turunan_tiga">
                                                                 </select>
-                                                                @if($errors->has('ukuran'))
-                                                                    <p>{{$errors->first('ukuran')}}</p>
-                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -239,10 +233,10 @@
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <div class="input-group">
-                                                                <input type="text" placeholder="Satuan"
-                                                                       id="txtSatuan_empat"
-                                                                       class="form-control harga" name="harga_beli"
-                                                                       value="{{old('harga_beli')}}">
+                                                                <input id="txtSatuan_empat" type="text"
+                                                                       onkeyup="satuansatuan()" placeholder="Satuan"
+                                                                       class="form-control harga" name="satuan_empat"
+                                                                       value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-1">
@@ -251,19 +245,16 @@
                                                         <div class="col-lg-1">
                                                             <div class="input-group">
                                                                 <input type="text" id="beli" placeholder="Stok"
-                                                                       class="form-control harga" name="harga_beli"
-                                                                       value="{{old('harga_beli')}}">
+                                                                       class="form-control harga" name="stok_empat"
+                                                                       value="">
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <div class="form-select-list">
                                                                 <select id="ddSatuan_empat"
                                                                         class="form-control custom-select-value"
-                                                                        name="ukuran">
+                                                                        name="satuan_turunan_empat">
                                                                 </select>
-                                                                @if($errors->has('ukuran'))
-                                                                    <p>{{$errors->first('ukuran')}}</p>
-                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -283,7 +274,10 @@
                                                         <div class="col-lg-2">
                                                             <select id="ddStok"
                                                                     class="form-control custom-select-value"
-                                                                    name="ukuran">
+                                                                    name="satuan_terakhir">
+                                                                @if($errors->has('satuan_terakhir'))
+                                                                    <p>{{$errors->first('satuan_terakhir')}}</p>
+                                                                @endif
                                                             </select>
                                                         </div>
                                                     </div>
@@ -326,7 +320,6 @@
                 var jual = $('#jual').val();
                 var input = $(this).val();
                 if ($.isNumeric(input)) {
-                    // laba += parseFloat(input);
                     laba = parseFloat((jual - beli) / beli) * 100;
                 }
             })
@@ -340,9 +333,9 @@
             var stok = document.getElementById("ddStok");
             s2.innerHTML = "";
             if (s1 == "PCS") {
-                var optionArray = ["PCS|PCS"];
+                var optionArray = ["|","PCS|PCS"];
             } else {
-                var optionArray = ["Gr|Gr"];
+                var optionArray = ["|","Gr|Gr"];
             }
             for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
@@ -351,7 +344,7 @@
                 newOption.innerHTML = pair [1];
                 s2.options.add(newOption);
             }
-            stok.innerHTML = '';
+            stok.innerHTML = "";
             for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
                 var newOption = document.createElement("option");
@@ -367,7 +360,7 @@
             var s3 = document.getElementById("ddSatuan_tiga");
             var stok = document.getElementById("ddStok");
             s3.innerHTML = '';
-            var optionArray = [s1 + "|" + s1, s2 + "|" + s2];
+            var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2];
             for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
                 var newOption = document.createElement("option");
@@ -375,7 +368,7 @@
                 newOption.innerHTML = pair [1];
                 s3.options.add(newOption);
             }
-            stok.innerHTML = '';
+            stok.innerHTML = "";
             for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
                 var newOption = document.createElement("option");
@@ -392,16 +385,32 @@
             var s4 = document.getElementById("ddSatuan_empat");
             var stok = document.getElementById("ddStok");
             s4.innerHTML = '';
-            var optionArray = [s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3];
+            var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3];
             for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
                 var newOption = document.createElement("option");
                 newOption.value = pair[0];
                 newOption.innerHTML = pair [1];
                 s4.options.add(newOption);
-
             }
-            stok.innerHTML = '';
+            stok.innerHTML = "";
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair [1];
+                stok.options.add(newOption);
+            }
+        }
+
+        function satuansatuan() {
+            var s4 = $('#txtSatuan_empat').val();
+            var s3 = document.getElementById("txtSatuan_tiga").value;
+            var s1 = document.getElementById("ddSatuan_satu").value;
+            var s2 = document.getElementById("txtSatuan_dua").value;
+            var stok = document.getElementById("ddStok");
+            var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3, s4 + "|" + s4];
+            stok.innerHTML = "";
             for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
                 var newOption = document.createElement("option");

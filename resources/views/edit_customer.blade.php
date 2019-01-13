@@ -17,17 +17,14 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
-                                            <form method="POST" action="/customer">
+                                            <form method="POST" action="/customer/{{$customer->id_customer}}/edit">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
                                                             <label class="login2 pull-right pull-right-pro">Nama Toko / Orang</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="nama" placeholder="Nama Toko / Orang" value="{{old('nama')}}" required/>
-                                                            @if($errors->has('nama'))
-                                                                <p>{{$errors->first('nama')}}</p>
-                                                            @endif
+                                                            <input type="text" class="form-control" name="nama" placeholder="Nama Toko / Orang" value="{{$customer->nama}}" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -37,10 +34,7 @@
                                                             <label class="login2 pull-right pull-right-pro">Alamat</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="{{old('alamat')}}" required/>
-                                                            @if($errors->has('alamat'))
-                                                                <p>{{$errors->first('alamat')}}</p>
-                                                            @endif
+                                                            <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="{{$customer->alamat}}" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -50,10 +44,7 @@
                                                             <label class="login2 pull-right pull-right-pro">Email</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="email" class="form-control" name="email" placeholder="Email" value="{{old('email')}}" required/>
-                                                            @if($errors->has('email'))
-                                                                <p>{{$errors->first('email')}}</p>
-                                                            @endif
+                                                            <input type="email" class="form-control" name="email" placeholder="Email" value="{{$customer->email}}" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -63,10 +54,7 @@
                                                             <label class="login2 pull-right pull-right-pro">Telepon</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="telepon" placeholder="Telepon" value="{{old('telepon')}}" required/>
-                                                            @if($errors->has('telepon'))
-                                                                <p>{{$errors->first('telepon')}}</p>
-                                                            @endif
+                                                            <input type="number" class="form-control" name="telepon" placeholder="Telepon" value="{{$customer->telepon}}" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -79,14 +67,12 @@
                                                             <div class="form-select-list">
                                                                 <select class="form-control custom-select-value"
                                                                         name="keterangan">
+                                                                    <option>{{$customer->keterangan}}</option>
                                                                     <option>Perorangan</option>
                                                                     <option>Grosiran</option>
                                                                     <option>Kelontong</option>
                                                                     <option>Perusahaan</option>
                                                                 </select>
-                                                                @if($errors->has('keterangan'))
-                                                                    <p>{{$errors->first('keterangan')}}</p>
-                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -100,7 +86,7 @@
                                                                     <button class="btn btn-white" type="submit">Cancel
                                                                     </button>
                                                                     <button class="btn btn-sm btn-primary login-submit-cs"
-                                                                            type="submit">Tambah
+                                                                            type="submit">Edit
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -108,6 +94,7 @@
                                                     </div>
                                                 </div>
                                                 {{csrf_field()}}
+                                                <input type="hidden" name="_method" value="PUT">
                                             </form>
                                         </div>
                                     </div>

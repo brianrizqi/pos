@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -14,7 +15,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer');
+        $customer = Customer::all();
+        return view('customer', ['customer' => $customer]);
     }
 
     /**
@@ -30,18 +32,33 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'email' => 'required|email|string|max:255',
+            'telepon' => 'required|string|max:13',
+            'keterangan' => 'required|string|max:255'
+        ]);
+
+        $customer = new Customer();
+        $customer->nama = $request->nama;
+        $customer->alamat = $request->alamat;
+        $customer->email = $request->email;
+        $customer->telepon = $request->telepon;
+        $customer->keterangan = $request->keterangan;
+        $customer->save();
+        return redirect('customer');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Customer  $customer
+     * @param  \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function show(Customer $customer)
@@ -52,34 +69,47 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Customer  $customer
+     * @param  \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $customer = DB::table('customer')
+            ->where('id_customer', $id)->first();
+        return view('edit_customer', ['customer' => $customer]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $barang = DB::table('customer')
+            ->where('id_customer', $id)->
+            update([
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
+                'keterangan' => $request->keterangan
+            ]);
+        return redirect('customer');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Customer  $customer
+     * @param  \App\Customer $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::where('id_customer', $id);
+        $customer->delete();
+        return redirect('customer');
     }
 }

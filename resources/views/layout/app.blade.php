@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{url('css/font-awesome.css')}}">
     <!-- adminpro icon CSS
 		============================================ -->
-    <link rel="stylesheet" href="{{url('css/adminpro-custon-icon.css')}}">
+    <link rel="stylesheet" href="{{url('css/adminpro-custon-icon.css')}}" type="text/css">
     <!-- meanmenu icon CSS
 		============================================ -->
     <link rel="stylesheet" href="{{url('css/meanmenu.min.css')}}">
@@ -75,19 +75,19 @@
                 <ul class="nav navbar-nav left-sidebar-menu-pro">
                     <li class="nav-item">
                         <a href="/" role="button" aria-expanded="false"
-                           class="nav-link dropdown-toggle"><i class="fa fa-glass"></i> <span
+                           class="nav-link dropdown-toggle"><i class="fa fa-archive"></i> <span
                                     class="mini-dn">Barang</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/supplier" role="button" aria-expanded="false"
-                           class="nav-link dropdown-toggle"><i class="fa big-icon fa-envelope"></i>
+                           class="nav-link dropdown-toggle"><i class="fa fa-user"></i>
                             <span class="mini-dn">Supplier</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/customer" role="button" aria-expanded="false"
-                           class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span
+                           class="nav-link dropdown-toggle"><i class="fa fa-users"></i> <span
                                     class="mini-dn">Customer</span>
                         </a>
                     </li>
@@ -112,6 +112,43 @@
                         </div>
                         <div class="col-lg-6 col-md-1 col-sm-1 col-xs-12">
                             <div class="header-top-menu tabl-d-n">
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                            <div class="header-right-info">
+                                <ul class="nav navbar-nav mai-top-nav header-right-menu">
+                                    <li class="nav-item dropdown">
+                                    <li class="nav-item">
+                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                                           class="nav-link dropdown-toggle">
+                                            <span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
+                                            <span class="admin-name">Advanda Cro</span>
+                                            <span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                        </a>
+                                        <ul role="menu"
+                                            class="dropdown-header-top author-log dropdown-menu animated flipInX">
+                                            <li><a href="#"><span
+                                                            class="adminpro-icon adminpro-home-admin author-log-ic"></span>My
+                                                    Account</a>
+                                            </li>
+                                            <li><a href="#"><span
+                                                            class="adminpro-icon adminpro-user-rounded author-log-ic"></span>My
+                                                    Profile</a>
+                                            </li>
+                                            <li><a href="#"><span
+                                                            class="adminpro-icon adminpro-money author-log-ic"></span>User
+                                                    Billing</a>
+                                            </li>
+                                            <li><a href="#"><span
+                                                            class="adminpro-icon adminpro-settings author-log-ic"></span>Settings</a>
+                                            </li>
+                                            <li><a href="#"><span
+                                                            class="adminpro-icon adminpro-locked author-log-ic"></span>Log
+                                                    Out</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>

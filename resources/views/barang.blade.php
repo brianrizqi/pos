@@ -30,11 +30,7 @@
                                         <th>Harga Beli</th>
                                         <th>Harga Jual</th>
                                         <th>Laba</th>
-                                        <th>Ukuran</th>
-                                        <th>Stok (pack/gr)</th>
-                                        <th>Stok (pres/kg)</th>
-                                        <th>Stok (bal)</th>
-                                        <th>Stok (box)</th>
+                                        <th>Stok</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -50,17 +46,7 @@
                                             <td>Rp. {{number_format($item->harga_beli,0,".",".")}}</td>
                                             <td>Rp. {{number_format($item->harga_jual,0,".",".")}}</td>
                                             <td>{{$item->laba}} %</td>
-                                            <td>{{$item->ukuran}}</td>
                                             <td>{{$item->stok}}</td>
-                                            <td>
-                                                {{floor(($item->stok)/10)}}
-                                            </td>
-                                            <td>
-                                                {{floor(($item->stok)/200)}}
-                                            </td>
-                                            <td>
-                                                {{floor(($item->stok)/40)}}
-                                            </td>
                                             <td>
                                                 <a href="/barang/edit/{{$item->id_barang}}" class="btn btn-primary">
                                                     <i class="fa fa-pencil-square-o" style="color: #fff;"></i>
