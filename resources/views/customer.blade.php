@@ -44,12 +44,15 @@
                                             <td>{{$item->telepon}}</td>
                                             <td>{{$item->keterangan}}</td>
                                             <td>
-                                                <a href="/customer/edit/{{$item->id_customer}}" class="btn btn-primary">
-                                                    <i class="fa fa-pencil-square-o" style="color: #fff;"></i>
-                                                </a>
+                                                <form action="/customer/edit/{{$item->id_customer}}">
+                                                    <button class="btn btn-primary" style="width: 37px;">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </button>
+                                                </form>
                                                 <form action="/customer/{{$item->id_customer}}" method="POST">
-                                                    <input class="btn btn-danger" type="submit" name="submit"
-                                                           value="delete">
+                                                    <button class="btn btn-danger">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
                                                     {{csrf_field()}}
                                                     <input type="hidden" name="_method" value="DELETE">
                                                 </form>
