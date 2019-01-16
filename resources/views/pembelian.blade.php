@@ -19,36 +19,49 @@
                         </div>
                         <div class="sparkline8-graph">
                             <div class="static-table-list">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Username</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mamun</td>
-                                        <td>Roshid</td>
-                                        <td>@Facebook</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Suhag</td>
-                                        <td>Khan</td>
-                                        <td>@Twitter</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Sakil</td>
-                                        <td>Shak</td>
-                                        <td>@Linkedin</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="login2 pull-right pull-right-pro">No Entry</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="email" class="form-control" name="email" placeholder="Email"
+                                                   value="{{old('email')}}" required/>
+                                            @if($errors->has('email'))
+                                                <p>{{$errors->first('email')}}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="login2 pull-right pull-right-pro">Tanggal</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="date" class="form-control" name="tanggal"
+                                                   data-date-format="yyyy-MM-dd"
+                                                   value="{{old('email')}}" required/>
+                                            @if($errors->has('email'))
+                                                <p>{{$errors->first('email')}}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="login2 pull-right pull-right-pro">No Bukti</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="email" class="form-control" name="email" placeholder="Email"
+                                                   value="{{old('email')}}" required/>
+                                            @if($errors->has('email'))
+                                                <p>{{$errors->first('email')}}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -57,49 +70,48 @@
                     <div class="sparkline9-list sparkel-pro-mg-t-30 shadow-reset">
                         <div class="sparkline9-hd">
                             <div class="main-sparkline9-hd">
-                                <h1>Sparkle Table</h1>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <h1>Supplier</h1>
+                                    </div>
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-4">
+                                        <select id="supplier" class="form-control" name="supplier"
+                                                onchange="pilihSupplier()">
+                                            <option></option>
+                                            @foreach($supplier as $item)
+                                                <option value="{{$item->id}}">{{$item->nama}}</option>
+                                            @endforeach
+                                        </select>
+                                        {{csrf_field()}}
+                                    </div>
+                                </div>
                                 <div class="sparkline9-outline-icon">
-                                    <span class="sparkline9-collapse-link"><i class="fa fa-chevron-up"></i></span>
-                                    <span><i class="fa fa-wrench"></i></span>
-                                    <span class="sparkline9-collapse-close"><i class="fa fa-times"></i></span>
                                 </div>
                             </div>
                         </div>
                         <div class="sparkline9-graph">
                             <div class="static-table-list">
-                                <table class="table sparkle-table">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Data</th>
-                                        <th>User</th>
-                                        <th>Value</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><span id="sparkline1"></span>
-                                        </td>
-                                        <td>Roshid</td>
-                                        <td><i class="fa fa-level-up"></i> 50%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><span id="sparkline2"></span>
-                                        </td>
-                                        <td>Khan</td>
-                                        <td><i class="fa fa-level-down"></i> 70%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td><span class="sparklineadminpro"></span>
-                                        </td>
-                                        <td>Shak</td>
-                                        <td><i class="fa fa-level-up"></i> 90%</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <div id="detail_sup">
+                                    <table class="table sparkle-table">
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,25 +128,6 @@
                             <div class="main-sparkline13-hd">
                                 <h1>Tabel <span class="table-project-n">Pembelian</span></h1>
                             </div>
-                            <form>
-                                <div class="form-group-inner">
-                                    <div class="col-lg-8">
-                                        <label class="login2 pull-right pull-right-pro">
-                                            Nama Supplier
-                                        </label>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <select id="supplier" class="form-control" name="supplier"
-                                                onchange="pilihSupplier()">
-                                            <option></option>
-                                            @foreach($supplier as $item)
-                                                <option value="{{$item->id}}">{{$item->nama}}</option>
-                                            @endforeach
-                                        </select>
-                                        {{csrf_field()}}
-                                    </div>
-                                </div>
-                            </form>
                         </div>
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
@@ -147,11 +140,7 @@
                                     </div>
                                     <div class="col-lg-4"></div>
                                     <div class="col-lg-6">
-                                        <div id="detail_sup">
-                                            <p>
 
-                                            </p>
-                                        </div>
                                     </div>
                                 </div>
                                 <table id="table" data-toggle="table" data-pagination="true"
@@ -171,23 +160,23 @@
                                     </thead>
                                     <tbody>
                                     <?php $no = 0?>
-                                    {{--                                    @foreach($barang as $item)--}}
-                                    <?php
-                                    $no++?>
-                                    <tr>
-                                        <td>{{$no}}</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>
-                                            1
-                                        </td>
-                                    </tr>
-                                    {{--@endforeach--}}
+                                    @foreach($data as $item)
+                                        <?php
+                                        $no++?>
+                                        <tr>
+                                            <td>{{$no}}</td>
+                                            <td>{{$item->id}}</td>
+                                            <td>{{$item->name}}</td>
+                                            <td>{{$item->quantity}}</td>
+                                            <td>{{$item->attirbutes[0]}}</td>
+                                            <td>{{$item->price}}</td>
+                                            <td>1</td>
+                                            <td>2</td>
+                                            <td>
+                                                1
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -210,7 +199,7 @@
 
                                     </div>
                                     <div class="col-lg-2" style="margin-top: 10px;">
-                                        <a href="/barang/create" class="btn btn-sm btn-danger login-submit-cs">
+                                        <a href="/pembelian/clear" class="btn btn-sm btn-danger login-submit-cs">
                                             Cancel
                                         </a>
                                         <a href="/barang/create" class="btn btn-sm btn-primary login-submit-cs">

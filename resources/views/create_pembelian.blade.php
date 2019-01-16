@@ -9,7 +9,7 @@
                     <div class="sparkline12-list shadow-reset mg-t-30">
                         <div class="sparkline12-hd">
                             <div class="main-sparkline12-hd">
-                                <h1>Tambah Supplier</h1>
+                                <h1>Tambah Pembelian</h1>
                             </div>
                         </div>
                         <div class="sparkline12-graph">
@@ -17,37 +17,58 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
-                                            <form method="POST" action="/supplier">
+                                            <form method="POST" action="/pembelian">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
                                                             <label class="login2 pull-right pull-right-pro">Nama
-                                                                Perusahaan</label>
-                                                        </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="nama" placeholder="Nama Perusahaan" value="{{old('nama')}}" required/>
-                                                            @if($errors->has('nama'))
-                                                                <p>{{$errors->first('nama')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Kategori</label>
+                                                                Barang</label>
                                                         </div>
                                                         <div class="col-lg-9">
                                                             <div class="form-select-list">
-                                                                <select class="form-control custom-select-value"
-                                                                        name="id_kategori">
+                                                                <select id="barang"
+                                                                        class="form-control custom-select-value"
+                                                                        name="id_barang" onchange="pilihBarang();">
+                                                                    <option></option>
                                                                     @foreach($barang as $item)
                                                                         <option value="{{$item->id_barang}}">{{$item->nama_barang}}</option>
                                                                     @endforeach
                                                                 </select>
-                                                                @if($errors->has('id_kategori'))
-                                                                    <p>{{$errors->first('id_kategori')}}</p>
+                                                                @if($errors->has('id_barang'))
+                                                                    <p>{{$errors->first('id_barang')}}</p>
                                                                 @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="detail_barang">
+
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <label class="login2 pull-right pull-right-pro">Harga
+                                                                    Beli</label>
+                                                            </div>
+                                                            <div class="col-lg-9">
+                                                                <input type="text" class="form-control" name="harga_beli"
+                                                                       placeholder="Alamat" value="{{old('alamat')}}"
+                                                                       required/>
+                                                                @if($errors->has('alamat'))
+                                                                    <p>{{$errors->first('alamat')}}</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <label class="login2 pull-right pull-right-pro">Satuan</label>
+                                                            </div>
+                                                            <div class="col-lg-9">
+                                                                <select class="form-control custom-select-value"
+                                                                        name="satuan">
+                                                                    <option></option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -55,93 +76,14 @@
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Alamat</label>
+                                                            <label class="login2 pull-right pull-right-pro">Jumlah</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="{{old('alamat')}}" required/>
-                                                            @if($errors->has('alamat'))
-                                                                <p>{{$errors->first('alamat')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Email</label>
-                                                        </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="email" class="form-control" name="email" placeholder="Email" value="{{old('email')}}" required/>
+                                                            <input type="number" class="form-control" name="jumlah"
+                                                                   placeholder="Jumlah" value="{{old('email')}}"
+                                                                   required/>
                                                             @if($errors->has('email'))
                                                                 <p>{{$errors->first('email')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Telepon
-                                                                Perusahaan</label>
-                                                        </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="telepon" placeholder="Telepon Perusahaan" value="{{old('telepon')}}" required/>
-                                                            @if($errors->has('telepon'))
-                                                                <p>{{$errors->first('telepon')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Fax
-                                                                Perusahaan</label>
-                                                        </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="fax" placeholder="Fax Perusahaan" value="{{old('fax')}}" required/>
-                                                            @if($errors->has('fax'))
-                                                                <p>{{$errors->first('fax')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Website Perusahaan</label>
-                                                        </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="url" class="form-control" name="website" placeholder="Website Perusahaan" value="{{old('website')}}" required/>
-                                                            @if($errors->has('website'))
-                                                                <p>{{$errors->first('website')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Nama
-                                                                CP</label>
-                                                        </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="nama_cp" placeholder="Nama CP" value="{{old('nama_cp')}}" required/>
-                                                            @if($errors->has('nama_cp'))
-                                                                <p>{{$errors->first('nama_cp')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Telepon CP</label>
-                                                        </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="telepon_cp" placeholder="Telepon CP" value="{{old('telepon_cp')}}" required/>
-                                                            @if($errors->has('telepon_cp'))
-                                                                <p>{{$errors->first('telepon_cp')}}</p>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -174,4 +116,17 @@
             </div>
         </div>
     </div>
+    <script>
+        function pilihBarang() {
+            var xmlhttp = new XMLHttpRequest();
+            var value = document.getElementById("barang").value;
+            if (value != "") {
+                xmlhttp.open("GET", "/pembelian/barang/" + value, false);
+                xmlhttp.send(null);
+                document.getElementById("detail_barang").innerHTML = xmlhttp.responseText;
+            } else {
+                alert('Supplier Kosong')
+            }
+        }
+    </script>
 @endsection
