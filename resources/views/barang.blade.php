@@ -30,10 +30,8 @@
                                         <th>Harga Beli</th>
                                         <th>Harga Jual</th>
                                         <th>Laba</th>
-                                        <th>Stok </th>
-                                        <th>Satuan Dua</th>
-                                        <th>Satuan Tiga</th>
-                                        <th>Satuan Empat</th>
+                                        <th>Stok</th>
+                                        <th>Stok Kemasan</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -50,73 +48,38 @@
                                             <td>Rp. {{number_format($item->harga_beli,0,".",".")}}</td>
                                             <td>Rp. {{number_format($item->harga_jual,0,".",".")}}</td>
                                             <td>{{$item->laba}} %</td>
-                                            @if($item->satuan_terakhir == $item->satuan_satu)
-                                                <td>{{$item->stok ." ".$item->satuan_satu}}</td>
-                                                @if($item->stok_dua == "")
-                                                    <td></td>
-                                                @else
-                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
-                                                @endif
-                                                @if($item->stok_tiga== "")
-                                                    <td>{{$item->satuan_tiga}}</td>
-                                                @else
-                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
-                                                @endif
-                                                @if($item->stok_empat =="")
-                                                    <td>{{$item->satuan_empat}}</td>
-                                                @else
-                                                    <td>{{floor($item->stok / $item->stok_empat / $item->stok_tiga / $item->stok_dua)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
-                                                @endif
-                                            @elseif($item->satuan_terakhir == $item->satuan_dua)
-                                                <td>{{$item->stok ." ".$item->satuan_satu}}</td>
-                                                <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
-                                                <td>{{$item->satuan_tiga}}</td>
-                                                <td>{{$item->satuan_empat}}</td>
-                                            @elseif($item->satuan_terakhir == $item->satuan_tiga)
-                                                @if($item->satuan_turunan_tiga == $item->satuan_satu)
-                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_tiga)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
-                                                    <td>{{$item->satuan_empat}}</td>
-                                                @else
-                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
-                                                    <td>{{$item->satuan_empat}}</td>
-                                                @endif
-                                            @elseif($item->satuan_terakhir == $item->satuan_empat)
-                                                @if($item->satuan_turunan_empat == $item->satuan_satu)
-                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
-                                                    <td>{{floor($item->stok / $item->stok_empat)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
-                                                @elseif($item->satuan_turunan_empat == $item->satuan_dua)
-                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
-                                                    <td>{{floor($item->stok / $item->stok_dua / $item->stok_empat)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
-                                                @elseif($item->satuan_turunan_tiga == $item->satuan_satu)
-                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
-                                                    <td>{{floor($item->stok / $item->stok_tiga / $item->stok_empat)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
-                                                @else
-                                                    <td>{{$item->stok ." ".$item->satuan_satu}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." / ".$item->stok_dua." ".$item->satuan_turunan_dua}}</td>
-                                                    <td>{{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." / ".$item->stok_tiga." ".$item->satuan_turunan_tiga}}</td>
-                                                    <td>{{floor($item->stok / $item->stok_empat / $item->stok_tiga / $item->stok_dua)." ".$item->satuan_empat." / ".$item->stok_empat." ".$item->satuan_turunan_empat}}</td>
-                                                @endif
-                                            @endif
+                                            <td>{{$item->stok." ".$item->satuan_satu}}</td>
                                             <td>
-                                                <form action="/barang/edit/{{$item->id_barang}}" method="get">
+                                                @if($item->satuan_empat != "")
+                                                    {{
+                                                    floor($item->stok/$item->stok_empat/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_empat
+                                                    ." ".floor(($item->stok % ($item->stok_dua*$item->stok_empat*$item->stok_tiga))/($item->stok_tiga*$item->stok_dua))." ".$item->satuan_tiga
+                                                    ." ".floor((($item->stok % ($item->stok_dua*$item->stok_empat*$item->stok_tiga)) % ($item->stok_tiga*$item->stok_dua))/$item->stok_dua)." ".$item->satuan_dua
+                                                    ." ".(($item->stok % ($item->stok_dua*$item->stok_empat*$item->stok_tiga)) % ($item->stok_tiga*$item->stok_dua))%$item->stok_dua." ".$item->satuan_satu
+                                                    }}
+                                                @elseif($item->satuan_tiga != "")
+                                                    @if($item->satuan_turunan_tiga == $item->satuan_satu)
+                                                        {{floor($item->stok/$item->stok_tiga)." ".$item->satuan_tiga." ".floor(($item->stok % $item->stok_tiga) / $item->stok_dua)." ".
+                                                        $item->satuan_dua." ".(($item->stok % $item->stok_tiga) % $item->stok_dua)." ".$item->satuan_satu}}
+                                                    @else
+                                                        {{floor($item->stok/$item->stok_tiga/$item->stok_dua)." ".$item->satuan_tiga." ".floor(($item->stok % ($item->stok_tiga*$item->stok_dua)/$item->stok_dua)).
+                                                        " ".$item->satuan_dua." ".($item->stok % ($item->stok_tiga * $item->stok_dua) % $item->stok_dua)." ".$item->satuan_satu}}
+                                                    @endif
+                                                @elseif($item->satuan_dua != "")
+                                                    {{floor($item->stok/$item->stok_dua)." ".$item->satuan_dua." ".($item->stok % $item->stok_dua." ".$item->satuan_satu)}}
+                                                @else
+                                                    {{$item->stok." ".$item->satuan_satu}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <form action="/barang/edit/{{$item->id_barang}}" method="get"
+                                                      style="display: inline">
                                                     <button class="btn btn-primary" style="width: 37px;">
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                {{--<a href="/barang/edit/{{$item->id_barang}}" class="btn btn-primary">--}}
-                                                {{--<i class="fa fa-pencil-square-o" style="color: #fff;"></i>--}}
-                                                {{--</a>--}}
-                                                <form action="/barang/{{$item->id_barang}}" method="POST">
+                                                <form action="/barang/{{$item->id_barang}}" method="POST"
+                                                      style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-trash"></i>
                                                     </button>

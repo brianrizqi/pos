@@ -20,11 +20,25 @@
                                             <form action="/barang" method="POST">
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
+                                                            <label class="login2 pull-right pull-right-pro">Kode
+                                                                Barang </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
                                                             <label class="login2 pull-right pull-right-pro">Nama
                                                                 Barang</label>
                                                         </div>
-                                                        <div class="col-lg-9">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <input type="number" class="form-control" name="id_barang"
+                                                                   placeholder="Kode Barang"
+                                                                   value="{{old('id_barang')}}"/>
+                                                            @if($errors->has('id_barang'))
+                                                                <p>{{$errors->first('id_barang')}}</p>
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-lg-7">
                                                             <input type="text" class="form-control" name="nama_barang"
                                                                    placeholder="Nama Barang"
                                                                    value="{{old('nama_barang')}}"/>
@@ -36,7 +50,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Nama
                                                                 Supplier</label>
                                                         </div>
@@ -57,7 +71,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Kategori</label>
                                                         </div>
                                                         <div class="col-lg-9">
@@ -77,11 +91,21 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                                                             <label class="login2 pull-right pull-right-pro">Harga Beli
                                                                 (Rp.)</label>
                                                         </div>
-                                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                                            <label class="login2 pull-right pull-right-pro">Harga Jual
+                                                                (Rp.)</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                                                            <label class="login2 pull-right pull-right-pro">Laba
+                                                                (%)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp.</span>
                                                                 <input type="number" id="beli" placeholder="Harga Beli"
@@ -92,15 +116,7 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                                            <label class="login2 pull-right pull-right-pro">Harga Jual
-                                                                (Rp.)</label>
-                                                        </div>
-                                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp.</span>
                                                                 <input type="number" id="jual" placeholder="Harga Jual"
@@ -111,15 +127,7 @@
                                                                 @endif
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                                            <label class="login2 pull-right pull-right-pro">Laba
-                                                                (%)</label>
-                                                        </div>
-                                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
                                                                 <input type="number" id="laba" name="laba"
                                                                        placeholder="0"
@@ -135,11 +143,11 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Satuan
                                                                 1</label>
                                                         </div>
-                                                        <div class="col-lg-9">
+                                                        <div class="col-lg-2">
                                                             <div class="form-select-list">
                                                                 <select id="ddSatuan_satu"
                                                                         class="form-control custom-select-value"
@@ -158,7 +166,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Satuan
                                                                 2</label>
                                                         </div>
@@ -193,7 +201,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Satuan
                                                                 3</label>
                                                         </div>
@@ -227,7 +235,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Satuan
                                                                 4</label>
                                                         </div>
@@ -261,7 +269,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Stok</label>
                                                         </div>
                                                         <div class="col-lg-2">
@@ -285,7 +293,7 @@
                                                 <div class="form-group-inner">
                                                     <div class="login-btn-inner">
                                                         <div class="row">
-                                                            <div class="col-lg-3"></div>
+                                                            <div class="col-lg-2"></div>
                                                             <div class="col-lg-9">
                                                                 <div class="login-horizental cancel-wp pull-left">
                                                                     <button class="btn btn-white" type="submit">Cancel
@@ -333,9 +341,9 @@
             var stok = document.getElementById("ddStok");
             s2.innerHTML = "";
             if (s1 == "PCS") {
-                var optionArray = ["|","PCS|PCS"];
+                var optionArray = ["|", "PCS|PCS"];
             } else {
-                var optionArray = ["|","Gr|Gr"];
+                var optionArray = ["|", "Gr|Gr"];
             }
             for (var option in optionArray) {
                 var pair = optionArray[option].split("|");
@@ -358,7 +366,6 @@
             var s2 = $('#txtSatuan_dua').val();
             var s1 = document.getElementById("ddSatuan_satu").value;
             var s3 = document.getElementById("ddSatuan_tiga");
-            var stok = document.getElementById("ddStok");
             s3.innerHTML = '';
             var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2];
             for (var option in optionArray) {
@@ -368,14 +375,6 @@
                 newOption.innerHTML = pair [1];
                 s3.options.add(newOption);
             }
-            stok.innerHTML = "";
-            for (var option in optionArray) {
-                var pair = optionArray[option].split("|");
-                var newOption = document.createElement("option");
-                newOption.value = pair[0];
-                newOption.innerHTML = pair [1];
-                stok.options.add(newOption);
-            }
         }
 
         function satuanEmpat() {
@@ -383,7 +382,6 @@
             var s1 = document.getElementById("ddSatuan_satu").value;
             var s2 = document.getElementById("txtSatuan_dua").value;
             var s4 = document.getElementById("ddSatuan_empat");
-            var stok = document.getElementById("ddStok");
             s4.innerHTML = '';
             var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3];
             for (var option in optionArray) {
@@ -393,31 +391,23 @@
                 newOption.innerHTML = pair [1];
                 s4.options.add(newOption);
             }
-            stok.innerHTML = "";
-            for (var option in optionArray) {
-                var pair = optionArray[option].split("|");
-                var newOption = document.createElement("option");
-                newOption.value = pair[0];
-                newOption.innerHTML = pair [1];
-                stok.options.add(newOption);
-            }
         }
 
-        function satuansatuan() {
-            var s4 = $('#txtSatuan_empat').val();
-            var s3 = document.getElementById("txtSatuan_tiga").value;
-            var s1 = document.getElementById("ddSatuan_satu").value;
-            var s2 = document.getElementById("txtSatuan_dua").value;
-            var stok = document.getElementById("ddStok");
-            var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3, s4 + "|" + s4];
-            stok.innerHTML = "";
-            for (var option in optionArray) {
-                var pair = optionArray[option].split("|");
-                var newOption = document.createElement("option");
-                newOption.value = pair[0];
-                newOption.innerHTML = pair [1];
-                stok.options.add(newOption);
-            }
-        }
+        // function satuansatuan() {
+        //     var s4 = $('#txtSatuan_empat').val();
+        //     var s3 = document.getElementById("txtSatuan_tiga").value;
+        //     var s1 = document.getElementById("ddSatuan_satu").value;
+        //     var s2 = document.getElementById("txtSatuan_dua").value;
+        //     var stok = document.getElementById("ddStok");
+        //     var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3, s4 + "|" + s4];
+        //     stok.innerHTML = "";
+        //     for (var option in optionArray) {
+        //         var pair = optionArray[option].split("|");
+        //         var newOption = document.createElement("option");
+        //         newOption.value = pair[0];
+        //         newOption.innerHTML = pair [1];
+        //         stok.options.add(newOption);
+        //     }
+        // }
     </script>
 @endsection

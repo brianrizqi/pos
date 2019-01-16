@@ -91,6 +91,12 @@
                                     class="mini-dn">Customer</span>
                         </a>
                     </li>
+                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span class="mini-dn">Pengadaan</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                        <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+                            <a href="/pembelian" class="dropdown-item">Pembelian</a>
+                            <a href="/detail_pembelian" class="dropdown-item">Detail Pembelian</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -195,6 +201,13 @@
                                     </li>
                                     <li><a data-toggle="collapse" data-target="#others" href="/customer">Customer <span
                                                     class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                    </li>
+                                    <li><a data-toggle="collapse" data-target="#Charts" href="#">Pengadaan <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <ul class="collapse dropdown-header-top">
+                                            <li><a href="dashboard.html">Pembelian</a>
+                                            </li>
+                                            <li><a href="dashboard-2.html">Detail Pembelian</a>
+                                        </ul>
                                     </li>
                                 </ul>
                             </nav>

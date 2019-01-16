@@ -47,6 +47,7 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'id_barang' => 'required|unique:barangs|max:6',
             'nama_barang' => 'required|string|max:255',
             'id_supplier' => 'required|integer',
             'id_kategori' => 'required|integer',
@@ -57,6 +58,7 @@ class BarangController extends Controller
             'satuan_terakhir' => 'required|string'
         ]);
         $barang = new Barang();
+        $barang->id_barang = $request->id_barang;
         $barang->nama_barang = $request->nama_barang;
         $barang->id_kategori = $request->id_kategori;
         $barang->id_supplier = $request->id_supplier;
@@ -214,27 +216,7 @@ class BarangController extends Controller
                 $join->on('barangs.id_kategori', '=', 'kategoris.id_kategori');
             })
             ->where('id_barang', $id_barang)->first();
-        if ($barang->satuan_terakhir == $barang->satuan_satu) {
-            $stok = $barang->stok;
-        } else if ($barang->satuan_terakhir == $barang->satuan_dua) {
-            $stok = $barang->stok / $barang->stok_dua;
-        } else if ($barang->satuan_terakhir == $barang->satuan_tiga) {
-            if ($barang->satuan_turunan_tiga == $barang->satuan_satu) {
-                $stok = $barang->stok / $barang->stok_tiga;
-            } else {
-                $stok = $barang->stok / $barang->stok_tiga / $barang->stok_dua;
-            }
-        } else if ($barang->satuan_terakhir == $barang->satuan_empat) {
-            if ($barang->satuan_turunan_empat == $barang->satuan_satu) {
-                $stok = $barang->stok / $barang->stok_empat;
-            } else if ($barang->satuan_turunan_empat == $barang->satuan_dua) {
-                $stok = $barang->stok / $barang->stok_dua / $barang->stok_empat;
-            } else if ($barang->satuan_turunan_tiga == $barang->satuan_satu) {
-                $stok = $barang->stok / $barang->stok_tiga / $barang->stok_empat;
-            } else {
-                $stok = $barang->stok / $barang->stok_empat / $barang->stok_tiga / $barang->stok_dua;
-            }
-        }
+        $stok = $barang->stok;
         return view('edit_barang', ['barang' => $barang, 'stok' => $stok, 'supplier' => $supplier, 'kategori' => $kategori]);
     }
 

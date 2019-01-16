@@ -34,3 +34,9 @@ Route::post('/customer', 'CustomerController@store');
 Route::get('/customer/edit/{id}', 'CustomerController@edit');
 Route::put('/customer/{id}/edit/', 'CustomerController@update');
 Route::delete('/customer/{id}', 'CustomerController@destroy');
+
+Route::get('/pembelian', 'PembelianController@index');
+Route::get('/pembelian/create/{id}', 'PembelianController@create');
+Route::get('/pembelian/fetch/{id}','PembelianController@fetch')->name('supplier');
+
+Route::get('/detail_pembelian', 'Detail_PembelianController@destroy');

@@ -9,7 +9,7 @@
                     <div class="sparkline12-list shadow-reset mg-t-30">
                         <div class="sparkline12-hd">
                             <div class="main-sparkline12-hd">
-                                <h1>Edit Barang</h1>
+                                <h1>Tambah Barang</h1>
                             </div>
                         </div>
                         <div class="sparkline12-graph">
@@ -20,11 +20,22 @@
                                             <form action="/barang/{{$barang->id_barang}}/edit" method="POST">
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
+                                                            <label class="login2 pull-right pull-right-pro">Kode
+                                                                Barang </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
                                                             <label class="login2 pull-right pull-right-pro">Nama
                                                                 Barang</label>
                                                         </div>
-                                                        <div class="col-lg-9">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <input type="number" class="form-control" name="id_barang"
+                                                                   placeholder="Kode Barang"
+                                                                   value="{{$barang->id_barang}}"/>
+                                                        </div>
+                                                        <div class="col-lg-7">
                                                             <input type="text" class="form-control" name="nama_barang"
                                                                    placeholder="Nama Barang"
                                                                    value="{{$barang->nama_barang}}"/>
@@ -33,7 +44,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Nama
                                                                 Supplier</label>
                                                         </div>
@@ -41,7 +52,7 @@
                                                             <div class="form-select-list">
                                                                 <select class="form-control custom-select-value"
                                                                         name="id_supplier">
-                                                                    <option value="{{$barang->id}}">{{$barang->nama}}</option>
+                                                                    <option value="{{$barang->id_supplier}}">{{$barang->nama}}</option>
                                                                     @foreach($supplier as $item)
                                                                         <option value="{{$item->id}}">{{$item->nama}}</option>
                                                                     @endforeach
@@ -52,7 +63,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Kategori</label>
                                                         </div>
                                                         <div class="col-lg-9">
@@ -70,11 +81,21 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
                                                             <label class="login2 pull-right pull-right-pro">Harga Beli
                                                                 (Rp.)</label>
                                                         </div>
-                                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                                                            <label class="login2 pull-right pull-right-pro">Harga Jual
+                                                                (Rp.)</label>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                                                            <label class="login2 pull-right pull-right-pro">Laba
+                                                                (%)</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp.</span>
                                                                 <input type="number" id="beli" placeholder="Harga Beli"
@@ -82,15 +103,7 @@
                                                                        value="{{$barang->harga_beli}}">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                                            <label class="login2 pull-right pull-right-pro">Harga Jual
-                                                                (Rp.)</label>
-                                                        </div>
-                                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp.</span>
                                                                 <input type="number" id="jual" placeholder="Harga Jual"
@@ -98,15 +111,7 @@
                                                                        value="{{$barang->harga_jual}}">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                                            <label class="login2 pull-right pull-right-pro">Laba
-                                                                (%)</label>
-                                                        </div>
-                                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
                                                                 <input type="number" id="laba" name="laba"
                                                                        placeholder="0"
@@ -119,17 +124,17 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Satuan
                                                                 1</label>
                                                         </div>
-                                                        <div class="col-lg-9">
+                                                        <div class="col-lg-2">
                                                             <div class="form-select-list">
                                                                 <select id="ddSatuan_satu"
                                                                         class="form-control custom-select-value"
                                                                         name="satuan_satu"
-                                                                        onclick="satuanDua();">
-                                                                    <option value="{{$barang->satuan_satu}}">{{$barang->satuan_satu}}</option>
+                                                                        onchange="satuanDua();">
+                                                                    <option>{{$barang->satuan_satu}}</option>
                                                                     <option value="PCS">PCS</option>
                                                                     <option value="Gr">Gr</option>
                                                                 </select>
@@ -139,14 +144,14 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Satuan
                                                                 2</label>
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <div class="input-group">
                                                                 <input id="txtSatuan_dua" type="text"
-                                                                       onclick="satuanTiga();"
+                                                                       onkeyup="satuanTiga();"
                                                                        placeholder="Satuan"
                                                                        class="form-control satuandua" name="satuan_dua"
                                                                        value="{{$barang->satuan_dua}}">
@@ -175,7 +180,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Satuan
                                                                 3</label>
                                                         </div>
@@ -210,7 +215,7 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Satuan
                                                                 4</label>
                                                         </div>
@@ -245,12 +250,12 @@
                                                 </div>
                                                 <div class="form-group-inner">
                                                     <div class="row">
-                                                        <div class="col-lg-3">
+                                                        <div class="col-lg-2">
                                                             <label class="login2 pull-right pull-right-pro">Stok</label>
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <input type="number" class="form-control" placeholder="Stok"
-                                                                   name="stok" value="{{$stok}}"/>
+                                                                   name="stok" value="{{$barang->stok}}"/>
                                                         </div>
                                                         <div class="col-lg-2">
                                                             <select id="ddStok"
@@ -264,7 +269,7 @@
                                                 <div class="form-group-inner">
                                                     <div class="login-btn-inner">
                                                         <div class="row">
-                                                            <div class="col-lg-3"></div>
+                                                            <div class="col-lg-2"></div>
                                                             <div class="col-lg-9">
                                                                 <div class="login-horizental cancel-wp pull-left">
                                                                     <button class="btn btn-white" type="submit">Cancel
@@ -338,7 +343,6 @@
             var s2 = $('#txtSatuan_dua').val();
             var s1 = document.getElementById("ddSatuan_satu").value;
             var s3 = document.getElementById("ddSatuan_tiga");
-            var stok = document.getElementById("ddStok");
             s3.innerHTML = '';
             var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2];
             for (var option in optionArray) {
@@ -348,14 +352,6 @@
                 newOption.innerHTML = pair [1];
                 s3.options.add(newOption);
             }
-            stok.innerHTML = "";
-            for (var option in optionArray) {
-                var pair = optionArray[option].split("|");
-                var newOption = document.createElement("option");
-                newOption.value = pair[0];
-                newOption.innerHTML = pair [1];
-                stok.options.add(newOption);
-            }
         }
 
         function satuanEmpat() {
@@ -363,7 +359,6 @@
             var s1 = document.getElementById("ddSatuan_satu").value;
             var s2 = document.getElementById("txtSatuan_dua").value;
             var s4 = document.getElementById("ddSatuan_empat");
-            var stok = document.getElementById("ddStok");
             s4.innerHTML = '';
             var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3];
             for (var option in optionArray) {
@@ -372,31 +367,6 @@
                 newOption.value = pair[0];
                 newOption.innerHTML = pair [1];
                 s4.options.add(newOption);
-            }
-            stok.innerHTML = "";
-            for (var option in optionArray) {
-                var pair = optionArray[option].split("|");
-                var newOption = document.createElement("option");
-                newOption.value = pair[0];
-                newOption.innerHTML = pair [1];
-                stok.options.add(newOption);
-            }
-        }
-
-        function satuansatuan() {
-            var s4 = $('#txtSatuan_empat').val();
-            var s3 = document.getElementById("txtSatuan_tiga").value;
-            var s1 = document.getElementById("ddSatuan_satu").value;
-            var s2 = document.getElementById("txtSatuan_dua").value;
-            var stok = document.getElementById("ddStok");
-            var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3, s4 + "|" + s4];
-            stok.innerHTML = "";
-            for (var option in optionArray) {
-                var pair = optionArray[option].split("|");
-                var newOption = document.createElement("option");
-                newOption.value = pair[0];
-                newOption.innerHTML = pair [1];
-                stok.options.add(newOption);
             }
         }
     </script>
