@@ -25,11 +25,8 @@
                                             <label class="login2 pull-right pull-right-pro">No Entry</label>
                                         </div>
                                         <div class="col-lg-9">
-                                            <input type="email" class="form-control" name="email" placeholder="Email"
-                                                   value="{{old('email')}}" required/>
-                                            @if($errors->has('email'))
-                                                <p>{{$errors->first('email')}}</p>
-                                            @endif
+                                            <input type="text" class="form-control" name="email"
+                                                   placeholder="No Faktur"/>
                                         </div>
                                     </div>
                                 </div>
@@ -40,11 +37,7 @@
                                         </div>
                                         <div class="col-lg-9">
                                             <input type="date" class="form-control" name="tanggal"
-                                                   data-date-format="yyyy-MM-dd"
-                                                   value="{{old('email')}}" required/>
-                                            @if($errors->has('email'))
-                                                <p>{{$errors->first('email')}}</p>
-                                            @endif
+                                                   data-date-format="yyyy-MM-dd" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -54,11 +47,36 @@
                                             <label class="login2 pull-right pull-right-pro">No Bukti</label>
                                         </div>
                                         <div class="col-lg-9">
-                                            <input type="email" class="form-control" name="email" placeholder="Email"
-                                                   value="{{old('email')}}" required/>
-                                            @if($errors->has('email'))
-                                                <p>{{$errors->first('email')}}</p>
-                                            @endif
+                                            <input type="text" class="form-control" name="email" placeholder="No Bukti"
+                                                   required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group-inner">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="login2 pull-right pull-right-pro">Jenis Bayar</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="form-select-list">
+                                                <select id="jenis_transaksi"
+                                                        class="form-control custom-select-value"
+                                                        name="jenis_transaksi" onchange="pilihBayar();">
+                                                    <option value="Tunai">Tunai</option>
+                                                    <option value="Kredit">Kredit</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="jatuh_tempo" class="form-group-inner" style="display: none;">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label class="login2 pull-right pull-right-pro">Jatuh Tempo</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="date" class="form-control" name="tanggal"
+                                                   data-date-format="yyyy-MM-dd" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -95,19 +113,19 @@
                                 <div id="detail_sup">
                                     <table class="table sparkle-table">
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
+                                            <td>Alamat</td>
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td></td>
+                                            <td>Telepon Perusahaan</td>
                                             <td></td>
                                         </tr>
                                         <tr>
+                                            <td>Nama CP</td>
                                             <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Telepon CP</td>
                                             <td></td>
                                         </tr>
                                     </table>
@@ -150,33 +168,147 @@
                                         <th>No</th>
                                         <th>Kode Barang</th>
                                         <th>Nama Barang</th>
+                                        <th>Harga Beli</th>
                                         <th>Jumlah</th>
                                         <th>Satuan</th>
-                                        <th>Harga Beli</th>
                                         <th>Diskon (%)</th>
                                         <th>Diskon (Rp)</th>
                                         <th>Sub Total</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $no = 0?>
+                                    <?php $no = 0;
+                                    $totalBayar = 0;
+                                    ?>
                                     @foreach($data as $item)
                                         <?php
+                                        $total = ($item->price - $item->attributes['diskon_dua']) * $item->quantity;
+                                        $totalBayar += $total;
                                         $no++?>
                                         <tr>
                                             <td>{{$no}}</td>
                                             <td>{{$item->id}}</td>
                                             <td>{{$item->name}}</td>
+                                            <td>Rp. {{number_format($item->price,0,".",".")}}</td>
                                             <td>{{$item->quantity}}</td>
-                                            <td>{{$item->attirbutes[0]}}</td>
-                                            <td>{{$item->price}}</td>
-                                            <td>1</td>
-                                            <td>2</td>
+                                            <td>{{$item->attributes['satuan']}}</td>
+                                            <td>{{$item->attributes['diskon_satu']}} %</td>
+                                            <td>Rp. {{number_format($item->attributes['diskon_dua'],0,".",".")}}</td>
                                             <td>
-                                                1
+                                                Rp. {{number_format(($item->price-$item->attributes['diskon_dua'])*$item->quantity,0,".",".")}}
                                             </td>
+                                            <?php
+
+                                            ?>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            Biaya Kirim
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="input-group">
+                                                        <input type="number" id="uang"
+                                                               class="form-control uang" name="uang"
+                                                               placeholder="Biaya Kirim"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Total
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="input-group">
+                                                        <input type="number" id="uang"
+                                                               class="form-control uang" name="uang"
+                                                               placeholder="Total"
+                                                               value="<?=number_format($totalBayar, 0, ".", ".")?>"
+                                                               disabled/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            Uang Muka
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="input-group">
+                                                        <input type="number" id="uang"
+                                                               class="form-control uang" name="uang"
+                                                               placeholder="Uang Muka"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Diskon (%)
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="input-group">
+                                                        <input type="number" id="uang"
+                                                               class="form-control uang" name="uang"
+                                                               placeholder="Diskon (%)"
+                                                               required/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            Sisa Piutang
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="input-group">
+                                                        <input type="number" id="uang"
+                                                               class="form-control uang" name="uang"
+                                                               placeholder="Sisa Piutang"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            Diskon (Rp.)
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <input id="sisa" type="number" class="form-control"
+                                                           placeholder="Diskon (Rp)">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -186,10 +318,17 @@
                                         <td></td>
                                         <td></td>
                                         <td>
-                                            Total
+                                            Netto
                                         </td>
                                         <td>
-                                            Rp.10.000
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <input id="sisa" type="number" class="form-control"
+                                                           placeholder="Netto">
+                                                </div>
+                                                <div class="col-lg-4">
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -214,6 +353,10 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         function pilihSupplier() {
             var xmlhttp = new XMLHttpRequest();
@@ -233,6 +376,16 @@
                 window.location.href = "/pembelian/create/" + value;
             } else {
                 alert('Supplier Kosong');
+            }
+        }
+
+        function pilihBayar() {
+            var bayar = document.getElementById("jenis_transaksi").value;
+            var tempo = document.getElementById("jatuh_tempo");
+            if (bayar == "Kredit") {
+                tempo.style.display = "inline";
+            } else {
+                tempo.style.display = "none";
             }
         }
     </script>

@@ -48,10 +48,13 @@ class PembelianController extends Controller
                                                         <div class="col-lg-3">
                                                             <label class="login2 pull-right pull-right-pro">Harga Beli</label>
                                                         </div>
-                                                        <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="harga_beli"
+                                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">Rp.</span>
+                                                            <input type="number" id="harga" class="form-control diskon" name="harga_beli"
                                                                    placeholder="Harga Beli"
                                                                    value="' . $harga . '" required/>
+                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -109,28 +112,19 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-//        $cart = $request->session()->get('cart');
-//        $cart [$request->id_barang] = array(
-//            'id_barang' => $request->id_barang,
-//            'harga_beli'=>$request->harga_beli,
-//            'satuan'=>$request->satuan,
-//            'jumlah'=>$request->jumlah
-//        );
-//
-//        $request->session()->put('cart',$cart);
-//        $request->session()->flash('success','barang berhasil ditambahkan');
         $barang = DB::table('barangs')
             ->where('id_barang', $request->id_barang)
             ->first();
-
+        $diskon = $request->diskon_satu / 100 * $request->harga_beli;
         $add = Cart::add([
             'id' => $request->id_barang,
             'price' => $request->harga_beli,
             'name' => $barang->nama_barang,
-//            'quantitiy' => $request->satuan,
             'quantity' => $request->jumlah,
             'attributes' => [
-                'satuan' => $request->satuan
+                'satuan' => $request->satuan,
+                'diskon_satu' => $request->diskon_satu,
+                'diskon_dua' => $diskon
             ]
         ]);
         if ($add) {
