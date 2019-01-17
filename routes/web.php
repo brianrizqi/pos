@@ -37,7 +37,8 @@ Route::delete('/customer/{id}', 'CustomerController@destroy');
 
 Route::get('/pembelian', 'PembelianController@index');
 Route::get('/pembelian/create/{id}', 'PembelianController@create');
-Route::post('/pembelian/', 'PembelianController@store');
+Route::post('/pembelian/barang/', 'PembelianController@tambahBarang');
+Route::post('/pembelian', 'PembelianController@store');
 Route::get('/pembelian/clear', 'PembelianController@clear');
 Route::get('/pembelian/fetch/{id}','PembelianController@fetch')->name('supplier');
 Route::get('/pembelian/barang/{id}','PembelianController@barang')->name('barang');

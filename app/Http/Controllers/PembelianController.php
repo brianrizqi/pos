@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Detail_Pembelian;
 use App\Pembelian;
 use App\Supplier;
 //use Darryldecode\Cart\Cart;
@@ -110,7 +111,7 @@ class PembelianController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function tambahBarang(Request $request)
     {
         $barang = DB::table('barangs')
             ->where('id_barang', $request->id_barang)
@@ -130,6 +131,52 @@ class PembelianController extends Controller
         if ($add) {
             return redirect('pembelian');
         }
+    }
+
+    public function store(Request $request)
+    {
+        $pembelian = new Pembelian();
+        $pembelian->id_pembelian = $request->id_pembelian;
+        $pembelian->id_supplier = $request->id_supplier;
+        $pembelian->no_bukti = $request->no_bukti;
+        $pembelian->tanggal = $request->tanggal;
+        $pembelian->biaya_kirim = $request->biaya_kirim;
+        $pembelian->diskon_satu = $request->diskon_satu;
+        $pembelian->diskon_dua = $request->diskon_dua;
+        $pembelian->jenis_transaksi = $request->jenis_transaksi;
+        $pembelian->jatuh_tempo = $request->jatuh_tempo;
+        $pembelian->neto = $request->neto;
+        $pembelian->uang_muka = $request->uang_muka;
+        $pembelian->sisa_piutang = $request->sisa_piutang;
+        $pembelian->total = $request->total;
+        $pembelian->save();
+        $idpembelian = DB::table('pembelians')
+            ->where('id_supplier', $request->id_supplier)
+            ->orderBy('created_at', 'DESC')
+            ->take(1)
+            ->first();
+        $data = Cart::getContent();
+        foreach ($data as $item) {
+            $stok = DB::table('barangs')->where("id_barang", $item->id)
+                ->first();
+            $barang = DB::table('barangs')
+                ->where('id_barang', $item->id)
+                ->update([
+                    'stok' => $stok->stok + $item->quantity,
+                    'harga_beli' => $item->price
+                ]);
+            $detail = new Detail_Pembelian();
+            $detail->id_pembelian = $idpembelian->id_pembelian;
+            $detail->id_barang = $item->id;
+            $detail->jumlah = $item->quantity;
+            $detail->satuan = $item->attributes['satuan'];
+            $detail->diskon_satu = $item->attributes['diskon_satu'];
+            $detail->diskon_dua = $item->attributes['diskon_dua'];
+            $detail->total_harga = $item->price * $item->quantity;
+            $detail->save();
+        }
+        Cart::clear();
+        return redirect('barang');
     }
 
     public function clear()

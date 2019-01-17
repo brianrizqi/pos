@@ -204,7 +204,7 @@
                                     </li>
                                     <li><a data-toggle="collapse" data-target="#Charts" href="#">Pengadaan <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                         <ul class="collapse dropdown-header-top">
-                                            <li><a href="dashboard.html">Pembelian</a>
+                                            <li><a href="/pembelian">Pembelian</a>
                                             </li>
                                             <li><a href="dashboard-2.html">Detail Pembelian</a>
                                         </ul>
