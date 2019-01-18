@@ -267,29 +267,29 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group-inner">
-                                                    <div class="row">
-                                                        <div class="col-lg-2">
-                                                            <label class="login2 pull-right pull-right-pro">Stok</label>
-                                                        </div>
-                                                        <div class="col-lg-2">
-                                                            <input type="number" class="form-control" placeholder="Stok"
-                                                                   name="stok" value="{{old('stok')}}"/>
-                                                            @if($errors->has('stok'))
-                                                                <p>{{$errors->first('stok')}}</p>
-                                                            @endif
-                                                        </div>
-                                                        <div class="col-lg-2">
-                                                            <select id="ddStok"
-                                                                    class="form-control custom-select-value"
-                                                                    name="satuan_terakhir">
-                                                                @if($errors->has('satuan_terakhir'))
-                                                                    <p>{{$errors->first('satuan_terakhir')}}</p>
-                                                                @endif
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                {{--<div class="form-group-inner">--}}
+                                                    {{--<div class="row">--}}
+                                                        {{--<div class="col-lg-2">--}}
+                                                            {{--<label class="login2 pull-right pull-right-pro">Stok</label>--}}
+                                                        {{--</div>--}}
+                                                        {{--<div class="col-lg-2">--}}
+                                                            {{--<input type="number" class="form-control" placeholder="Stok"--}}
+                                                                   {{--name="stok" value="{{old('stok')}}"/>--}}
+                                                            {{--@if($errors->has('stok'))--}}
+                                                                {{--<p>{{$errors->first('stok')}}</p>--}}
+                                                            {{--@endif--}}
+                                                        {{--</div>--}}
+                                                        {{--<div class="col-lg-2">--}}
+                                                            {{--<select id="ddStok"--}}
+                                                                    {{--class="form-control custom-select-value"--}}
+                                                                    {{--name="satuan_terakhir">--}}
+                                                                {{--@if($errors->has('satuan_terakhir'))--}}
+                                                                    {{--<p>{{$errors->first('satuan_terakhir')}}</p>--}}
+                                                                {{--@endif--}}
+                                                            {{--</select>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
                                                 <div class="form-group-inner">
                                                     <div class="login-btn-inner">
                                                         <div class="row">

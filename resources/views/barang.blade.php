@@ -18,6 +18,9 @@
                                     <a href="/barang/create" class="btn btn-sm btn-primary login-submit-cs">
                                         Tambah
                                     </a>
+                                    <a href="/barang/print" class="btn btn-sm btn-primary login-submit-cs">
+                                        Print
+                                    </a>
                                 </div>
                                 <table id="table" data-toggle="table" data-pagination="true" data-search="true"
                                        data-toolbar="#toolbar">

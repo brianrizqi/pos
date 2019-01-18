@@ -159,9 +159,11 @@ class PembelianController extends Controller
         foreach ($data as $item) {
             $stok = DB::table('barangs')->where("id_barang", $item->id)
                 ->first();
+            $laba = (($stok->harga_jual - $item->price) / $item->price) * 100;
             $barang = DB::table('barangs')
                 ->where('id_barang', $item->id)
                 ->update([
+                    'laba' => $laba,
                     'stok' => $stok->stok + $item->quantity,
                     'harga_beli' => $item->price
                 ]);
@@ -176,7 +178,7 @@ class PembelianController extends Controller
             $detail->save();
         }
         Cart::clear();
-        return redirect('barang');
+        return redirect('detail_pembelian');
     }
 
     public function clear()

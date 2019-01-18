@@ -15,6 +15,7 @@ Route::get('/', 'BarangController@index');
 
 
 Route::get('/barang', 'BarangController@index');
+Route::get('/barang/print', 'BarangController@pdf');
 Route::get('/barang/create', 'BarangController@create');
 Route::post('/barang', 'BarangController@store');
 Route::get('/barang/edit/{id_barang}', 'BarangController@edit');
@@ -43,4 +44,4 @@ Route::get('/pembelian/clear', 'PembelianController@clear');
 Route::get('/pembelian/fetch/{id}','PembelianController@fetch')->name('supplier');
 Route::get('/pembelian/barang/{id}','PembelianController@barang')->name('barang');
 
-Route::get('/detail_pembelian', 'Detail_PembelianController@destroy');
+Route::get('/detail_pembelian', 'DetailPembelianController@index');
