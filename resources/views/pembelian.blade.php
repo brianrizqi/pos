@@ -347,10 +347,11 @@
                                                 Cancel
                                             </a>
                                             {{--<button type="submit"--}}
-                                                    {{--class="btn btn-sm btn-primary login-submit-cs">--}}
-                                                {{--Masukkan--}}
+                                            {{--class="btn btn-sm btn-primary login-submit-cs">--}}
+                                            {{--Masukkan--}}
                                             {{--</button>--}}
-                                            <input type="submit" name="submit" value="Masukkan" class="btn btn-sm btn-primary login-submit-cs">
+                                            <input type="submit" name="submit" value="Masukkan"
+                                                   class="btn btn-sm btn-primary login-submit-cs">
                                         </div>
                                     </div>
                                 </div>
@@ -360,6 +361,32 @@
                 </div>
             </div>
         </div>
+        {{--<div class="static-table-area mg-b-15">--}}
+            {{--<div class="container-fluid">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-lg-4">--}}
+                        {{--<div class="sparkline8-list shadow-reset">--}}
+
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-lg-8">--}}
+                        {{--<div class="sparkline9-list sparkel-pro-mg-t-30 shadow-reset">--}}
+                            {{--<div class="sparkline8-hd">--}}
+                                {{--<div class="main-sparkline8-hd">--}}
+                                    {{--<h1>Basic Table</h1>--}}
+                                    {{--<div class="sparkline8-outline-icon">--}}
+                                        {{--<span class="sparkline8-collapse-link"><i class="fa fa-chevron-up"></i></span>--}}
+                                        {{--<span><i class="fa fa-wrench"></i></span>--}}
+                                        {{--<span class="sparkline8-collapse-close"><i class="fa fa-times"></i></span>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         {{--{{csrf_field()}}--}}
     </form>
     <script type="text/javascript">

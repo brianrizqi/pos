@@ -73,11 +73,11 @@
             </div>
             <div class="left-custom-menu-adp-wrap">
                 <ul class="nav navbar-nav left-sidebar-menu-pro">
-                    <li class="nav-item">
-                        <a href="/" role="button" aria-expanded="false"
-                           class="nav-link dropdown-toggle"><i class="fa fa-archive"></i> <span
-                                    class="mini-dn">Barang</span>
-                        </a>
+                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-archive"></i> <span class="mini-dn">Barang</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                        <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+                            <a href="/" class="dropdown-item">Laporan Stok</a>
+                            <a href="/kartu_stok" class="dropdown-item">Kartu Stok</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a href="/supplier" role="button" aria-expanded="false"
@@ -193,8 +193,12 @@
                         <div class="mobile-menu">
                             <nav id="dropdown">
                                 <ul class="mobile-menu-nav">
-                                    <li><a data-toggle="collapse" data-target="#Charts" href="/">Barang <span
-                                                    class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                    <li><a data-toggle="collapse" data-target="#Charts" href="#">Barang <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                        <ul class="collapse dropdown-header-top">
+                                            <li><a href="/">Laporan Stok</a>
+                                            </li>
+                                            <li><a href="/kartu_stok">Kartu Stok</a>
+                                        </ul>
                                     </li>
                                     <li><a data-toggle="collapse" data-target="#demo" href="/supplier">Supplier <span
                                                     class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
@@ -206,7 +210,7 @@
                                         <ul class="collapse dropdown-header-top">
                                             <li><a href="/pembelian">Pembelian</a>
                                             </li>
-                                            <li><a href="dashboard-2.html">Detail Pembelian</a>
+                                            <li><a href="/detail_pembelian">Detail Pembelian</a>
                                         </ul>
                                     </li>
                                 </ul>

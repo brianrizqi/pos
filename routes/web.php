@@ -45,3 +45,6 @@ Route::get('/pembelian/fetch/{id}','PembelianController@fetch')->name('supplier'
 Route::get('/pembelian/barang/{id}','PembelianController@barang')->name('barang');
 
 Route::get('/detail_pembelian', 'DetailPembelianController@index');
+
+Route::get('/kartu_stok', 'KartuStokController@index');
+Route::get('/kartu_stok/fetch/{id}','KartuStokController@fetch');
