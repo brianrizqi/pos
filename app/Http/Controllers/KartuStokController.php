@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Barang;
 use App\Kartu_Stok;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,16 +27,30 @@ class KartuStokController extends Controller
             ->join('pembelians', function ($join) {
                 $join->on('detail_pembelians.id_pembelian', '=', 'pembelians.id_pembelian');
             })
+            ->join('suppliers', function ($join) {
+                $join->on('pembelians.id_supplier', '=', 'suppliers.id');
+            })
             ->join('barangs', function ($join) {
                 $join->on('detail_pembelians.id_barang', '=', 'barangs.id_barang');
             })
             ->where('detail_pembelians.id_barang', $id)
             ->get();
         $no = 0;
-        $output = '<table class="table sparkle-table">
+        $penjualan = DB::table('detail_penjualans')
+            ->join('penjualans', function ($join) {
+                $join->on('detail_penjualans.id_penjualan', '=', 'penjualans.id_penjualan');
+            })
+            ->join('customer', function ($join) {
+                $join->on('penjualans.id_customer', '=', 'customer.id_customer');
+            })
+            ->join('barangs', function ($join) {
+                $join->on('detail_penjualans.id_barang', '=', 'barangs.id_barang');
+            })
+            ->where('detail_penjualans.id_barang', $id)
+            ->get();
+        $output = '<table id="results" class="table sparkle-table">
                                         <thead>
                                         <tr>
-                                            <th>No</th>
                                             <th>Tanggal</th>
                                             <th>No Faktur</th>
                                             <th>Keterangan</th>
@@ -48,13 +63,23 @@ class KartuStokController extends Controller
         foreach ($data as $item) {
             $no++;
             $output .= '                     <tr>
-                                            <td>' . $no . '</td>
-                                            <td>' . $item->tanggal . '</td>
-                                            <td>'.$item->id_pembelian.'</td>
-                                            <td></td>
+                                            <td>' .date("d/m/Y", strtotime($item->tanggal)). '</td>
+                                            <td>' . $item->id_pembelian . '</td>
+                                            <td>'.$item->nama.'(Masuk)</td>
                                             <td>' . $item->jumlah . '</td>
                                             <td></td>
-                                            <td>'.$item->stok.'</td>
+                                            <td>' . $item->stok . '</td>
+                                        </tr>';
+        }
+        foreach ($penjualan as $item) {
+            $no++;
+            $output .= '                     <tr>
+                                            <td>' .date("d/m/Y", strtotime($item->tanggal)). '</td>
+                                            <td>' . $item->id_penjualan . '</td>
+                                            <td>'.$item->nama.'(Keluar)</td>
+                                            <td></td>
+                                            <td>' . $item->jumlah . '</td>
+                                            <td>' . $item->stok . '</td>
                                         </tr>';
         }
         $output .= '

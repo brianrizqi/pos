@@ -9,7 +9,7 @@
                     <div class="sparkline8-list shadow-reset">
                         <div class="sparkline8-hd">
                             <div class="main-sparkline8-hd">
-                                <h1>Basic Table</h1>
+                                <h1>Pilih Barang</h1>
                             </div>
                         </div>
                         <div class="sparkline8-graph">
@@ -37,16 +37,15 @@
                     <div class="sparkline8-list sparkel-pro-mg-t-30 shadow-reset">
                         <div class="sparkline8-hd">
                             <div class="main-sparkline9-hd">
-                                <h1>Supplier</h1>
+                                <h1>Kartu Stok</h1>
                             </div>
                         </div>
                         <div class="sparkline8-graph">
                             <div class="static-table-list">
                                 <div id="detail_sup">
-                                    <table class="table sparkle-table">
+                                    <table id="results" class="table sparkle-table">
                                         <thead>
                                         <tr>
-                                            <th>No</th>
                                             <th>Tanggal</th>
                                             <th>No Faktur</th>
                                             <th>Keterangan</th>
@@ -57,7 +56,6 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -83,9 +81,29 @@
                 xmlhttp.open("GET", "/kartu_stok/fetch/" + value, false);
                 xmlhttp.send(null);
                 document.getElementById("detail_sup").innerHTML = xmlhttp.responseText;
+                var tbody = document.querySelector("#results tbody");
+                // get trs as array for ease of use
+                var rows = [].slice.call(tbody.querySelectorAll("tr"));
+
+                rows.sort(function(a,b) {
+                    return convertDate(a.cells[0].innerHTML) - convertDate(b.cells[0].innerHTML);
+                });
+
+                rows.forEach(function(v) {
+                    tbody.appendChild(v); // note that .appendChild() *moves* elements
+                });
             } else {
                 alert('Barang Kosong')
             }
+
+        }
+        function convertDate(d) {
+            var p = d.split("/");
+            return +(p[2]+p[1]+p[0]);
+        }
+
+        function sortByDate() {
+
         }
     </script>
 @endsection

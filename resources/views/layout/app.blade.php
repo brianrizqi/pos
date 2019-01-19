@@ -97,6 +97,12 @@
                             <a href="/detail_pembelian" class="dropdown-item">Detail Pembelian</a>
                         </div>
                     </li>
+                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span class="mini-dn">Penjualan</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                        <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
+                            <a href="/penjualan" class="dropdown-item">Penjualan</a>
+                            <a href="/detail_penjualan" class="dropdown-item">Detail Penjualan</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>

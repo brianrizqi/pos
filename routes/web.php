@@ -48,3 +48,12 @@ Route::get('/detail_pembelian', 'DetailPembelianController@index');
 
 Route::get('/kartu_stok', 'KartuStokController@index');
 Route::get('/kartu_stok/fetch/{id}','KartuStokController@fetch');
+
+Route::get('/penjualan', 'PenjualanController@index');
+Route::get('/penjualan/create', 'PenjualanController@create');
+Route::post('/penjualan', 'PenjualanController@store');
+Route::post('/penjualan/barang/', 'PenjualanController@tambahBarang');
+Route::get('/penjualan/fetch/{id}','PenjualanController@fetch');
+Route::get('/penjualan/barang/{id}','PenjualanController@barang');
+
+Route::get('/detail_penjualan', 'DetailPenjualanController@index');
