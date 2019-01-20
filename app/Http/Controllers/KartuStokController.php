@@ -52,7 +52,8 @@ class KartuStokController extends Controller
                                         <thead>
                                         <tr>
                                             <th>Tanggal</th>
-                                            <th>No Faktur</th>
+                                            <th>Hari</th>
+                                            <th>Faktur</th>
                                             <th>Keterangan</th>
                                             <th>Masuk</th>
                                             <th>Keluar</th>
@@ -61,22 +62,27 @@ class KartuStokController extends Controller
                                         </thead>
                                         <tbody>';
         foreach ($data as $item) {
+            $timestamp = strtotime($item->tanggal);
+            $day = date('D', $timestamp);
             $no++;
             $output .= '                     <tr>
-                                            <td>' .date("d/m/Y", strtotime($item->tanggal)). '</td>
+                                            <td>' . date("d/m/Y", strtotime($item->tanggal)) . '</td>
+                                            <td>' . $this->translate_date($day) . '</td>
                                             <td>' . $item->id_pembelian . '</td>
-                                            <td>'.$item->nama.'(Masuk)</td>
+                                            <td>' . $item->nama . '(Masuk)</td>
                                             <td>' . $item->jumlah . '</td>
-                                            <td></td>
                                             <td>' . $item->stok . '</td>
                                         </tr>';
         }
         foreach ($penjualan as $item) {
+            $timestamp = strtotime($item->tanggal);
+            $day = date('D', $timestamp);
             $no++;
             $output .= '                     <tr>
-                                            <td>' .date("d/m/Y", strtotime($item->tanggal)). '</td>
+                                            <td>' . date("d/m/Y", strtotime($item->tanggal)) . '</td>
+                                            <td>' . $this->translate_date($day) . '</td>
                                             <td>' . $item->id_penjualan . '</td>
-                                            <td>'.$item->nama.'(Keluar)</td>
+                                            <td>' . $item->nama . '(Keluar)</td>
                                             <td></td>
                                             <td>' . $item->jumlah . '</td>
                                             <td>' . $item->stok . '</td>
@@ -86,6 +92,20 @@ class KartuStokController extends Controller
                                         </tbody>
                                     </table>';
         echo $output;
+    }
+
+    function translate_date($day)
+    {
+        $translated_days = array(
+            'Mon' => 'Senin',
+            'Tue' => 'Selasa',
+            'Wed' => 'Rabu',
+            'Thu' => 'Kamis',
+            'Fri' => 'Jumat',
+            'Sat' => 'Sabtu',
+        );
+
+        return $translated_days[$day];
     }
 
     /**

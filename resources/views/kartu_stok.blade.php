@@ -5,7 +5,7 @@
     <div class="static-table-area mg-b-15">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <div class="sparkline8-list shadow-reset">
                         <div class="sparkline8-hd">
                             <div class="main-sparkline8-hd">
@@ -17,7 +17,7 @@
                                 <div class="form-group-inner">
                                     <div class="row">
                                         <div class="col-lg-3">
-                                            <label class="login2 pull-right pull-right-pro">No Entry</label>
+                                            <label class="login2 pull-right pull-right-pro">Barang</label>
                                         </div>
                                         <div class="col-lg-9">
                                             <select class="form-control" onchange="kartuStok()" id="kartu" name="kartu">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <div class="sparkline8-list sparkel-pro-mg-t-30 shadow-reset">
                         <div class="sparkline8-hd">
                             <div class="main-sparkline9-hd">
@@ -47,7 +47,8 @@
                                         <thead>
                                         <tr>
                                             <th>Tanggal</th>
-                                            <th>No Faktur</th>
+                                            <th>Hari</th>
+                                            <th>Faktur</th>
                                             <th>Keterangan</th>
                                             <th>Masuk</th>
                                             <th>Keluar</th>
