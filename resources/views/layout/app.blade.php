@@ -73,7 +73,10 @@
             </div>
             <div class="left-custom-menu-adp-wrap">
                 <ul class="nav navbar-nav left-sidebar-menu-pro">
-                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-archive"></i> <span class="mini-dn">Barang</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                                            class="nav-link dropdown-toggle"><i class="fa big-icon fa-archive"></i>
+                            <span class="mini-dn">Barang</span> <span class="indicator-right-menu mini-dn"><i
+                                        class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
                             <a href="/" class="dropdown-item">Laporan Stok</a>
                             <a href="/kartu_stok" class="dropdown-item">Kartu Stok</a>
@@ -91,13 +94,19 @@
                                     class="mini-dn">Customer</span>
                         </a>
                     </li>
-                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span class="mini-dn">Pengadaan</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                                            class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span
+                                    class="mini-dn">Pengadaan</span> <span class="indicator-right-menu mini-dn"><i
+                                        class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
                             <a href="/pembelian" class="dropdown-item">Pembelian</a>
                             <a href="/detail_pembelian" class="dropdown-item">Detail Pembelian</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span class="mini-dn">Penjualan</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                    <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                                            class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span
+                                    class="mini-dn">Penjualan</span> <span class="indicator-right-menu mini-dn"><i
+                                        class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
                             <a href="/penjualan" class="dropdown-item">Penjualan</a>
                             <a href="/detail_penjualan" class="dropdown-item">Detail Penjualan</a>
@@ -199,7 +208,8 @@
                         <div class="mobile-menu">
                             <nav id="dropdown">
                                 <ul class="mobile-menu-nav">
-                                    <li><a data-toggle="collapse" data-target="#Charts" href="#">Barang <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                    <li><a data-toggle="collapse" data-target="#Charts" href="#">Barang <span
+                                                    class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                         <ul class="collapse dropdown-header-top">
                                             <li><a href="/">Laporan Stok</a>
                                             </li>
@@ -212,7 +222,8 @@
                                     <li><a data-toggle="collapse" data-target="#others" href="/customer">Customer <span
                                                     class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                     </li>
-                                    <li><a data-toggle="collapse" data-target="#Charts" href="#">Pengadaan <span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
+                                    <li><a data-toggle="collapse" data-target="#Charts" href="#">Pengadaan <span
+                                                    class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                         <ul class="collapse dropdown-header-top">
                                             <li><a href="/pembelian">Pembelian</a>
                                             </li>
@@ -275,6 +286,15 @@
         </div>
     </div>
 </div>
+<script>
+    window.addEventListener("keyup", checkKey, false);
+
+    function checkKey(key) {
+        if (key.keyCode == "118") {
+            window.location.href = "/barang";
+        }
+    }
+</script>
 <!-- Footer End-->
 <!-- Chat Box End-->
 <!-- jquery

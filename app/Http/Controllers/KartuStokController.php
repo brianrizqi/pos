@@ -71,6 +71,7 @@ class KartuStokController extends Controller
                                             <td>' . $item->id_pembelian . '</td>
                                             <td>' . $item->nama . '(Masuk)</td>
                                             <td>' . $item->jumlah . '</td>
+                                            <td></td>
                                             <td>' . $item->stok . '</td>
                                         </tr>';
         }
@@ -103,6 +104,7 @@ class KartuStokController extends Controller
             'Thu' => 'Kamis',
             'Fri' => 'Jumat',
             'Sat' => 'Sabtu',
+            'Sun' => 'Minggu',
         );
 
         return $translated_days[$day];

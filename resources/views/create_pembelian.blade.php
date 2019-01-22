@@ -125,11 +125,7 @@
                                                                        class="form-control"
                                                                        name="diskon_dua"
                                                                        placeholder="Diskon (Rp.)"
-                                                                       value="{{old('email')}}"
-                                                                       disabled/>
-                                                                @if($errors->has('email'))
-                                                                    <p>{{$errors->first('email')}}</p>
-                                                                @endif
+                                                                       value="{{old('email')}}"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -165,18 +161,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $('.input-group').on('input', '.diskon', function () {
-            var laba = 0;
-            $('.input-group .diskon').each(function () {
-                var harga = $('#harga').val();
-                var diskon_satu = $('#diskon_satu').val();
-                var input = $(this).val();
-                if ($.isNumeric(input)) {
-                    laba = parseFloat(diskon_satu / 100 * harga);
-                }
-            });
-            $('#diskon_dua').val(laba);
-        });
+        // $('.input-group').on('input', '.diskon', function () {
+        //     var laba = 0;
+        //     $('.input-group .diskon').each(function () {
+        //         var harga = $('#harga').val();
+        //         var diskon_satu = $('#diskon_satu').val();
+        //         var input = $(this).val();
+        //         if ($.isNumeric(input)) {
+        //             laba = parseFloat(diskon_satu / 100 * harga);
+        //         }
+        //     });
+        //     $('#diskon_dua').val(laba);
+        // });
 
         function pilihBarang() {
             var xmlhttp = new XMLHttpRequest();

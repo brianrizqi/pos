@@ -152,6 +152,7 @@ class PenjualanController extends Controller
                                                     </div>';
         echo $output;
     }
+
     /**
      * Display the specified resource.
      *
@@ -195,5 +196,12 @@ class PenjualanController extends Controller
     public function destroy(Penjualan $penjualan)
     {
         //
+    }
+
+    public function detail_barang($id)
+    {
+        $penjualan = Detail_Penjualan::where('id_penjualan',$id)
+            ->first();
+        return view('detail_penjualan_barang', ['penjualan' => $penjualan]);
     }
 }

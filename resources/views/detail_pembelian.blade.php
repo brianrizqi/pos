@@ -56,7 +56,7 @@
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="#" method="POST"
+                                                <form action="/pembelian/detail/{{$item->id_pembelian}}" method="Get"
                                                       style="display: inline">
                                                     <button class="btn btn-success">
                                                         <i class="fa fa-eye"></i>

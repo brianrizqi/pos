@@ -9,7 +9,7 @@
                     <div class="sparkline13-list shadow-reset">
                         <div class="sparkline13-hd">
                             <div class="main-sparkline13-hd">
-                                <h1>Tabel <span class="table-project-n">Pembelian</span></h1>
+                                <h1>Tabel <span class="table-project-n">Penjualan</span></h1>
                             </div>
                         </div>
                         <div class="sparkline13-graph">
@@ -46,7 +46,7 @@
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="#" method="POST"
+                                                <form action="/penjualan/detail/{{$item->id_penjualan}}" method="GET"
                                                       style="display: inline">
                                                     <button class="btn btn-success">
                                                         <i class="fa fa-eye"></i>

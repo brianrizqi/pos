@@ -116,16 +116,56 @@ class PembelianController extends Controller
         $barang = DB::table('barangs')
             ->where('id_barang', $request->id_barang)
             ->first();
+        $satuan_satu = $barang->satuan_satu;
+        $satuan_dua = $barang->satuan_dua;
+        $satuan_tiga = $barang->satuan_tiga;
+        $satuan_empat = $barang->satuan_empat;
+        $satuan_terakhir_dua = $barang->satuan_turunan_dua;
+        $satuan_terakhir_tiga = $barang->satuan_turunan_tiga;
+        $satuan_terakhir_empat = $barang->satuan_turunan_empat;
+        $stok_dua = $barang->stok_dua;
+        $stok_tiga = $barang->stok_tiga;
+        $stok_empat = $barang->stok_empat;
         $diskon = $request->diskon_satu / 100 * $request->harga_beli;
+        if ($request->satuan == $satuan_satu) {
+            $stokbaru = $request->jumlah;
+            $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
+        } else if ($request->satuan == $satuan_dua) {
+            $stokbaru = $request->jumlah * $stok_dua;
+            $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
+        } else if ($request->satuan == $satuan_tiga) {
+            if ($satuan_terakhir_tiga == $satuan_satu) {
+                $stokbaru = $request->jumlah * $stok_tiga;
+                $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
+            } else {
+                $stokbaru = $request->jumlah * $stok_dua * $stok_tiga;
+                $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
+            }
+        } else if ($request->satuan == $satuan_empat) {
+            if ($satuan_terakhir_empat == $satuan_satu) {
+                $stokbaru = $request->jumlah * $stok_empat;
+                $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
+            } else if ($satuan_terakhir_empat == $satuan_dua) {
+                $stokbaru = $request->jumlah * $stok_dua * $stok_empat;
+                $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
+            } else if ($satuan_terakhir_tiga == $satuan_satu) {
+                $stokbaru = $request->jumlah * $stok_tiga * $stok_empat;
+                $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
+            } else {
+                $stokbaru = $request->jumlah * $stok_dua * $stok_tiga * $stok_empat;
+                $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
+            }
+        }
         $add = Cart::add([
             'id' => $request->id_barang,
             'price' => $request->harga_beli,
             'name' => $barang->nama_barang,
-            'quantity' => $request->jumlah,
+            'quantity' => $stokbaru,
             'attributes' => [
-                'satuan' => $request->satuan,
+                'satuan' => $satuan_satu,
                 'diskon_satu' => $request->diskon_satu,
-                'diskon_dua' => $diskon
+                'diskon_dua' => $request->diskon_dua,
+                'total' => $total
             ]
         ]);
         if ($add) {
@@ -144,7 +184,9 @@ class PembelianController extends Controller
         $pembelian->diskon_satu = $request->diskon_satu;
         $pembelian->diskon_dua = $request->diskon_dua;
         $pembelian->jenis_transaksi = $request->jenis_transaksi;
-        $pembelian->jatuh_tempo = $request->jatuh_tempo;
+        if ($request->jatuh_tempo > 0) {
+            $pembelian->jatuh_tempo = date('Y-m-d', strtotime($request->tanggal . ' + ' . $request->jatuh_tempo . ' days'));
+        }
         $pembelian->neto = $request->neto;
         $pembelian->uang_muka = $request->uang_muka;
         $pembelian->sisa_piutang = $request->sisa_piutang;
@@ -174,7 +216,7 @@ class PembelianController extends Controller
             $detail->satuan = $item->attributes['satuan'];
             $detail->diskon_satu = $item->attributes['diskon_satu'];
             $detail->diskon_dua = $item->attributes['diskon_dua'];
-            $detail->total_harga = $item->price * $item->quantity;
+            $detail->total_harga = $item->attributes['total'];
             $detail->save();
         }
         Cart::clear();
@@ -230,5 +272,25 @@ class PembelianController extends Controller
     public function destroy(Pembelian $pembelian)
     {
         //
+    }
+
+    public function detail_barang($id)
+    {
+        $pembelians = DB::table('detail_pembelians')
+            ->join('barangs', function ($join) {
+                $join->on('barangs.id_barang', '=', 'detail_pembelians.id_barang');
+            })
+            ->where('detail_pembelians.id_pembelian', $id)
+            ->get();
+        $pembelian = DB::table('detail_pembelians')
+            ->join('pembelians', function ($join) {
+                $join->on('pembelians.id_pembelian', '=', 'detail_pembelians.id_pembelian');
+            })
+            ->join('suppliers', function ($join) {
+                $join->on('suppliers.id', '=', 'pembelians.id_supplier');
+            })
+            ->where('detail_pembelians.id_pembelian', $id)
+            ->first();
+        return view('detail_pembelian_barang', ['pembelian' => $pembelians], ['data' => $pembelian]);
     }
 }
