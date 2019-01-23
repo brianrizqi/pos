@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Detail_Pembelian;
 use App\Pembelian;
 use App\Supplier;
-//use Darryldecode\Cart\Cart;
 use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class PembelianController extends Controller
 {
@@ -20,18 +20,24 @@ class PembelianController extends Controller
     public function index()
     {
         $id = DB::table('pembelians')
-            ->orWhere('id_pembelian', 'like', '%'.str_replace("-","",date("Y-m-d")).'%')
+            ->orWhere('id_pembelian', 'like', '%' . str_replace("-", "", date("Y-m-d")) . '%')
             ->orderBy('created_at', 'DESC')
             ->take(1)
             ->first();
         if (count((array)$id) == 0) {
             $pembelian = 1;
         } else {
-            $pembelian = substr($id->id_pembelian,-1)+1;
+            $pembelian = substr($id->id_pembelian, -1) + 1;
         }
-        $supplier = Supplier::all();
+        if (session()->has('id_supplier')) {
+            $supplier = DB::table('suppliers')
+                ->where('id', session('id_supplier'))
+                ->first();
+        } else {
+            $supplier = Supplier::all();
+        }
         $data = Cart::getContent();
-        return view('pembelian', ['supplier' => $supplier,'data' => $data,'id'=>$pembelian] );
+        return view('pembelian', ['supplier' => $supplier, 'data' => $data, 'id' => $pembelian]);
     }
 
     /**
@@ -41,10 +47,11 @@ class PembelianController extends Controller
      */
     public function create($id)
     {
+
         $barang = DB::table('barangs')
             ->where('id_supplier', $id)
             ->get();
-        return view('create_pembelian', ['barang' => $barang]);
+        return view('create_pembelian', ['barang' => $barang, 'id' => $id]);
     }
 
     public function barang($id)
@@ -165,6 +172,7 @@ class PembelianController extends Controller
                 $total = ($request->harga_beli * $stokbaru) - ($diskon + $request->diskon_dua);
             }
         }
+        Session::put('id_supplier', $request->id_supplier);
         $add = Cart::add([
             'id' => $request->id_barang,
             'price' => $request->harga_beli,
@@ -235,6 +243,7 @@ class PembelianController extends Controller
     public function clear()
     {
         Cart::clear();
+        Session::flush();
         return redirect('pembelian');
     }
 

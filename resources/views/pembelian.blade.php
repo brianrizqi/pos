@@ -27,7 +27,8 @@
                                             </div>
                                             <div class="col-lg-9">
                                                 <input type="text" class="form-control" name="id_pembelian"
-                                                       placeholder="No Faktur" value="{{str_replace("-","",date("Y-m-d"))}}POS00{{$id}}"/>
+                                                       placeholder="No Faktur"
+                                                       value="{{str_replace("-","",date("Y-m-d"))}}POS00{{$id}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -98,9 +99,13 @@
                                             <select id="supplier" class="form-control" name="id_supplier"
                                                     onchange="pilihSupplier()">
                                                 <option></option>
+                                                @if(count((array)$supplier) > 1)
+                                                    <option value="{{$supplier->id}}">{{$supplier->nama}}</option>
+                                                @else
                                                 @foreach($supplier as $item)
                                                     <option value="{{$item->id}}">{{$item->nama}}</option>
                                                 @endforeach
+                                                @endif
                                             </select>
                                             {{csrf_field()}}
                                         </div>

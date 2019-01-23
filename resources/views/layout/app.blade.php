@@ -80,7 +80,7 @@
                             <span class="mini-dn">Barang</span> <span class="indicator-right-menu mini-dn"><i
                                         class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                            <a href="/" class="dropdown-item">Laporan Stok</a>
+                            <a href="/barang" class="dropdown-item">Laporan Stok</a>
                             <a href="/kartu_stok" class="dropdown-item">Kartu Stok</a>
                         </div>
                     </li>
@@ -213,7 +213,7 @@
                                     <li><a data-toggle="collapse" data-target="#Charts" href="#">Barang <span
                                                     class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                         <ul class="collapse dropdown-header-top">
-                                            <li><a href="/">Laporan Stok</a>
+                                            <li><a href="/barang">Laporan Stok</a>
                                             </li>
                                             <li><a href="/kartu_stok">Kartu Stok</a>
                                         </ul>

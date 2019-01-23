@@ -18,6 +18,7 @@
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
                                             <form method="POST" action="/pembelian/barang/">
+                                                <input type="hidden" name="id_supplier" value="{{$id}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
@@ -131,13 +132,30 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label class="login2 pull-right pull-right-pro">Sub Total(Rp.)</label>
+                                                        </div>
+                                                        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">Rp.</span>
+                                                                <input type="number" id="diskon_dua"
+                                                                       class="form-control"
+                                                                       name="sub_total"
+                                                                       placeholder="Sub Total (Rp.)"
+                                                                       disabled/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group-inner">
                                                     <div class="login-btn-inner">
                                                         <div class="row">
                                                             <div class="col-lg-3"></div>
                                                             <div class="col-lg-9">
                                                                 <div class="login-horizental cancel-wp pull-left">
-                                                                    <button class="btn btn-white" type="submit">Cancel
-                                                                    </button>
+                                                                    <a href="#" class="btn btn-white" type="submit">Cancel
+                                                                    </a>
                                                                     <button class="btn btn-sm btn-primary login-submit-cs"
                                                                             type="submit">Tambah
                                                                     </button>
@@ -173,7 +191,6 @@
         //     });
         //     $('#diskon_dua').val(laba);
         // });
-
         function pilihBarang() {
             var xmlhttp = new XMLHttpRequest();
             var value = document.getElementById("barang").value;
