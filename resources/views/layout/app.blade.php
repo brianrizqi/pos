@@ -67,9 +67,11 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>POS</h3>
-                <p>Point Of Sales</p>
-                <strong>POS</strong>
+                <a href="/">
+                    <h3>POS</h3>
+                    <p>Point Of Sales</p>
+                    <strong>POS</strong>
+                </a>
             </div>
             <div class="left-custom-menu-adp-wrap">
                 <ul class="nav navbar-nav left-sidebar-menu-pro">
@@ -287,11 +289,35 @@
     </div>
 </div>
 <script>
+    document.addEventListener("keydown", e => {
+        if(e.key == "F11") {e.preventDefault()};
+    });
     window.addEventListener("keyup", checkKey, false);
 
     function checkKey(key) {
         if (key.keyCode == "118") {
             window.location.href = "/barang";
+        }
+        if (key.keyCode == "115") {
+            window.location.href = "/supplier";
+        }
+        if (key.keyCode == "117") {
+            window.location.href = "/customer";
+        }
+        if (key.keyCode == "119") {
+            window.location.href = "/kartu_stok";
+        }
+        if (key.keyCode == "113") {
+            window.location.href = "/pembelian";
+        }
+        if (key.keyCode == "120") {
+            window.location.href = "/detail_pembelian";
+        }
+        if (key.keyCode == "121") {
+            window.location.href = "/penjualan";
+        }
+        if (key.keyCode == "122") {
+            window.location.href = "/detail_penjualan";
         }
     }
 </script>

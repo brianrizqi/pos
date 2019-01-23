@@ -111,8 +111,7 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public
-    function create()
+    public function create()
     {
         $supplier = Supplier::all();
         $kategori = DB::table('kategoris')->get();
@@ -158,123 +157,6 @@ class BarangController extends Controller
         $barang->satuan_empat = $request->satuan_empat;
         $barang->stok_empat = $request->stok_empat;
         $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//        if ($request->satuan_terakhir == $request->satuan_satu) {
-//            $barang->stok = $request->stok;
-//            $barang->satuan_terakhir = $request->satuan_terakhir;
-//            $barang->satuan_satu = $request->satuan_satu;
-//            $barang->satuan_dua = $request->satuan_dua;
-//            $barang->stok_dua = $request->stok_dua;
-//            $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
-//            $barang->satuan_tiga = $request->satuan_tiga;
-//            $barang->stok_tiga = $request->stok_tiga;
-//            $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
-//            $barang->satuan_empat = $request->satuan_empat;
-//            $barang->stok_empat = $request->stok_empat;
-//            $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//        } else if ($request->satuan_terakhir == $request->satuan_dua) {
-//            $stokbaru = $request->stok * $request->stok_dua;
-//            $barang->stok = $stokbaru;
-//            $barang->satuan_terakhir = $request->satuan_terakhir;
-//            $barang->satuan_satu = $request->satuan_satu;
-//            $barang->satuan_dua = $request->satuan_dua;
-//            $barang->stok_dua = $request->stok_dua;
-//            $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
-//            $barang->satuan_tiga = $request->satuan_tiga;
-//            $barang->stok_tiga = $request->stok_tiga;
-//            $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
-//            $barang->satuan_empat = $request->satuan_empat;
-//            $barang->stok_empat = $request->stok_empat;
-//            $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//        } else if ($request->satuan_terakhir == $request->satuan_tiga) {
-//            if ($request->satuan_turunan_tiga == $request->satuan_satu) {
-//                $stokbaru = $request->stok * $request->stok_tiga;
-//                $barang->stok = $stokbaru;
-//                $barang->satuan_terakhir = $request->satuan_terakhir;
-//                $barang->satuan_satu = $request->satuan_satu;
-//                $barang->satuan_dua = $request->satuan_dua;
-//                $barang->stok_dua = $request->stok_dua;
-//                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
-//                $barang->satuan_tiga = $request->satuan_tiga;
-//                $barang->stok_tiga = $request->stok_tiga;
-//                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
-//                $barang->satuan_empat = $request->satuan_empat;
-//                $barang->stok_empat = $request->stok_empat;
-//                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//            } else {
-//                $stokbaru = $request->stok * $request->stok_dua * $request->stok_tiga;
-//                $barang->stok = $stokbaru;
-//                $barang->satuan_terakhir = $request->satuan_terakhir;
-//                $barang->satuan_satu = $request->satuan_satu;
-//                $barang->satuan_dua = $request->satuan_dua;
-//                $barang->stok_dua = $request->stok_dua;
-//                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
-//                $barang->satuan_tiga = $request->satuan_tiga;
-//                $barang->stok_tiga = $request->stok_tiga;
-//                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
-//                $barang->satuan_empat = $request->satuan_empat;
-//                $barang->stok_empat = $request->stok_empat;
-//                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//            }
-//        } else if ($request->satuan_terakhir == $request->satuan_empat) {
-//            if ($request->satuan_turunan_empat == $request->satuan_satu) {
-//                $stokbaru = $request->stok * $request->stok_empat;
-//                $barang->stok = $stokbaru;
-//                $barang->satuan_terakhir = $request->satuan_terakhir;
-//                $barang->satuan_satu = $request->satuan_satu;
-//                $barang->satuan_dua = $request->satuan_dua;
-//                $barang->stok_dua = $request->stok_dua;
-//                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
-//                $barang->satuan_tiga = $request->satuan_tiga;
-//                $barang->stok_tiga = $request->stok_tiga;
-//                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
-//                $barang->satuan_empat = $request->satuan_empat;
-//                $barang->stok_empat = $request->stok_empat;
-//                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//            } else if ($request->satuan_turunan_empat == $request->satuan_dua) {
-//                $stokbaru = $request->stok * $request->stok_dua * $request->stok_empat;
-//                $barang->stok = $stokbaru;
-//                $barang->satuan_terakhir = $request->satuan_terakhir;
-//                $barang->satuan_satu = $request->satuan_satu;
-//                $barang->satuan_dua = $request->satuan_dua;
-//                $barang->stok_dua = $request->stok_dua;
-//                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
-//                $barang->satuan_tiga = $request->satuan_tiga;
-//                $barang->stok_tiga = $request->stok_tiga;
-//                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
-//                $barang->satuan_empat = $request->satuan_empat;
-//                $barang->stok_empat = $request->stok_empat;
-//                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//            } else if ($request->satuan_turunan_tiga == $request->satuan_satu) {
-//                $stokbaru = $request->stok * $request->stok_tiga * $request->stok_empat;
-//                $barang->stok = $stokbaru;
-//                $barang->satuan_terakhir = $request->satuan_terakhir;
-//                $barang->satuan_satu = $request->satuan_satu;
-//                $barang->satuan_dua = $request->satuan_dua;
-//                $barang->stok_dua = $request->stok_dua;
-//                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
-//                $barang->satuan_tiga = $request->satuan_tiga;
-//                $barang->stok_tiga = $request->stok_tiga;
-//                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
-//                $barang->satuan_empat = $request->satuan_empat;
-//                $barang->stok_empat = $request->stok_empat;
-//                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//            } else {
-//                $stokbaru = $request->stok * $request->stok_dua * $request->stok_tiga * $request->stok_empat;
-//                $barang->stok = $stokbaru;
-//                $barang->satuan_terakhir = $request->satuan_terakhir;
-//                $barang->satuan_satu = $request->satuan_satu;
-//                $barang->satuan_dua = $request->satuan_dua;
-//                $barang->stok_dua = $request->stok_dua;
-//                $barang->satuan_turunan_dua = $request->satuan_turunan_dua;
-//                $barang->satuan_tiga = $request->satuan_tiga;
-//                $barang->stok_tiga = $request->stok_tiga;
-//                $barang->satuan_turunan_tiga = $request->satuan_turunan_tiga;
-//                $barang->satuan_empat = $request->satuan_empat;
-//                $barang->stok_empat = $request->stok_empat;
-//                $barang->satuan_turunan_empat = $request->satuan_turunan_empat;
-//            }
-
-//    }
         $barang->save();
         return redirect('barang');
     }

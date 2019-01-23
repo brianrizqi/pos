@@ -60,7 +60,7 @@
 
                                     </div>
                                     <div class="col-lg-1" style="margin-top: 10px;">
-                                        <a href="#" class="btn btn-sm btn-primary login-submit-cs">Print</a>
+                                        <a href="/detail_pembelian/print/{{$data->id_pembelian}}" class="btn btn-sm btn-primary login-submit-cs">Print</a>
                                     </div>
                                 </div>
                             </div>

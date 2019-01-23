@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'BarangController@index');
+Route::get('/', function () {
+    return view('dashboard');
+});
 
 
 Route::get('/barang', 'BarangController@index');
@@ -41,21 +43,22 @@ Route::get('/pembelian/create/{id}', 'PembelianController@create');
 Route::post('/pembelian/barang/', 'PembelianController@tambahBarang');
 Route::post('/pembelian', 'PembelianController@store');
 Route::get('/pembelian/clear', 'PembelianController@clear');
-Route::get('/pembelian/fetch/{id}','PembelianController@fetch')->name('supplier');
-Route::get('/pembelian/barang/{id}','PembelianController@barang')->name('barang');
-Route::get('/pembelian/detail/{id}','PembelianController@detail_barang');
+Route::get('/pembelian/fetch/{id}', 'PembelianController@fetch')->name('supplier');
+Route::get('/pembelian/barang/{id}', 'PembelianController@barang')->name('barang');
+Route::get('/pembelian/detail/{id}', 'PembelianController@detail_barang');
 
 Route::get('/detail_pembelian', 'DetailPembelianController@index');
+Route::get('/detail_pembelian/print/{id}', 'DetailPembelianController@pdf');
 
 Route::get('/kartu_stok', 'KartuStokController@index');
-Route::get('/kartu_stok/fetch/{id}','KartuStokController@fetch');
+Route::get('/kartu_stok/fetch/{id}', 'KartuStokController@fetch');
 
 Route::get('/penjualan', 'PenjualanController@index');
 Route::get('/penjualan/create', 'PenjualanController@create');
 Route::post('/penjualan', 'PenjualanController@store');
 Route::post('/penjualan/barang/', 'PenjualanController@tambahBarang');
-Route::get('/penjualan/fetch/{id}','PenjualanController@fetch');
-Route::get('/penjualan/barang/{id}','PenjualanController@barang');
-Route::get('/penjualan/detail/{id}','PenjualanController@detail_barang');
+Route::get('/penjualan/fetch/{id}', 'PenjualanController@fetch');
+Route::get('/penjualan/barang/{id}', 'PenjualanController@barang');
+Route::get('/penjualan/detail/{id}', 'PenjualanController@detail_barang');
 
 Route::get('/detail_penjualan', 'DetailPenjualanController@index');

@@ -27,7 +27,7 @@
                                             </div>
                                             <div class="col-lg-9">
                                                 <input type="text" class="form-control" name="id_pembelian"
-                                                       placeholder="No Faktur"/>
+                                                       placeholder="No Faktur" value="{{str_replace("-","",date("Y-m-d"))}}POS00{{$id}}"/>
                                             </div>
                                         </div>
                                     </div>

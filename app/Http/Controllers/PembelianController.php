@@ -19,10 +19,19 @@ class PembelianController extends Controller
      */
     public function index()
     {
-
+        $id = DB::table('pembelians')
+            ->orWhere('id_pembelian', 'like', '%'.str_replace("-","",date("Y-m-d")).'%')
+            ->orderBy('created_at', 'DESC')
+            ->take(1)
+            ->first();
+        if (count((array)$id) == 0) {
+            $pembelian = 1;
+        } else {
+            $pembelian = substr($id->id_pembelian,-1)+1;
+        }
         $supplier = Supplier::all();
         $data = Cart::getContent();
-        return view('pembelian', ['supplier' => $supplier], ['data' => $data]);
+        return view('pembelian', ['supplier' => $supplier,'data' => $data,'id'=>$pembelian] );
     }
 
     /**
