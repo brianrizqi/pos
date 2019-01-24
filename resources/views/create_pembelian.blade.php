@@ -85,12 +85,9 @@
                                                             <label class="login2 pull-right pull-right-pro">Jumlah</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="jumlah"
-                                                                   placeholder="Jumlah" value="{{old('email')}}"
-                                                                   required/>
-                                                            @if($errors->has('email'))
-                                                                <p>{{$errors->first('email')}}</p>
-                                                            @endif
+                                                            <input onkeyup="subTotal()" id="jumlah" type="number"
+                                                                   class="form-control" name="jumlah"
+                                                                   placeholder="Jumlah"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -102,14 +99,11 @@
                                                         </div>
                                                         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
-                                                                <input type="number" id="diskon_satu" min="0" max="100"
-                                                                       class="form-control diskon" name="diskon_satu"
-                                                                       placeholder="Diskon (%)" value="{{old('email')}}"
-                                                                       required/>
+                                                                <input onkeyup="diskonSatu()"
+                                                                       type="number" id="diskon_satu" min="0" max="100"
+                                                                       class="form-control" name="diskon_satu"
+                                                                       placeholder="Diskon (%)"/>
                                                                 <span class="input-group-addon">%</span>
-                                                                @if($errors->has('email'))
-                                                                    <p>{{$errors->first('email')}}</p>
-                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -122,7 +116,8 @@
                                                         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp.</span>
-                                                                <input type="number" id="diskon_dua"
+                                                                <input onkeyup="diskonDua()"
+                                                                       type="number" id="diskon_dua"
                                                                        class="form-control"
                                                                        name="diskon_dua"
                                                                        placeholder="Diskon (Rp.)"
@@ -134,12 +129,13 @@
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Sub Total(Rp.)</label>
+                                                            <label class="login2 pull-right pull-right-pro">Sub
+                                                                Total(Rp.)</label>
                                                         </div>
                                                         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                                                             <div class="input-group">
                                                                 <span class="input-group-addon">Rp.</span>
-                                                                <input type="number" id="diskon_dua"
+                                                                <input type="number" id="total"
                                                                        class="form-control"
                                                                        name="sub_total"
                                                                        placeholder="Sub Total (Rp.)"
@@ -176,21 +172,47 @@
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        // $('.input-group').on('input', '.diskon', function () {
-        //     var laba = 0;
-        //     $('.input-group .diskon').each(function () {
-        //         var harga = $('#harga').val();
-        //         var diskon_satu = $('#diskon_satu').val();
-        //         var input = $(this).val();
-        //         if ($.isNumeric(input)) {
-        //             laba = parseFloat(diskon_satu / 100 * harga);
-        //         }
-        //     });
-        //     $('#diskon_dua').val(laba);
-        // });
+        function subTotal() {
+            var jumlah = +document.getElementById("jumlah").value;
+            var satuan_satu = document.getElementById("satuan_satu").value;
+            var satuan_dua = document.getElementById("satuan_dua").value;
+            var satuan_tiga = document.getElementById("satuan_tiga").value;
+            var satuan_empat = document.getElementById("satuan_empat").value;
+            var stok_dua = +document.getElementById("stok_dua").value;
+            var stok_tiga = +document.getElementById("stok_tiga").value;
+            var stok_empat = +document.getElementById("stok_empat").value;
+            var satuan_turunan_dua = document.getElementById("satuan_turunan_dua").value;
+            var satuan_turunan_tiga = document.getElementById("satuan_turunan_tiga").value;
+            var satuan_turunan_empat = document.getElementById("satuan_turunan_empat").value;
+            var satuan = document.getElementById("satuan").value;
+            var total = document.getElementById("total");
+            var harga = +document.getElementById("harga").value;
+            if (satuan == satuan_satu) {
+                total.value = parseFloat(jumlah * harga);
+            } else if (satuan == satuan_dua) {
+                total.value = parseFloat(jumlah * stok_dua * harga);
+            } else if (satuan == satuan_tiga) {
+                if (satuan_turunan_tiga == satuan_satu) {
+                    total.value = parseFloat(jumlah * stok_tiga * harga);
+                } else {
+                    total.value = parseFloat(jumlah * stok_tiga * stok_dua * harga);
+                }
+            } else if (satuan == satuan_empat) {
+                if (satuan_turunan_empat == satuan_satu) {
+                    total.value = parseFloat(jumlah * stok_empat * harga);
+                } else if (satuan_turunan_empat == satuan_dua) {
+                    total.value = parseFloat(jumlah * stok_dua * stok_empat * harga);
+                } else if (satuan_turunan_tiga == satuan_satu) {
+                    total.value = parseFloat(jumlah * stok_tiga * stok_empat * harga);
+                } else {
+                    total.value = parseFloat(jumlah * stok_dua * stok_tiga * stok_empat * harga);
+                }
+            } else {
+                alert("satuan Kosong");
+            }
+        }
+
         function pilihBarang() {
             var xmlhttp = new XMLHttpRequest();
             var value = document.getElementById("barang").value;
@@ -201,6 +223,18 @@
             } else {
                 alert('Supplier Kosong')
             }
+        }
+
+        function diskonSatu() {
+            var diskon_satu = document.getElementById("diskon_satu").value;
+            var total = document.getElementById("total").value;
+            total.value = parseFloat((diskon_satu / 100) * total);
+        }
+
+        function diskonDua() {
+            var total = document.getElementById("total").value;
+            var diskon_dua = document.getElementById("diskon_dua").value;
+            total.value = parseFloat((diskon_dua / 100).value);
         }
     </script>
 @endsection

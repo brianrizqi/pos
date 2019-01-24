@@ -81,13 +81,23 @@ class PembelianController extends Controller
                                                                 <label class="login2 pull-right pull-right-pro">Satuan</label>
                                                             </div>
                                                             <div class="col-lg-9">
-                                                                <select class="form-control custom-select-value"
+                                                                <select id="satuan" class="form-control custom-select-value"
                                                                         name="satuan">
                                                                         <option>' . $data->satuan_satu . '</option>
                                                                         <option>' . $data->satuan_dua . '</option>
                                                                         <option>' . $data->satuan_tiga . '</option>
                                                                         <option>' . $data->satuan_empat . '</option>
 </select>
+<input type="hidden" id="satuan_satu" value="'.$data->satuan_satu.'">
+<input type="hidden" id="satuan_dua" value="'.$data->satuan_dua.'">
+<input type="hidden" id="satuan_tiga" value="'.$data->satuan_tiga.'">
+<input type="hidden" id="satuan_empat" value="'.$data->satuan_empat.'">
+<input type="hidden" id="stok_dua" value="'.$data->stok_dua.'">
+<input type="hidden" id="stok_tiga" value="'.$data->stok_tiga.'">
+<input type="hidden" id="stok_empat" value="'.$data->stok_empat.'">
+<input type="hidden" id="satuan_turunan_dua" value="'.$data->satuan_turunan_dua.'">
+<input type="hidden" id="satuan_turunan_tiga" value="'.$data->satuan_turunan_tiga.'">
+<input type="hidden" id="satuan_turunan_empat" value="'.$data->satuan_turunan_empat.'">
                                                             </div>
                                                         </div>
                                                     </div>';
@@ -96,7 +106,6 @@ class PembelianController extends Controller
 
     public function fetch($id)
     {
-//        $value = $_GET['id'];
         $data = DB::table('suppliers')
             ->where('id', $id)
             ->first();
@@ -237,6 +246,7 @@ class PembelianController extends Controller
             $detail->save();
         }
         Cart::clear();
+        Session::flush();
         return redirect('detail_pembelian');
     }
 

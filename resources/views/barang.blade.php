@@ -50,7 +50,7 @@
                                             <td>{{$item->kategori}}</td>
                                             <td>Rp. {{number_format($item->harga_beli,0,".",".")}}</td>
                                             <td>Rp. {{number_format($item->harga_jual,0,".",".")}}</td>
-                                            <td>{{$item->laba}} %</td>
+                                            <td>{{substr($item->laba,0,5)}} %</td>
                                             <td>{{$item->stok." ".$item->satuan_satu}}</td>
                                             <td>
                                                 @if($item->satuan_empat != "")
