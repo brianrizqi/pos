@@ -102,9 +102,9 @@
                                                 @if(count((array)$supplier) > 1)
                                                     <option value="{{$supplier->id}}">{{$supplier->nama}}</option>
                                                 @else
-                                                @foreach($supplier as $item)
-                                                    <option value="{{$item->id}}">{{$item->nama}}</option>
-                                                @endforeach
+                                                    @foreach($supplier as $item)
+                                                        <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                    @endforeach
                                                 @endif
                                             </select>
                                             {{csrf_field()}}
@@ -353,7 +353,7 @@
                                             {{--class="btn btn-sm btn-primary login-submit-cs">--}}
                                             {{--Masukkan--}}
                                             {{--</button>--}}
-                                            <input type="submit" name="submit" value="Masukkan"
+                                            <input type="submit" onclick="cekSupplier()" name="submit" value="Masukkan"
                                                    class="btn btn-sm btn-primary login-submit-cs">
                                         </div>
                                     </div>
@@ -416,6 +416,14 @@
             var uang = +document.getElementById("uang").value;
             var netto = +document.getElementById("netto").value;
             document.getElementById("sisa").value = parseFloat(netto - uang);
+        }
+
+        function cekSupplier() {
+            var value = document.getElementById("supplier").value;
+            if (value == "") {
+                alert("Supplier Kosong");
+                window.location.href = "/pembelian";
+            }
         }
     </script>
 @endsection

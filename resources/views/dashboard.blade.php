@@ -35,7 +35,9 @@
                             <div class="main-income-head">
                                 <h2>Press F4</h2>
                                 <div class="main-income-phara order-cl">
-                                    <p><i class="fa fa-user"></i></p>
+                                    <a href="/supplier">
+                                        <p><i class="fa fa-user"></i></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +57,9 @@
                             <div class="main-income-head">
                                 <h2>Press F6</h2>
                                 <div class="main-income-phara visitor-cl">
-                                    <p><i class="fa fa-users"></i></p>
+                                    <a href="/customer">
+                                        <p><i class="fa fa-users"></i></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +79,9 @@
                             <div class="main-income-head">
                                 <h2>Press F8</h2>
                                 <div class="main-income-phara low-value-cl">
-                                    <p><i style="color: white" class="fa big-icon fa-archive"></i></p>
+                                    <a href="/kartu_stok">
+                                        <p><i class="fa big-icon fa-archive"></i></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -97,9 +103,9 @@
                             <div class="main-income-head">
                                 <h2>Press F2</h2>
                                 <div class="main-income-phara">
-                                    <a href="/barang">
+                                    <a href="/pembelian">
                                         <p>
-                                            <i style="color: white" class="fa big-icon fa-archive"></i>
+                                            <i class="fa fa-arrow-circle-o-down"></i>
                                         </p>
                                     </a>
                                 </div>
@@ -121,7 +127,9 @@
                             <div class="main-income-head">
                                 <h2>Press F9</h2>
                                 <div class="main-income-phara order-cl">
-                                    <p><i class="fa fa-user"></i></p>
+                                    <a href="/detail_pembelian">
+                                        <p><i class="fa fa-arrow-circle-o-down"></i></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +149,9 @@
                             <div class="main-income-head">
                                 <h2>Press F10</h2>
                                 <div class="main-income-phara visitor-cl">
-                                    <p><i class="fa fa-users"></i></p>
+                                    <a href="/penjualan">
+                                        <p><i class="fa fa-arrow-circle-o-up"></i></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +171,9 @@
                             <div class="main-income-head">
                                 <h2>Press F11</h2>
                                 <div class="main-income-phara low-value-cl">
-                                    <p>Low Value</p>
+                                    <a href="/detail_penjualan">
+                                        <p><i class="fa fa-arrow-circle-o-up"></i></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>

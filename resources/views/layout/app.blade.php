@@ -97,7 +97,8 @@
                         </a>
                     </li>
                     <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
-                                            class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span
+                                            class="nav-link dropdown-toggle"><i class="fa fa-arrow-circle-o-down"></i>
+                            <span
                                     class="mini-dn">Pengadaan</span> <span class="indicator-right-menu mini-dn"><i
                                         class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
@@ -106,7 +107,8 @@
                         </div>
                     </li>
                     <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
-                                            class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span
+                                            class="nav-link dropdown-toggle"><i class="fa fa-arrow-circle-o-up"></i>
+                            <span
                                     class="mini-dn">Penjualan</span> <span class="indicator-right-menu mini-dn"><i
                                         class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
@@ -186,9 +188,9 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <ul class="breadcome-menu">
                                         <li>
-                                            <!--<a href="#">-->
-                                            Point Of Sales
-                                            <!--</a>-->
+                                            <a href="/">
+                                                Point Of Sales
+                                            </a>
                                             <span class="bread-slash">/</span>
                                         </li>
                                         <li><span class="bread-blod">@yield('fitur')</span>
@@ -290,7 +292,10 @@
 </div>
 <script>
     document.addEventListener("keydown", e => {
-        if(e.key == "F11") {e.preventDefault()};
+        if (e.key == "F11") {
+            e.preventDefault()
+        }
+        ;
     });
     window.addEventListener("keyup", checkKey, false);
 

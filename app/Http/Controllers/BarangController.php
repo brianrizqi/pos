@@ -96,7 +96,7 @@ class BarangController extends Controller
                                             <td>Rp. ' . number_format($item->harga_jual, 0, ".", ".") . '</td>
                                             <td>' . $item->laba . ' %</td>
                                             <td>' . $item->stok . " " . $item->satuan_satu . '</td>
-                                            <td>' . $stok. '</td>
+                                            <td>' . $stok . '</td>
                                         </tr>';
         }
         $output .= '
@@ -113,9 +113,18 @@ class BarangController extends Controller
      */
     public function create()
     {
+        $id = DB::table('barangs')
+            ->orderBy('created_at', 'DESC')
+            ->take(1)
+            ->first();
+        if (count((array)$id) == 0) {
+            $barang = 1;
+        } else {
+            $barang = substr($id->id_barang, -1) + 1;
+        }
         $supplier = Supplier::all();
         $kategori = DB::table('kategoris')->get();
-        return view('create_barang', ['supplier' => $supplier, 'kategori' => $kategori]);
+        return view('create_barang', ['supplier' => $supplier, 'kategori' => $kategori, 'id' => $barang]);
     }
 
     /**

@@ -44,12 +44,14 @@
                                             <td>{{$item->telepon}}</td>
                                             <td>{{$item->keterangan}}</td>
                                             <td>
-                                                <form action="/customer/edit/{{$item->id_customer}}">
+                                                <form action="/customer/edit/{{$item->id_customer}}"
+                                                      style="display: inline">
                                                     <button class="btn btn-primary" style="width: 37px;">
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="/customer/{{$item->id_customer}}" method="POST">
+                                                <form action="/customer/{{$item->id_customer}}" method="POST"
+                                                      style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-trash"></i>
                                                     </button>

@@ -50,12 +50,14 @@
                                             <td>{{$item->nama_cp}}</td>
                                             <td>{{$item->telepon_cp}}</td>
                                             <td>
-                                                <form action="/supplier/edit/{{$item->id}}">
+                                                <form action="/supplier/edit/{{$item->id}}"
+                                                      style="display: inline">
                                                     <button class="btn btn-primary" style="width: 37px;">
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="/supplier/{{$item->id}}" method="POST">
+                                                <form action="/supplier/{{$item->id}}" method="POST"
+                                                      style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-trash"></i>
                                                     </button>

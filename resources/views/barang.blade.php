@@ -27,6 +27,7 @@
                                     <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Kode Barang</th>
                                         <th>Nama Barang</th>
                                         <th>Nama Perusahaan</th>
                                         <th>Kategori</th>
@@ -45,6 +46,7 @@
                                         $no++?>
                                         <tr>
                                             <td>{{$no}}</td>
+                                            <td>{{$item->id_barang}}</td>
                                             <td>{{$item->nama_barang}}</td>
                                             <td>{{$item->nama}}</td>
                                             <td>{{$item->kategori}}</td>

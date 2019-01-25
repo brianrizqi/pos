@@ -33,7 +33,7 @@
                                                         <div class="col-lg-3">
                                                             <input type="number" class="form-control" name="id_barang"
                                                                    placeholder="Kode Barang"
-                                                                   value="{{old('id_barang')}}"/>
+                                                                   value="0000{{$id}}"/>
                                                             @if($errors->has('id_barang'))
                                                                 <p>{{$errors->first('id_barang')}}</p>
                                                             @endif
