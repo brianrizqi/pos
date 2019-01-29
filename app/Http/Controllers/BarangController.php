@@ -120,7 +120,7 @@ class BarangController extends Controller
         if (count((array)$id) == 0) {
             $barang = 1;
         } else {
-            $barang = substr($id->id_barang, -1) + 1;
+            $barang = substr($id->id_barang, -4) + 1;
         }
         $supplier = Supplier::all();
         $kategori = DB::table('kategoris')->get();

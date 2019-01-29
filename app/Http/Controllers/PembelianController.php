@@ -27,7 +27,7 @@ class PembelianController extends Controller
         if (count((array)$id) == 0) {
             $pembelian = 1;
         } else {
-            $pembelian = substr($id->id_pembelian, -1) + 1;
+            $pembelian = substr($id->id_pembelian, -4) + 1;
         }
         if (session()->has('id_supplier')) {
             $supplier = DB::table('suppliers')
@@ -243,6 +243,7 @@ class PembelianController extends Controller
             $detail->diskon_satu = $item->attributes['diskon_satu'];
             $detail->diskon_dua = $item->attributes['diskon_dua'];
             $detail->total_harga = $item->attributes['total'];
+            $detail->saldo = $item->quantity + $stok->stok;
             $detail->save();
         }
         Cart::clear();

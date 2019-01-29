@@ -28,7 +28,7 @@
                                             <div class="col-lg-9">
                                                 <input type="text" class="form-control" name="id_pembelian"
                                                        placeholder="No Faktur"
-                                                       value="{{str_replace("-","",date("Y-m-d"))}}POS00{{$id}}"/>
+                                                       value="{{substr(date("Ymd"), 2,-2)}}POS0000{{$id}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +39,8 @@
                                             </div>
                                             <div class="col-lg-9">
                                                 <input type="date" class="form-control" name="tanggal"
-                                                       data-date-format="yyyy-MM-dd" required/>
+                                                       data-date-format="yyyy-MM-dd" value="<?php echo date("Y-m-d");?>"
+                                                       required/>
                                             </div>
                                         </div>
                                     </div>
@@ -72,13 +73,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="jatuh_tempo" class="form-group-inner" style="display: none;">
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <label class="login2 pull-right pull-right-pro">Jatuh Tempo</label>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <input type="number" class="form-control" name="jatuh_tempo" value=""/>
+                                    <div id="jatuh_tempo" style="display: none;">
+                                        <div class="form-group-inner">
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label class="login2 pull-right pull-right-pro">Jatuh Tempo</label>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <input onkeyup="jatuhTempo()" type="number" class="form-control"
+                                                           name="jatuh_tempo"
+                                                           id="jumlahJatuh"/>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <label class="login2 pull-right pull-right-pro">Tanggal</label>
+                                                </div>
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" id="tanggalJatuh"
+                                                           disabled/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -98,10 +110,10 @@
                                         <div class="col-lg-4">
                                             <select id="supplier" class="form-control" name="id_supplier"
                                                     onchange="pilihSupplier()">
-                                                <option></option>
                                                 @if(count((array)$supplier) > 1)
                                                     <option value="{{$supplier->id}}">{{$supplier->nama}}</option>
                                                 @else
+                                                    <option></option>
                                                     @foreach($supplier as $item)
                                                         <option value="{{$item->id}}">{{$item->nama}}</option>
                                                     @endforeach
@@ -424,6 +436,14 @@
                 alert("Supplier Kosong");
                 window.location.href = "/pembelian";
             }
+        }
+
+        function jatuhTempo() {
+            var date = new Date();
+            var jumlah = +document.getElementById("jumlahJatuh").value;
+            date.setDate(date.getDate() + jumlah);
+            var finalDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
+            document.getElementById("tanggalJatuh").value = finalDate;
         }
     </script>
 @endsection

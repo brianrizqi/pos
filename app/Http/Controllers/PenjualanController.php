@@ -106,6 +106,7 @@ class PenjualanController extends Controller
             $detail->id_penjualan = $idpenjualan->id_penjualan;
             $detail->id_barang = $item->id;
             $detail->jumlah = $item->quantity;
+            $detail->saldo = $stok->stok - $item->quantity ;
             $detail->total_harga = $item->price * $item->quantity;
             $detail->save();
         }

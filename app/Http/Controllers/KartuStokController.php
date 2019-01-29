@@ -72,7 +72,7 @@ class KartuStokController extends Controller
                                             <td>' . $item->nama . '(Masuk)</td>
                                             <td>' . $item->jumlah . '</td>
                                             <td></td>
-                                            <td>' . $item->stok . '</td>
+                                            <td>' . $item->saldo . '</td>
                                         </tr>';
         }
         foreach ($penjualan as $item) {
@@ -86,7 +86,7 @@ class KartuStokController extends Controller
                                             <td>' . $item->nama . '(Keluar)</td>
                                             <td></td>
                                             <td>' . $item->jumlah . '</td>
-                                            <td>' . $item->stok . '</td>
+                                            <td>' . $item->saldo . '</td>
                                         </tr>';
         }
         $output .= '

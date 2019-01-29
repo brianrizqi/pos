@@ -16,12 +16,12 @@
                                     <br>
                                     <label style="font-size: 15pt;">Supplier : {{$data->nama}}</label>
                                     <br>
-                                    <?php if($data->sisa_piutang == 0){
+                                    <?php if ($data->sisa_piutang == 0) {
                                         $lunas = "Lunas";
                                     } else {
                                         $lunas = "Belum lunas";
                                     }
-                                        ?>
+                                    ?>
                                     <label style="font-size: 15pt;">Status : {{$lunas}}</label>
                                 </div>
                                 <table id="table" data-toggle="table" data-toolbar="#toolbar">
@@ -34,14 +34,16 @@
                                         <th>Harga Beli</th>
                                         <th>Diskon Satu</th>
                                         <th>Diskon Dua</th>
-                                        <th>Total</th>
+                                        <th>Sub Total</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php $no = 0?>
+                                    <?php $no = 0;
+                                    $total = 0;?>
                                     @foreach($pembelian as $item)
                                         <?php
-                                        $no++?>
+                                        $total += $item->total_harga;
+                                        $no++;?>
                                         <tr>
                                             <td>{{$no}}</td>
                                             <td>{{$item->id_barang}}</td>
@@ -52,7 +54,17 @@
                                             <td>Rp. {{number_format($item->diskon_dua,0,".",".")}}</td>
                                             <td>Rp. {{number_format($item->total_harga,0,".",".")}}</td>
                                         </tr>
-                                        @endforeach
+                                    @endforeach
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>Total :</td>
+                                        <td>Rp. {{number_format($total,0,".",".")}}</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                                 <div class="row">
@@ -60,7 +72,8 @@
 
                                     </div>
                                     <div class="col-lg-1" style="margin-top: 10px;">
-                                        <a href="/detail_pembelian/print/{{$data->id_pembelian}}" class="btn btn-sm btn-primary login-submit-cs">Print</a>
+                                        <a href="/detail_pembelian/print/{{$data->id_pembelian}}"
+                                           class="btn btn-sm btn-primary login-submit-cs">Print</a>
                                     </div>
                                 </div>
                             </div>
