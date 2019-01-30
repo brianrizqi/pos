@@ -5,7 +5,7 @@
     <div class="static-table-area mg-b-15">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-4">
                     <div class="sparkline8-list shadow-reset">
                         <div class="sparkline8-hd">
                             <div class="main-sparkline8-hd">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7">
+                <div class="col-lg-8">
                     <div class="sparkline8-list sparkel-pro-mg-t-30 shadow-reset">
                         <div class="sparkline8-hd">
                             <div class="main-sparkline9-hd">
@@ -86,11 +86,21 @@
                 // get trs as array for ease of use
                 var rows = [].slice.call(tbody.querySelectorAll("tr"));
 
-                rows.sort(function(a,b) {
-                    return convertDate(a.cells[0].innerHTML) - convertDate(b.cells[0].innerHTML);
-                });
+                // rows.sort(function(a,b) {
+                //     return convertDate(a.cells[0].innerHTML) - convertDate(b.cells[0].innerHTML);
+                // });
+                //
+                console.log(rows);
+                rows.sort(function (c, d) {
+                    var a = new Date(c.cells[0].innerText), b = new Date(d.cells[0].innerText);
+                    if (a > b)
+                        return 1;
+                    if (a < b)
+                        return -1;
 
-                rows.forEach(function(v) {
+                    return 0;
+                });
+                rows.forEach(function (v) {
                     tbody.appendChild(v); // note that .appendChild() *moves* elements
                 });
             } else {
@@ -98,9 +108,10 @@
             }
 
         }
+
         function convertDate(d) {
             var p = d.split("/");
-            return +(p[2]+p[1]+p[0]);
+            return +(p[2] + p[1] + p[0]);
         }
 
         function sortByDate() {

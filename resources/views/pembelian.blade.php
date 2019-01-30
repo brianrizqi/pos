@@ -26,7 +26,7 @@
                                                 <label class="login2 pull-right pull-right-pro">No Entry</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input type="text" class="form-control" name="id_pembelian"
+                                                <input id="id_pembelian" type="text" class="form-control" name="id_pembelian"
                                                        placeholder="No Faktur"
                                                        value="{{substr(date("Ymd"), 2,-2)}}POS0000{{$id}}"/>
                                             </div>
@@ -444,6 +444,21 @@
             date.setDate(date.getDate() + jumlah);
             var finalDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
             document.getElementById("tanggalJatuh").value = finalDate;
+        }
+    </script>
+    <script>
+        document.addEventListener("keydown", e => {
+            if (e.key == "F5") {
+                e.preventDefault()
+            }
+            ;
+        });
+        window.addEventListener("keyup", checkKey, false);
+
+        function checkKey(key) {
+            if (key.keyCode == "116") {
+                document.getElementById("id_pembelian").click();
+            }
         }
     </script>
 @endsection

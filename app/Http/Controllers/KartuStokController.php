@@ -34,6 +34,8 @@ class KartuStokController extends Controller
                 $join->on('detail_pembelians.id_barang', '=', 'barangs.id_barang');
             })
             ->where('detail_pembelians.id_barang', $id)
+            ->select('pembelians.tanggal','pembelians.id_pembelian','detail_pembelians.created_at as tanggall'
+            ,'detail_pembelians.jumlah','suppliers.nama','detail_pembelians.saldo')
             ->get();
         $no = 0;
         $penjualan = DB::table('detail_penjualans')
@@ -47,6 +49,8 @@ class KartuStokController extends Controller
                 $join->on('detail_penjualans.id_barang', '=', 'barangs.id_barang');
             })
             ->where('detail_penjualans.id_barang', $id)
+            ->select('penjualans.tanggal','penjualans.id_penjualan','detail_penjualans.created_at as tanggall'
+                ,'detail_penjualans.jumlah','customer.nama','detail_penjualans.saldo')
             ->get();
         $output = '<table id="results" class="table sparkle-table">
                                         <thead>
@@ -66,7 +70,7 @@ class KartuStokController extends Controller
             $day = date('D', $timestamp);
             $no++;
             $output .= '                     <tr>
-                                            <td>' . date("d/m/Y", strtotime($item->tanggal)) . '</td>
+                                            <td id="tes">' .$item->tanggall . '</td>
                                             <td>' . $this->translate_date($day) . '</td>
                                             <td>' . $item->id_pembelian . '</td>
                                             <td>' . $item->nama . '(Masuk)</td>
@@ -80,7 +84,7 @@ class KartuStokController extends Controller
             $day = date('D', $timestamp);
             $no++;
             $output .= '                     <tr>
-                                            <td>' . date("d/m/Y", strtotime($item->tanggal)) . '</td>
+                                            <td id="tes">' .$item->tanggall . '</td>
                                             <td>' . $this->translate_date($day) . '</td>
                                             <td>' . $item->id_penjualan . '</td>
                                             <td>' . $item->nama . '(Keluar)</td>
