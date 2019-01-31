@@ -189,5 +189,21 @@
                 </div>
             </div>
         </div>
+
     </div>
+    <script type="text/javascript">
+        document.addEventListener("keydown", e => {
+            if (e.key == "F1") {
+                e.preventDefault()
+            }
+            ;
+        });
+        window.addEventListener("keyup", checkKey, false);
+
+        function checkKey(key) {
+            if (key.keyCode == "112") {
+                document.getElementById("tes").click();
+            }
+        }
+    </script>
 @endsection

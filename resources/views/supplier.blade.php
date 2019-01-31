@@ -76,4 +76,19 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("keydown", e => {
+            if (e.key == "F5") {
+                e.preventDefault()
+            }
+            ;
+        });
+        window.addEventListener("keyup", checkKey, false);
+
+        function checkKey(key) {
+            if (key.keyCode == "116") {
+                window.location.href = "/supplier/create";
+            }
+        }
+    </script>
 @endsection

@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="{{url('css/responsive.css')}}">
     <!-- modernizr JS
 		============================================ -->
+    <link rel="stylesheet" href="{{url('css/modals.css')}}">
     <script src="{{url('js/vendor/modernizr-2.8.3.min.js')}}"></script>
 </head>
 
@@ -144,23 +145,12 @@
                                 <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                     <li class="nav-item dropdown">
                                     <li class="nav-item">
-                                        <a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                                        <a href="#" data-toggle="modal" data-target="#PrimaryModalhdbgcl" role="button" aria-expanded="false"
                                            class="nav-link dropdown-toggle">
                                             {{--<span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>--}}
-                                            <span class="admin-name">Admin POS</span>
+                                            <span class="admin-name">Petunjuk</span>
                                             {{--<span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>--}}
                                         </a>
-                                        <ul role="menu"
-                                            class="dropdown-header-top author-log dropdown-menu animated flipInX">
-                                            <li><a href="#"><span
-                                                            class="adminpro-icon adminpro-user-rounded author-log-ic"></span>My
-                                                    Profile</a>
-                                            </li>
-                                            <li><a href="#"><span
-                                                            class="adminpro-icon adminpro-locked author-log-ic"></span>Log
-                                                    Out</a>
-                                            </li>
-                                        </ul>
                                     </li>
                                 </ul>
                             </div>
@@ -275,6 +265,34 @@
         <!-- Static Table Start -->
     @yield('content')
     <!-- Data table area End-->
+        <a class="Primary mg-b-10" href="#" data-toggle="modal" data-target="#PrimaryModalhdbgcl" id="petunjuk"
+           style="display: none">Primary</a>
+        <div id="PrimaryModalhdbgcl" class="modal modal-adminpro-general default-popup-PrimaryModal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header header-color-modal bg-color-1">
+                        <h4 class="modal-title">Petunjuk</h4>
+                        <div class="modal-close-area modal-close-df">
+                            <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Press F7 = Menu Barang</h3>
+                        <h3>Press F4 = Menu Supplier</h3>
+                        <h3>Press F6 = Menu Customer</h3>
+                        <h3>Press F8 = Menu Kartu Stok</h3>
+                        <h3>Press F2 = Menu Pembelian</h3>
+                        <h3>Press F9 = Menu Detail Pembelian</h3>
+                        <h3>Press F10 = Menu Penjualan</h3>
+                        <h3>Press F11 = Menu Detail Penjualan</h3>
+                    </div>
+                    <div class="modal-footer">
+                        {{--<a data-dismiss="modal" href="#">Cancel</a>--}}
+                        {{--<a href="#">Process</a>--}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Footer Start-->
@@ -293,6 +311,12 @@
 <script>
     document.addEventListener("keydown", e => {
         if (e.key == "F11") {
+            e.preventDefault()
+        }
+        if (e.key == "F1") {
+            e.preventDefault()
+        }
+        if (e.key == "F6") {
             e.preventDefault()
         }
         ;
@@ -323,6 +347,9 @@
         }
         if (key.keyCode == "122") {
             window.location.href = "/detail_penjualan";
+        }
+        if (key.keyCode == "112") {
+            document.getElementById("petunjuk").click();
         }
     }
 </script>

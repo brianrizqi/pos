@@ -25,7 +25,10 @@
                                                                 Perusahaan</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="nama" placeholder="Nama Perusahaan" value="{{old('nama')}}" required/>
+                                                            <input id="nama"
+                                                                   type="text" class="form-control" name="nama"
+                                                                   placeholder="Nama Perusahaan" value="{{old('nama')}}"
+                                                                   required/>
                                                             @if($errors->has('nama'))
                                                                 <p>{{$errors->first('nama')}}</p>
                                                             @endif
@@ -38,7 +41,9 @@
                                                             <label class="login2 pull-right pull-right-pro">Alamat</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="{{old('alamat')}}" required/>
+                                                            <input type="text" class="form-control" name="alamat"
+                                                                   placeholder="Alamat" value="{{old('alamat')}}"
+                                                                   required/>
                                                             @if($errors->has('alamat'))
                                                                 <p>{{$errors->first('alamat')}}</p>
                                                             @endif
@@ -51,7 +56,9 @@
                                                             <label class="login2 pull-right pull-right-pro">Email</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="email" class="form-control" name="email" placeholder="Email" value="{{old('email')}}" required/>
+                                                            <input type="email" class="form-control" name="email"
+                                                                   placeholder="Email" value="{{old('email')}}"
+                                                                   required/>
                                                             @if($errors->has('email'))
                                                                 <p>{{$errors->first('email')}}</p>
                                                             @endif
@@ -65,7 +72,9 @@
                                                                 Perusahaan</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="telepon" placeholder="Telepon Perusahaan" value="{{old('telepon')}}" required/>
+                                                            <input type="number" class="form-control" name="telepon"
+                                                                   placeholder="Telepon Perusahaan"
+                                                                   value="{{old('telepon')}}" required/>
                                                             @if($errors->has('telepon'))
                                                                 <p>{{$errors->first('telepon')}}</p>
                                                             @endif
@@ -79,7 +88,9 @@
                                                                 Perusahaan</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="fax" placeholder="Fax Perusahaan" value="{{old('fax')}}" required/>
+                                                            <input type="number" class="form-control" name="fax"
+                                                                   placeholder="Fax Perusahaan" value="{{old('fax')}}"
+                                                                   required/>
                                                             @if($errors->has('fax'))
                                                                 <p>{{$errors->first('fax')}}</p>
                                                             @endif
@@ -89,10 +100,13 @@
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Website Perusahaan</label>
+                                                            <label class="login2 pull-right pull-right-pro">Website
+                                                                Perusahaan</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="url" class="form-control" name="website" placeholder="Website Perusahaan" value="{{old('website')}}" required/>
+                                                            <input type="url" class="form-control" name="website"
+                                                                   placeholder="Website Perusahaan"
+                                                                   value="{{old('website')}}" required/>
                                                             @if($errors->has('website'))
                                                                 <p>{{$errors->first('website')}}</p>
                                                             @endif
@@ -106,7 +120,9 @@
                                                                 CP</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="text" class="form-control" name="nama_cp" placeholder="Nama CP" value="{{old('nama_cp')}}" required/>
+                                                            <input type="text" class="form-control" name="nama_cp"
+                                                                   placeholder="Nama CP" value="{{old('nama_cp')}}"
+                                                                   required/>
                                                             @if($errors->has('nama_cp'))
                                                                 <p>{{$errors->first('nama_cp')}}</p>
                                                             @endif
@@ -116,10 +132,13 @@
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <label class="login2 pull-right pull-right-pro">Telepon CP</label>
+                                                            <label class="login2 pull-right pull-right-pro">Telepon
+                                                                CP</label>
                                                         </div>
                                                         <div class="col-lg-9">
-                                                            <input type="number" class="form-control" name="telepon_cp" placeholder="Telepon CP" value="{{old('telepon_cp')}}" required/>
+                                                            <input type="number" class="form-control" name="telepon_cp"
+                                                                   placeholder="Telepon CP"
+                                                                   value="{{old('telepon_cp')}}" required/>
                                                             @if($errors->has('telepon_cp'))
                                                                 <p>{{$errors->first('telepon_cp')}}</p>
                                                             @endif
@@ -132,8 +151,6 @@
                                                             <div class="col-lg-3"></div>
                                                             <div class="col-lg-9">
                                                                 <div class="login-horizental cancel-wp pull-left">
-                                                                    <button class="btn btn-white" type="submit">Cancel
-                                                                    </button>
                                                                     <button class="btn btn-sm btn-primary login-submit-cs"
                                                                             type="submit">Tambah
                                                                     </button>
@@ -154,4 +171,19 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("keydown", e => {
+            if (e.key == "F5") {
+                e.preventDefault()
+            }
+            ;
+        });
+        window.addEventListener("keyup", checkKey, false);
+
+        function checkKey(key) {
+            if (key.keyCode == "116") {
+                document.getElementById("nama").focus();
+            }
+        }
+    </script>
 @endsection

@@ -20,7 +20,7 @@ class PembelianController extends Controller
     public function index()
     {
         $id = DB::table('pembelians')
-            ->orWhere('id_pembelian', 'like', '%' . str_replace("-", "", date("Y-m-d")) . '%')
+            ->orWhere('id_pembelian', 'like', '%' . substr(date("Ymd"), 2) . '%')
             ->orderBy('created_at', 'DESC')
             ->take(1)
             ->first();

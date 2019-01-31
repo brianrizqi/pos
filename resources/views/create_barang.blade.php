@@ -39,7 +39,7 @@
                                                             @endif
                                                         </div>
                                                         <div class="col-lg-7">
-                                                            <input type="text" class="form-control" name="nama_barang"
+                                                            <input id="nama_barang" type="text" class="form-control" name="nama_barang"
                                                                    placeholder="Nama Barang"
                                                                    value="{{old('nama_barang')}}"/>
                                                             @if($errors->has('nama_barang'))
@@ -296,8 +296,6 @@
                                                             <div class="col-lg-2"></div>
                                                             <div class="col-lg-9">
                                                                 <div class="login-horizental cancel-wp pull-left">
-                                                                    <button class="btn btn-white" type="submit">Cancel
-                                                                    </button>
                                                                     <button class="btn btn-sm btn-primary login-submit-cs"
                                                                             type="submit">Save Change
                                                                     </button>
@@ -393,21 +391,18 @@
             }
         }
 
-        // function satuansatuan() {
-        //     var s4 = $('#txtSatuan_empat').val();
-        //     var s3 = document.getElementById("txtSatuan_tiga").value;
-        //     var s1 = document.getElementById("ddSatuan_satu").value;
-        //     var s2 = document.getElementById("txtSatuan_dua").value;
-        //     var stok = document.getElementById("ddStok");
-        //     var optionArray = ["|", s1 + "|" + s1, s2 + "|" + s2, s3 + "|" + s3, s4 + "|" + s4];
-        //     stok.innerHTML = "";
-        //     for (var option in optionArray) {
-        //         var pair = optionArray[option].split("|");
-        //         var newOption = document.createElement("option");
-        //         newOption.value = pair[0];
-        //         newOption.innerHTML = pair [1];
-        //         stok.options.add(newOption);
-        //     }
-        // }
+        document.addEventListener("keydown", e => {
+            if (e.key == "F5") {
+                e.preventDefault()
+            }
+            ;
+        });
+        window.addEventListener("keyup", checkKey, false);
+
+        function checkKey(key) {
+            if (key.keyCode == "116") {
+                document.getElementById("nama_barang").focus();
+            }
+        }
     </script>
 @endsection

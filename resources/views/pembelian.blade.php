@@ -26,9 +26,10 @@
                                                 <label class="login2 pull-right pull-right-pro">No Entry</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input id="id_pembelian" type="text" class="form-control" name="id_pembelian"
+                                                <input id="id_pembelian" type="text" class="form-control"
+                                                       name="id_pembelian"
                                                        placeholder="No Faktur"
-                                                       value="{{substr(date("Ymd"), 2,-2)}}POS0000{{$id}}"/>
+                                                       value="{{substr(date("Ymd"), 2)}}POS000{{$id}}"/>
                                             </div>
                                         </div>
                                     </div>
@@ -50,7 +51,8 @@
                                                 <label class="login2 pull-right pull-right-pro">No Bukti</label>
                                             </div>
                                             <div class="col-lg-9">
-                                                <input type="text" class="form-control" name="no_bukti"
+                                                <input id="no_bukti"
+                                                       type="text" class="form-control" name="no_bukti"
                                                        placeholder="No Bukti"
                                                        required/>
                                             </div>
@@ -264,21 +266,6 @@
                                             <td></td>
                                             <td></td>
                                             <td>
-                                                Uang Muka
-                                            </td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                                                        <div class="input-group">
-                                                            <input onkeyup="uangMuka()"
-                                                                   type="number" id="uang"
-                                                                   class="form-control uang" name="uang_muka"
-                                                                   placeholder="Uang Muka"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
                                                 Diskon (%)
                                             </td>
                                             <td>
@@ -294,6 +281,19 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                            <td>
+                                                Diskon (Rp.)
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <input id="diskon_dua" type="number" class="form-control"
+                                                               placeholder="Diskon (Rp)" name="diskon_dua">
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -301,6 +301,21 @@
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            <td>
+                                                Uang Muka
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="input-group">
+                                                            <input onkeyup="uangMuka()"
+                                                                   type="number" id="uang"
+                                                                   class="form-control uang" name="uang_muka"
+                                                                   placeholder="Uang Muka"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
                                                 Sisa Piutang
                                             </td>
@@ -312,19 +327,6 @@
                                                                    class="form-control uang" name="sisa_piutang"
                                                                    placeholder="Sisa Piutang"/>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                Diskon (Rp.)
-                                            </td>
-                                            <td>
-                                                <div class="row">
-                                                    <div class="col-lg-8">
-                                                        <input id="diskon_dua" type="number" class="form-control"
-                                                               placeholder="Diskon (Rp)" name="diskon_dua">
-                                                    </div>
-                                                    <div class="col-lg-4">
                                                     </div>
                                                 </div>
                                             </td>
@@ -448,7 +450,16 @@
     </script>
     <script>
         document.addEventListener("keydown", e => {
+            if (e.key == "F3") {
+                e.preventDefault()
+            }
             if (e.key == "F5") {
+                e.preventDefault()
+            }
+            if (e.key == "F12") {
+                e.preventDefault()
+            }
+            if (e.key == "Insert") {
                 e.preventDefault()
             }
             ;
@@ -456,8 +467,17 @@
         window.addEventListener("keyup", checkKey, false);
 
         function checkKey(key) {
+            if (key.keyCode == "123") {
+                document.getElementById("no_bukti").focus();
+            }
+            if (key.keyCode == "114") {
+                document.getElementById("supplier").focus();
+            }
             if (key.keyCode == "116") {
-                document.getElementById("id_pembelian").click();
+                document.getElementById("myHref").click();
+            }
+            if (key.keyCode == "45") {
+                document.getElementById("biaya_kirim").focus();
             }
         }
     </script>

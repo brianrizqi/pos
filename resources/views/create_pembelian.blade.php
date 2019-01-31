@@ -150,8 +150,6 @@
                                                             <div class="col-lg-3"></div>
                                                             <div class="col-lg-9">
                                                                 <div class="login-horizental cancel-wp pull-left">
-                                                                    <a href="#" class="btn btn-white" type="submit">Cancel
-                                                                    </a>
                                                                     <button class="btn btn-sm btn-primary login-submit-cs"
                                                                             type="submit">Tambah
                                                                     </button>
@@ -235,6 +233,19 @@
             var total = document.getElementById("total").value;
             var diskon_dua = document.getElementById("diskon_dua").value;
             total.value = parseFloat((diskon_dua / 100).value);
+        }
+        document.addEventListener("keydown", e => {
+            if (e.key == "F5") {
+                e.preventDefault()
+            }
+            ;
+        });
+        window.addEventListener("keyup", checkKey, false);
+
+        function checkKey(key) {
+            if (key.keyCode == "116") {
+                document.getElementById("barang").focus();
+            }
         }
     </script>
 @endsection
