@@ -38,7 +38,8 @@
                                             </div>
                                             <div class="col-lg-9">
                                                 <input type="date" class="form-control" name="tanggal"
-                                                       data-date-format="yyyy-MM-dd" required/>
+                                                       data-date-format="yyyy-MM-dd" value="<?php echo date("Y-m-d");?>"
+                                                       required/>
                                             </div>
                                         </div>
                                     </div>

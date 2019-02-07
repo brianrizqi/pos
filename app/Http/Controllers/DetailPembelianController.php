@@ -143,9 +143,14 @@ class DetailPembelianController extends Controller
      * @param  \App\Detail_Pembelian $detail_Pembelian
      * @return \Illuminate\Http\Response
      */
-    public function edit(Detail_Pembelian $detail_Pembelian)
+    public function edit($id)
     {
-        //
+        $hutang = Pembelian::join('suppliers', function ($join) {
+            $join->on('pembelians.id_supplier', '=', 'suppliers.id');
+        })
+            ->where('id_pembelian', $id)
+            ->first();
+        return view('hutang_pembelian', ['hutang' => $hutang]);
     }
 
     /**
@@ -155,9 +160,16 @@ class DetailPembelianController extends Controller
      * @param  \App\Detail_Pembelian $detail_Pembelian
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Detail_Pembelian $detail_Pembelian)
+    public function update(Request $request, $id)
     {
-        //
+        $sisa = Pembelian::where('id_pembelian', $id)
+            ->first();
+        $barang = DB::table('pembelians')
+            ->where('id_pembelian', $id)->
+            update([
+                'sisa_piutang' =>  $sisa->sisa_piutang - $request->bayar,
+            ]);
+        return redirect('detail_pembelian');
     }
 
     /**

@@ -49,6 +49,8 @@ Route::get('/pembelian/detail/{id}', 'PembelianController@detail_barang');
 
 Route::get('/detail_pembelian', 'DetailPembelianController@index');
 Route::get('/detail_pembelian/print/{id}', 'DetailPembelianController@pdf');
+Route::get('/detail_pembelian/hutang/{id}', 'DetailPembelianController@edit');
+Route::put('/detail_pembelian/{id}/hutang', 'DetailPembelianController@update');
 
 Route::get('/kartu_stok', 'KartuStokController@index');
 Route::get('/kartu_stok/fetch/{id}', 'KartuStokController@fetch');

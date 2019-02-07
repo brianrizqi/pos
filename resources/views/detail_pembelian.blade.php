@@ -50,10 +50,19 @@
                                             <td>{{$item->uang_muka}}</td>
                                             <td>{{$item->sisa_piutang}}</td>
                                             <td>
-                                                <form action="#" method="get"
+                                                @if($item->jenis_transaksi == "Kredit" && $item->sisa_piutang > 0)
+                                                    <form action="/detail_pembelian/hutang/{{$item->id_pembelian}}"
+                                                          method="get"
+                                                          style="display: inline">
+                                                        <button class="btn btn-primary" style="width: 37px;">
+                                                            <i class="fa fa-pencil-square-o"></i>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                                <form action="#" method="Get"
                                                       style="display: inline">
-                                                    <button class="btn btn-primary" style="width: 37px;">
-                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    <button class="btn btn-danger">
+                                                        <i class="fa big-icon fa-archive"></i>
                                                     </button>
                                                 </form>
                                                 <form action="/pembelian/detail/{{$item->id_pembelian}}" method="Get"
