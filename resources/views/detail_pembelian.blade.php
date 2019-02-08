@@ -59,7 +59,7 @@
                                                         </button>
                                                     </form>
                                                 @endif
-                                                <form action="#" method="Get"
+                                                <form action="/detail_pembelian/retur/{{$item->id_pembelian}}" method="Get"
                                                       style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa big-icon fa-archive"></i>

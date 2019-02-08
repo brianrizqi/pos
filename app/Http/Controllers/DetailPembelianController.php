@@ -6,6 +6,7 @@ use App\Detail_Pembelian;
 use App\Pembelian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Cart;
 
 class DetailPembelianController extends Controller
 {
@@ -167,9 +168,104 @@ class DetailPembelianController extends Controller
         $barang = DB::table('pembelians')
             ->where('id_pembelian', $id)->
             update([
-                'sisa_piutang' =>  $sisa->sisa_piutang - $request->bayar,
+                'sisa_piutang' => $sisa->sisa_piutang - $request->bayar,
             ]);
         return redirect('detail_pembelian');
+    }
+
+    public function barang($id)
+    {
+        $barang = DB::table('detail_pembelians')
+            ->join('barangs', function ($join) {
+                $join->on('detail_pembelians.id_barang', '=', 'barangs.id_barang');
+            })
+            ->where('detail_pembelians.id_barang', $id)
+            ->first();
+        $output = '<div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <label class="login2 pull-right pull-right-pro">Stok</label>
+                                                            </div>
+                                                            <div class="col-lg-9">
+                                                                <input type="number" class="form-control" name="telepon"
+                                                                       placeholder="Telepon" value="' . $barang->stok . '"
+                                                                       disabled/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <label class="login2 pull-right pull-right-pro">Pembelian</label>
+                                                            </div>
+                                                            <div class="col-lg-9">
+                                                                <input type="number" class="form-control" name="telepon"
+                                                                       placeholder="Telepon" value="' . $barang->jumlah . '"
+                                                                       disabled/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group-inner">
+                                                        <div class="row">
+                                                            <div class="col-lg-3">
+                                                                <label class="login2 pull-right pull-right-pro">Jumlah</label>
+                                                            </div>
+                                                            <div class="col-lg-9">
+                                                                <input type="number" class="form-control" name="retur"
+                                                                       placeholder="Jumlah Retur Barang"
+                                                                       max="' . $barang->jumlah . '" required/>
+                                                            </div>
+                                                        </div>
+                                                    </div>';
+        echo $output;
+    }
+
+    public function retur($id)
+    {
+        $data = Cart::getContent();
+        $barang = DB::table('detail_pembelians')
+            ->join('barangs', function ($join) {
+                $join->on('detail_pembelians.id_barang', '=', 'barangs.id_barang');
+            })
+            ->where('detail_pembelians.id_pembelian', $id)
+            ->get();
+        return view('retur_pembelian', ['data' => $barang, 'barang' => $data, 'id' => $id]);
+    }
+
+    public function returBarang(Request $request, $id)
+    {
+        $sisa = DB::table('barangs')
+            ->where('id_barangs', $id)
+            ->first();
+        $barang = DB::table('pembelians')
+            ->where('id_pembelian', $id)->
+            update([
+                'sisa_piutang' => $sisa->sisa_piutang - $request->bayar,
+            ]);
+        return redirect('detail_pembelian');
+    }
+
+    public function tambahBarang(Request $request)
+    {
+        $barang = DB::table('barangs')
+            ->where('id_barang', $request->id_barang)
+            ->first();
+        $add = Cart::add([
+            'id' => $request->id_barang,
+            'price' => $barang->harga_beli,
+            'name' => $barang->nama_barang,
+            'quantity' => $request->retur
+        ]);
+        if ($add) {
+//            return header('location: detail_pembelian/retur/' . $request->id_pembelian);
+            return redirect('detail_pembelian/retur/' . $request->id_pembelian);
+        }
+    }
+
+    public function hapusBarang($id, $id_pembelian)
+    {
+        Cart::remove($id);
+        return redirect('detail_pembelian/retur/' . $id_pembelian);
     }
 
     /**
