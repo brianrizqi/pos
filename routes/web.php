@@ -52,7 +52,8 @@ Route::get('/detail_pembelian/print/{id}', 'DetailPembelianController@pdf');
 Route::get('/detail_pembelian/hutang/{id}', 'DetailPembelianController@edit');
 Route::get('/detail_pembelian/retur/{id}', 'DetailPembelianController@retur');
 Route::post('/detail_pembelian/retur/', 'DetailPembelianController@tambahBarang');
-Route::get('/detail_pembelian/barang/{id}', 'DetailPembelianController@barang');
+Route::post('/detail_pembelian/returbarang/', 'DetailPembelianController@returBarang');
+Route::get('/detail_pembelian/barang/{id}/{id_pembelian}', 'DetailPembelianController@barang');
 Route::put('/detail_pembelian/{id}/hutang', 'DetailPembelianController@update');
 Route::get('/detail_pembelian/{id}/{id_pembelian}', 'DetailPembelianController@hapusBarang');
 

@@ -173,13 +173,14 @@ class DetailPembelianController extends Controller
         return redirect('detail_pembelian');
     }
 
-    public function barang($id)
+    public function barang($id, $id_pembelian)
     {
         $barang = DB::table('detail_pembelians')
             ->join('barangs', function ($join) {
                 $join->on('detail_pembelians.id_barang', '=', 'barangs.id_barang');
             })
             ->where('detail_pembelians.id_barang', $id)
+            ->where('detail_pembelians.id_pembelian', $id_pembelian)
             ->first();
         $output = '<div class="form-group-inner">
                                                         <div class="row">
@@ -232,16 +233,49 @@ class DetailPembelianController extends Controller
         return view('retur_pembelian', ['data' => $barang, 'barang' => $data, 'id' => $id]);
     }
 
-    public function returBarang(Request $request, $id)
+    public function returBarang(Request $request)
     {
-        $sisa = DB::table('barangs')
-            ->where('id_barangs', $id)
-            ->first();
-        $barang = DB::table('pembelians')
-            ->where('id_pembelian', $id)->
-            update([
-                'sisa_piutang' => $sisa->sisa_piutang - $request->bayar,
+        $retur = DB::table('retur_pembelian')
+            ->insert([
+                'id_retur' => $request->id_retur,
+                'id_pembelian' => $request->id_pembelian,
+                'tanggal' => date('Y-m-d'),
+                'total' => $request->total
             ]);
+        $id_retur = DB::table('retur_pembelian')
+            ->where('id_pembelian', $request->id_pembelian)
+            ->orderBy('created_at', 'DESC')
+            ->take(1)
+            ->first();
+        $data = Cart::getContent();
+        foreach ($data as $item) {
+            $barang = DB::table('barangs')
+                ->where('id_barang', $item->id)
+                ->first();
+            $pembelian = DB::table('detail_pembelians')
+                ->where('id_pembelian', $request->id_pembelian)
+                ->where('id_barang', $item->id)
+                ->first();
+            $stok = DB::table('barangs')
+                ->where('id_barang', $item->id)
+                ->update([
+                    'stok' => $barang->stok - $item->quantity,
+                ]);
+            $jumlah = DB::table('detail_pembelians')
+                ->where('id_pembelian', $request->id_pembelian)
+                ->where('id_barang', $item->id)
+                ->update([
+                    'jumlah' => $pembelian->jumlah - $item->quantity
+                ]);
+            $detail = DB::table('detail_retur_pembelian')
+                ->insert([
+                    'id_retur' => $id_retur->id_retur,
+                    'id_barang' => $item->id,
+                    'jumlah' => $item->quantity,
+                    'total_harga' => $item->quantity * $item->price
+                ]);
+        }
+        Cart::clear();
         return redirect('detail_pembelian');
     }
 
@@ -257,7 +291,6 @@ class DetailPembelianController extends Controller
             'quantity' => $request->retur
         ]);
         if ($add) {
-//            return header('location: detail_pembelian/retur/' . $request->id_pembelian);
             return redirect('detail_pembelian/retur/' . $request->id_pembelian);
         }
     }
@@ -267,6 +300,7 @@ class DetailPembelianController extends Controller
         Cart::remove($id);
         return redirect('detail_pembelian/retur/' . $id_pembelian);
     }
+
 
     /**
      * Remove the specified resource from storage.

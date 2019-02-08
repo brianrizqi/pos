@@ -112,7 +112,20 @@
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
                                             <form method="POST"
-                                                  action="#">
+                                                  action="/detail_pembelian/returbarang/">
+                                                <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label class="login2 pull-right pull-right-pro">Kode
+                                                                Retur</label>
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            <input type="text" class="form-control" name="id_retur"
+                                                                   placeholder="Kode Retur"
+                                                                   required/>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <table id="results" class="table sparkle-table">
                                                     <thead>
                                                     <tr>
@@ -124,7 +137,12 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <?php $no = 0;
+                                                    $totalBayar = 0;
+                                                    ?>
                                                     @foreach($barang as $item)
+                                                        <?php
+                                                        $totalBayar += ($item->price * $item->quantity);?>
                                                         <tr>
                                                             <td>{{$item->name}}</td>
                                                             <td>{{$item->quantity}}</td>
@@ -138,8 +156,27 @@
                                                             </td>
                                                         </tr>
                                                     @endforeach
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Total</td>
+                                                        <td>
+                                                            {{--<div class="row">--}}
+                                                            {{--<div class="col-lg-8">--}}
+                                                            <div class="input-group" style="width: 100px;">
+                                                                <input type="number" id="total"
+                                                                       class="form-control kirim" name="total"
+                                                                       placeholder="Total"
+                                                                       value="<?=$totalBayar?>"/>
+                                                                {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            </div>
+                                                        </td>
+                                                        <td></td>
+                                                    </tr>
                                                     </tbody>
                                                 </table>
+                                                <input type="hidden" name="id_pembelian" value="{{$id}}">
                                                 <button type="submit" class="btn btn-primary">Retur</button>
                                                 {{csrf_field()}}
                                             </form>
@@ -155,10 +192,11 @@
     </div>
     <script>
         function pilihBarang() {
+            var id = '<?=$id?>';
             var xmlhttp = new XMLHttpRequest();
             var value = document.getElementById("barang").value;
             if (value != "") {
-                xmlhttp.open("GET", "/detail_pembelian/barang/" + value, false);
+                xmlhttp.open("GET", "/detail_pembelian/barang/" + value + "/" + id, false);
                 xmlhttp.send(null);
                 document.getElementById("detail_barang").innerHTML = xmlhttp.responseText;
             } else {
