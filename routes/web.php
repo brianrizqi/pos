@@ -69,3 +69,8 @@ Route::get('/penjualan/barang/{id}', 'PenjualanController@barang');
 Route::get('/penjualan/detail/{id}', 'PenjualanController@detail_barang');
 
 Route::get('/detail_penjualan', 'DetailPenjualanController@index');
+
+Route::get('/retur', 'ReturController@index');
+Route::get('/retur/detail/{id}', 'ReturController@detail');
+
+Route::get('/hutang', 'HutangPembelianController@index');

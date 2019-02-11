@@ -105,6 +105,8 @@
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
                             <a href="/pembelian" class="dropdown-item">Pembelian</a>
                             <a href="/detail_pembelian" class="dropdown-item">Detail Pembelian</a>
+                            <a href="/retur" class="dropdown-item">Retur Pembelian</a>
+                            <a href="/hutang" class="dropdown-item">Hutang Pembelian</a>
                         </div>
                     </li>
                     <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
@@ -145,7 +147,8 @@
                                 <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                     <li class="nav-item dropdown">
                                     <li class="nav-item">
-                                        <a href="#" data-toggle="modal" data-target="#PrimaryModalhdbgcl" role="button" aria-expanded="false"
+                                        <a href="#" data-toggle="modal" data-target="#PrimaryModalhdbgcl" role="button"
+                                           aria-expanded="false"
                                            class="nav-link dropdown-toggle">
                                             {{--<span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>--}}
                                             <span class="admin-name">Petunjuk</span>
@@ -222,6 +225,8 @@
                                             <li><a href="/pembelian">Pembelian</a>
                                             </li>
                                             <li><a href="/detail_pembelian">Detail Pembelian</a>
+                                            <li><a href="/retur" class="dropdown-item">Retur Pembelian</a></li>
+                                            <li><a href="/hutang" class="dropdown-item">Hutang Pembelian</a></li>
                                         </ul>
                                     </li>
                                 </ul>
