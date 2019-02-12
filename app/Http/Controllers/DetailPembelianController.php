@@ -170,6 +170,12 @@ class DetailPembelianController extends Controller
             update([
                 'sisa_piutang' => $sisa->sisa_piutang - $request->bayar,
             ]);
+        $hutang = DB::table('hutang_pembelian')
+            ->insert([
+                'id_pembelian' => $id,
+                'tanggal' => date('Y-m-d'),
+                'total_bayar' => $request->bayar
+            ]);
         return redirect('detail_pembelian');
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\HutangPembelian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HutangPembelianController extends Controller
 {
@@ -14,7 +15,17 @@ class HutangPembelianController extends Controller
      */
     public function index()
     {
-        return view('hutang');
+        $hutang = DB::table('hutang_pembelian')
+            ->join('pembelians', function ($join) {
+                $join->on('pembelians.id_pembelian', '=', 'hutang_pembelian.id_pembelian');
+            })
+            ->join('suppliers', function ($join) {
+                $join->on('suppliers.id', '=', 'pembelians.id_supplier');
+            })
+            ->select('hutang_pembelian.id_pembelian', 'hutang_pembelian.tanggal',
+                'suppliers.nama', 'hutang_pembelian.total_bayar', 'pembelians.sisa_piutang')
+            ->get();
+        return view('hutang', ['hutang' => $hutang]);
     }
 
     /**
