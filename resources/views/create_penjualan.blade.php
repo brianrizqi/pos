@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
-                                            <form method="POST" action="/penjualan/barang/">
+                                            <form method="POST" action="{{route('tambahBarang_penjualan')}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">

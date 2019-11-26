@@ -2,7 +2,7 @@
 @section('title','POS')
 @section('fitur','Pembelian')
 @section('content')
-    <form method="post" action="/pembelian">
+    <form method="post" action="{{route('pembelian')}}">
         <div class="static-table-area mg-b-15">
             <div class="container-fluid">
                 <div class="row">

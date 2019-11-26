@@ -18,7 +18,7 @@
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
                                             <form method="POST"
-                                                  action="/detail_pembelian/retur/">
+                                                  action="{{route('tambahBarang_detail_pembelian')}}">
                                                 <input type="hidden" name="id_pembelian" value="{{$id}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
@@ -112,7 +112,7 @@
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
                                             <form method="POST"
-                                                  action="/detail_pembelian/returbarang/">
+                                                  action="{{route('returBarang_detail_pembelian')}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">

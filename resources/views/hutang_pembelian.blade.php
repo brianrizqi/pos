@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
-                                            <form method="POST" action="/detail_pembelian/{{$hutang->id_pembelian}}/hutang">
+                                            <form method="POST" action="{{route('update_detail_pembelian')}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <input type="hidden" name="id_pembelian" value="{{$hutang->id_pembelian}}">

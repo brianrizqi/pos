@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
-                                            <form method="POST" action="/pembelian/barang/">
+                                            <form method="POST" action="{{route('tambahBarang_pembelian')}}">
                                                 <input type="hidden" name="id_supplier" value="{{$id}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
