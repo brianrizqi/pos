@@ -15,7 +15,7 @@
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">
-                                    <a href="/supplier/create" class="btn btn-sm btn-primary login-submit-cs">
+                                    <a href="{{route('create_supplier')}}" class="btn btn-sm btn-primary login-submit-cs">
                                         Tambah
                                     </a>
                                 </div>

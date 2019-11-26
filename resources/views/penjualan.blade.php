@@ -110,7 +110,7 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div class="row">
                                         <div class="col-lg-1">
-                                            <a href="/penjualan/create" class="btn btn-sm btn-primary login-submit-cs">
+                                            <a href="{{route('create_penjualan')}}" class="btn btn-sm btn-primary login-submit-cs">
                                                 Tambah
                                             </a>
                                         </div>
@@ -169,7 +169,7 @@
 
                                         </div>
                                         <div class="col-lg-2" style="margin-top: 10px;">
-                                            <a href="/pembelian/clear" class="btn btn-sm btn-danger login-submit-cs">
+                                            <a href="{{route('clear_pembelian')}}" class="btn btn-sm btn-danger login-submit-cs">
                                                 Cancel
                                             </a>
                                             <input type="submit" name="submit" value="Masukkan"

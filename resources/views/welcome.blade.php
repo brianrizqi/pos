@@ -85,9 +85,9 @@
                 </div>
 
                 <div class="links">
-                    <a href="/barang">Barang</a>
-                    <a href="/customer">Customer</a>
-                    <a href="/supplier">Supplier</a>
+                    <a href="{{route('barang')}}">Barang</a>
+                    <a href="{{route('customer')}}">Customer</a>
+                    <a href="{{route('supplier')}}">Supplier</a>
                 </div>
             </div>
         </div>

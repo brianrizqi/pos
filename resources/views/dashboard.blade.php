@@ -11,7 +11,7 @@
                             <div class="main-income-head">
                                 <h2>Press F7</h2>
                                 <div class="main-income-phara">
-                                    <a href="/barang">
+                                    <a href="{{route('barang')}}">
                                         <p>
                                             <i style="color: white" class="fa big-icon fa-archive"></i>
                                         </p>
@@ -35,7 +35,7 @@
                             <div class="main-income-head">
                                 <h2>Press F4</h2>
                                 <div class="main-income-phara order-cl">
-                                    <a href="/supplier">
+                                    <a href="{{route('supplier')}}">
                                         <p><i class="fa fa-user"></i></p>
                                     </a>
                                 </div>
@@ -57,7 +57,7 @@
                             <div class="main-income-head">
                                 <h2>Press F6</h2>
                                 <div class="main-income-phara visitor-cl">
-                                    <a href="/customer">
+                                    <a href="{{route('customer')}}">
                                         <p><i class="fa fa-users"></i></p>
                                     </a>
                                 </div>
@@ -79,7 +79,7 @@
                             <div class="main-income-head">
                                 <h2>Press F8</h2>
                                 <div class="main-income-phara low-value-cl">
-                                    <a href="/kartu_stok">
+                                    <a href="{{route('kartu_stok')}}">
                                         <p><i class="fa big-icon fa-archive"></i></p>
                                     </a>
                                 </div>
@@ -103,7 +103,7 @@
                             <div class="main-income-head">
                                 <h2>Press F2</h2>
                                 <div class="main-income-phara">
-                                    <a href="/pembelian">
+                                    <a href="{{route('pembelian')}}">
                                         <p>
                                             <i class="fa fa-arrow-circle-o-down"></i>
                                         </p>
@@ -127,7 +127,7 @@
                             <div class="main-income-head">
                                 <h2>Press F9</h2>
                                 <div class="main-income-phara order-cl">
-                                    <a href="/detail_pembelian">
+                                    <a href="{{route('detail_pembelian')}}">
                                         <p><i class="fa fa-arrow-circle-o-down"></i></p>
                                     </a>
                                 </div>
@@ -149,7 +149,7 @@
                             <div class="main-income-head">
                                 <h2>Press F10</h2>
                                 <div class="main-income-phara visitor-cl">
-                                    <a href="/penjualan">
+                                    <a href="{{route('penjualan')}}">
                                         <p><i class="fa fa-arrow-circle-o-up"></i></p>
                                     </a>
                                 </div>
@@ -171,7 +171,7 @@
                             <div class="main-income-head">
                                 <h2>Press F11</h2>
                                 <div class="main-income-phara low-value-cl">
-                                    <a href="/detail_penjualan">
+                                    <a href="{{route('detail_penjualan')}}">
                                         <p><i class="fa fa-arrow-circle-o-up"></i></p>
                                     </a>
                                 </div>

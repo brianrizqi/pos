@@ -15,10 +15,10 @@
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">
-                                    <a href="/barang/create" class="btn btn-sm btn-primary login-submit-cs">
+                                    <a href="{{route('create_barang')}}" class="btn btn-sm btn-primary login-submit-cs">
                                         Tambah
                                     </a>
-                                    <a href="/barang/print" class="btn btn-sm btn-primary login-submit-cs">
+                                    <a href="{{route('cetak_barang')}}" class="btn btn-sm btn-primary login-submit-cs">
                                         Print
                                     </a>
                                 </div>
