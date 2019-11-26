@@ -395,7 +395,7 @@
         function onClick() {
             var value = document.getElementById("supplier").value;
             if (value != "") {
-                window.location.href = "/pembelian/create/" + value;
+                window.location.href = "{{route('create_pembelian')}}" + value;
             } else {
                 alert('Supplier Kosong');
             }
@@ -436,7 +436,7 @@
             var value = document.getElementById("supplier").value;
             if (value == "") {
                 alert("Supplier Kosong");
-                window.location.href = "/pembelian";
+                window.location.href = "{{route('pembelian')}}";
             }
         }
 

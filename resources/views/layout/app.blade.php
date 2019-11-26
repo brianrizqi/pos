@@ -330,28 +330,28 @@
 
     function checkKey(key) {
         if (key.keyCode == "118") {
-            window.location.href = "/barang";
+            window.location.href = "{{route('barang')}}";
         }
         if (key.keyCode == "115") {
-            window.location.href = "/supplier";
+            window.location.href = "{{route('supplier')}}";
         }
         if (key.keyCode == "117") {
-            window.location.href = "/customer";
+            window.location.href = "{{route('customer')}}";
         }
         if (key.keyCode == "119") {
-            window.location.href = "/kartu_stok";
+            window.location.href = "{{route('kartu_stok')}}";
         }
         if (key.keyCode == "113") {
-            window.location.href = "/pembelian";
+            window.location.href = "{{route('pembelian')}}";
         }
         if (key.keyCode == "120") {
-            window.location.href = "/detail_pembelian";
+            window.location.href = "{{route('detail_pembelian')}}";
         }
         if (key.keyCode == "121") {
-            window.location.href = "/penjualan";
+            window.location.href = "{{route('penjualan')}}";
         }
         if (key.keyCode == "122") {
-            window.location.href = "/detail_penjualan";
+            window.location.href = "{{route('detail_penjualan')}}";
         }
         if (key.keyCode == "112") {
             document.getElementById("petunjuk").click();

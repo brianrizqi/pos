@@ -87,7 +87,7 @@
 
         function checkKey(key) {
             if (key.keyCode == "116") {
-                window.location.href = "/supplier/create";
+                window.location.href = "{{route('create_supplier')}}";
             }
         }
     </script>
