@@ -384,7 +384,7 @@
             var xmlhttp = new XMLHttpRequest();
             var value = document.getElementById("supplier").value;
             if (value != "") {
-                xmlhttp.open("GET", "/pembelian/fetch/" + value, false);
+                xmlhttp.open("GET", "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/pembelian/fetch/" + value, false);
                 xmlhttp.send(null);
                 document.getElementById("detail_sup").innerHTML = xmlhttp.responseText;
             } else {
@@ -395,7 +395,7 @@
         function onClick() {
             var value = document.getElementById("supplier").value;
             if (value != "") {
-                window.location.href = "{{route('create_pembelian')}}" + value;
+                window.location.href = "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/pembelian/create" + value;
             } else {
                 alert('Supplier Kosong');
             }
@@ -436,7 +436,7 @@
             var value = document.getElementById("supplier").value;
             if (value == "") {
                 alert("Supplier Kosong");
-                window.location.href = "{{route('pembelian')}}";
+                window.location.href = "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/pembelian";
             }
         }
 

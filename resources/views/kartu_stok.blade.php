@@ -79,7 +79,7 @@
             var xmlhttp = new XMLHttpRequest();
             var value = document.getElementById("kartu").value;
             if (value != "") {
-                xmlhttp.open("GET", "/kartu_stok/fetch/" + value, false);
+                xmlhttp.open("GET", "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/kartu_stok/fetch/" + value, false);
                 xmlhttp.send(null);
                 document.getElementById("detail_sup").innerHTML = xmlhttp.responseText;
                 var tbody = document.querySelector("#results tbody");

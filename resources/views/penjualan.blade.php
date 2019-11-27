@@ -189,7 +189,7 @@
             var xmlhttp = new XMLHttpRequest();
             var value = document.getElementById("supplier").value;
             if (value != "") {
-                xmlhttp.open("GET", "/penjualan/fetch/" + value, false);
+                xmlhttp.open("GET", "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/penjualan/fetch/" + value, false);
                 xmlhttp.send(null);
                 document.getElementById("detail_sup").innerHTML = xmlhttp.responseText;
             } else {
