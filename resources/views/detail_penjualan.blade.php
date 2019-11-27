@@ -46,7 +46,7 @@
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="{{route('detail_barang_penjualan')}}" method="GET"
+                                                <form action="{{route('detail_barang_penjualan'), ['id'=>$item->id_penjualan]}}" method="GET"
                                                       style="display: inline">
                                                     <button class="btn btn-success">
                                                         <i class="fa fa-eye"></i>

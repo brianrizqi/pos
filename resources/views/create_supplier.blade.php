@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
-                                            <form method="POST" action="{{route('supplier')}}">
+                                            <form method="POST" action="{{route('store_supplier')}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">

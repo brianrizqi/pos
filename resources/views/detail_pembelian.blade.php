@@ -51,7 +51,7 @@
                                             <td>{{$item->sisa_piutang}}</td>
                                             <td>
                                                 @if($item->jenis_transaksi == "Kredit" && $item->sisa_piutang > 0)
-                                                    <form action="{{route('edit_detail_pembelian')}}"
+                                                    <form action="{{route('edit_detail_pembelian'), ['id'=>$item->id_pembelian]}}"
                                                           method="get"
                                                           style="display: inline">
                                                         <button class="btn btn-primary" style="width: 37px;">
@@ -59,13 +59,13 @@
                                                         </button>
                                                     </form>
                                                 @endif
-                                                <form action="{{route('retur_detail_pembelian')}}" method="Get"
+                                                <form action="{{route('retur_detail_pembelian'), ['id'=>$item->id_pembelian]}}" method="Get"
                                                       style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa big-icon fa-archive"></i>
                                                     </button>
                                                 </form>
-                                                <form action="{{route('detail_barang_pembelian')}}" method="Get"
+                                                <form action="{{route('detail_barang_pembelian'), ['id'=>$item->id_pembelian]}}" method="Get"
                                                       style="display: inline">
                                                     <button class="btn btn-success">
                                                         <i class="fa fa-eye"></i>
