@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
-                                            <form action="{{route('update_barang'), ['id'=>$$barang->id_barang]}}" method="POST">
+                                            <form action="{{route('update_barang', ['id'=>$$barang->id_barang])}}" method="POST">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-2">

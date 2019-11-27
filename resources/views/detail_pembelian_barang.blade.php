@@ -72,7 +72,7 @@
 
                                     </div>
                                     <div class="col-lg-1" style="margin-top: 10px;">
-                                        <a href="{{route('cetak_detail_pembelian'), ['id'=>$data->id_pembelian]}}"
+                                        <a href="{{route('cetak_detail_pembelian', ['id'=>$data->id_pembelian])}}"
                                            class="btn btn-sm btn-primary login-submit-cs">Print</a>
                                     </div>
                                 </div>

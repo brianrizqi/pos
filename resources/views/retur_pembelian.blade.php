@@ -150,7 +150,7 @@
                                                             <td>
                                                                 Rp. {{number_format($item->price * $item->quantity,0,".",".")}}</td>
                                                             <td>
-                                                                <a href="{{route('hapusBarang_detail_pembelian'), ['id'=>$item->id, 'id_pembelian'=>$id]}}"
+                                                                <a href="{{route('hapusBarang_detail_pembelian', ['id'=>$item->id, 'id_pembelian'=>$id])}}"
                                                                    class="btn btn-danger"><i
                                                                             class="fa fa-trash"></i></a>
                                                             </td>
