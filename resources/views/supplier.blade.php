@@ -50,13 +50,13 @@
                                             <td>{{$item->nama_cp}}</td>
                                             <td>{{$item->telepon_cp}}</td>
                                             <td>
-                                                <form action="{{route('edit_supplier')}}"
+                                                <form action="{{route('edit_supplier'), ['id'=>$id]}}"
                                                       style="display: inline">
                                                     <button class="btn btn-primary" style="width: 37px;">
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="{{route('destroy_supplier')}}" method="POST"
+                                                <form action="{{route('destroy_supplier'), ['id'=>$id]}}" method="POST"
                                                       style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-trash"></i>

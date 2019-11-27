@@ -77,13 +77,13 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <form action="{{route('edit_barang')}}" method="get"
+                                                <form action="{{route('edit_barang'), ['id_barang'=>$id_barang]}}" method="get"
                                                       style="display: inline">
                                                     <button class="btn btn-primary" style="width: 37px;">
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="{{route('destroy_barang')}}" method="POST"
+                                                <form action="{{route('destroy_barang'), ['id'=>$id_barang]}}" method="POST"
                                                       style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-trash"></i>
