@@ -15,7 +15,7 @@
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">
-                                    <a href="/supplier/create" class="btn btn-sm btn-primary login-submit-cs">
+                                    <a href="{{route('create_supplier')}}" class="btn btn-sm btn-primary login-submit-cs">
                                         Tambah
                                     </a>
                                 </div>
@@ -50,13 +50,13 @@
                                             <td>{{$item->nama_cp}}</td>
                                             <td>{{$item->telepon_cp}}</td>
                                             <td>
-                                                <form action="/supplier/edit/{{$item->id}}"
+                                                <form action="{{route('edit_supplier', ['id'=>$item->id])}}"
                                                       style="display: inline">
                                                     <button class="btn btn-primary" style="width: 37px;">
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="/supplier/{{$item->id}}" method="POST"
+                                                <form action="{{route('destroy_supplier', ['id'=>$item->id])}}" method="POST"
                                                       style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-trash"></i>
@@ -87,7 +87,7 @@
 
         function checkKey(key) {
             if (key.keyCode == "116") {
-                window.location.href = "/supplier/create";
+                window.location.href = "{{route('create_supplier')}}";
             }
         }
     </script>

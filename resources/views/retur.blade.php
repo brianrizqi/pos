@@ -37,7 +37,7 @@
                                             <td>{{$item->nama}}</td>
                                             <td>Rp. {{number_format($item->total,0,".",".")}}</td>
                                             <td>
-                                                <a href="/retur/detail/{{$item->id_retur}}" class="btn btn-primary">
+                                                <a href="{{route('detail_retur', ['id'=>$item->id_retur])}}" class="btn btn-primary">
                                                     <i class="fa fa-eye" style="color: white"></i>
                                                 </a>
                                             </td>

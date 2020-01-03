@@ -15,10 +15,10 @@
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">
-                                    <a href="/barang/create" class="btn btn-sm btn-primary login-submit-cs">
+                                    <a href="{{route('create_barang')}}" class="btn btn-sm btn-primary login-submit-cs">
                                         Tambah
                                     </a>
-                                    <a href="/barang/print" class="btn btn-sm btn-primary login-submit-cs">
+                                    <a href="{{route('cetak_barang')}}" class="btn btn-sm btn-primary login-submit-cs">
                                         Print
                                     </a>
                                 </div>
@@ -77,13 +77,13 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <form action="/barang/edit/{{$item->id_barang}}" method="get"
+                                                <form action="{{route('edit_barang', ['id_barang'=>$item->id_barang])}}" method="get"
                                                       style="display: inline">
                                                     <button class="btn btn-primary" style="width: 37px;">
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="/barang/{{$item->id_barang}}" method="POST"
+                                                <form action="{{route('destroy_barang', ['id'=>$item->id_barang])}}" method="POST"
                                                       style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-trash"></i>
@@ -114,7 +114,7 @@
 
         function checkKey(key) {
             if (key.keyCode == "116") {
-                window.location.href = "/barang/create";
+                window.location.href = "{{route('create_barang')}}";
             }
         }
     </script>

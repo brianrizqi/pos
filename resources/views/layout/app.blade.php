@@ -68,7 +68,7 @@
     <div class="left-sidebar-pro">
         <nav id="sidebar">
             <div class="sidebar-header">
-                <a href="/">
+                <a href="{{route('home')}}">
                     <h3>POS</h3>
                     <p>Point Of Sales</p>
                     <strong>POS</strong>
@@ -81,18 +81,18 @@
                             <span class="mini-dn">Barang</span> <span class="indicator-right-menu mini-dn"><i
                                         class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                            <a href="/barang" class="dropdown-item">Laporan Stok</a>
-                            <a href="/kartu_stok" class="dropdown-item">Kartu Stok</a>
+                            <a href="{{route('barang')}}" class="dropdown-item">Laporan Stok</a>
+                            <a href="{{route('kartu_stok')}}" class="dropdown-item">Kartu Stok</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="/supplier" role="button" aria-expanded="false"
+                        <a href="{{route('supplier')}}" role="button" aria-expanded="false"
                            class="nav-link dropdown-toggle"><i class="fa fa-user"></i>
                             <span class="mini-dn">Supplier</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="/customer" role="button" aria-expanded="false"
+                        <a href="{{route('customer')}}" role="button" aria-expanded="false"
                            class="nav-link dropdown-toggle"><i class="fa fa-users"></i> <span
                                     class="mini-dn">Customer</span>
                         </a>
@@ -103,10 +103,10 @@
                                     class="mini-dn">Pengadaan</span> <span class="indicator-right-menu mini-dn"><i
                                         class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                            <a href="/pembelian" class="dropdown-item">Pembelian</a>
-                            <a href="/detail_pembelian" class="dropdown-item">Detail Pembelian</a>
-                            <a href="/retur" class="dropdown-item">Retur Pembelian</a>
-                            <a href="/hutang" class="dropdown-item">Hutang Pembelian</a>
+                            <a href="{{route('pembelian')}}" class="dropdown-item">Pembelian</a>
+                            <a href="{{route('detail_pembelian')}}" class="dropdown-item">Detail Pembelian</a>
+                            <a href="{{route('retur')}}" class="dropdown-item">Retur Pembelian</a>
+                            <a href="{{route('hutang')}}" class="dropdown-item">Hutang Pembelian</a>
                         </div>
                     </li>
                     <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false"
@@ -115,8 +115,8 @@
                                     class="mini-dn">Penjualan</span> <span class="indicator-right-menu mini-dn"><i
                                         class="fa indicator-mn fa-angle-left"></i></span></a>
                         <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                            <a href="/penjualan" class="dropdown-item">Penjualan</a>
-                            <a href="/detail_penjualan" class="dropdown-item">Detail Penjualan</a>
+                            <a href="{{route('penjualan')}}" class="dropdown-item">Penjualan</a>
+                            <a href="{{route('detail_penjualan')}}" class="dropdown-item">Detail Penjualan</a>
                         </div>
                     </li>
                 </ul>
@@ -181,7 +181,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                     <ul class="breadcome-menu">
                                         <li>
-                                            <a href="/">
+                                            <a href="{{route('home')}}">
                                                 Point Of Sales
                                             </a>
                                             <span class="bread-slash">/</span>
@@ -208,25 +208,25 @@
                                     <li><a data-toggle="collapse" data-target="#Charts" href="#">Barang <span
                                                     class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                         <ul class="collapse dropdown-header-top">
-                                            <li><a href="/barang">Laporan Stok</a>
+                                            <li><a href="{{route('barang')}}">Laporan Stok</a>
                                             </li>
-                                            <li><a href="/kartu_stok">Kartu Stok</a>
+                                            <li><a href="{{route('kartu_stok')}}">Kartu Stok</a>
                                         </ul>
                                     </li>
-                                    <li><a data-toggle="collapse" data-target="#demo" href="/supplier">Supplier <span
+                                    <li><a data-toggle="collapse" data-target="#demo" href="{{route('supplier')}}">Supplier <span
                                                     class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                     </li>
-                                    <li><a data-toggle="collapse" data-target="#others" href="/customer">Customer <span
+                                    <li><a data-toggle="collapse" data-target="#others" href="{{route('customer')}}">Customer <span
                                                     class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                     </li>
                                     <li><a data-toggle="collapse" data-target="#Charts" href="#">Pengadaan <span
                                                     class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a>
                                         <ul class="collapse dropdown-header-top">
-                                            <li><a href="/pembelian">Pembelian</a>
+                                            <li><a href="{{route('pembelian')}}">Pembelian</a>
                                             </li>
-                                            <li><a href="/detail_pembelian">Detail Pembelian</a>
-                                            <li><a href="/retur" class="dropdown-item">Retur Pembelian</a></li>
-                                            <li><a href="/hutang" class="dropdown-item">Hutang Pembelian</a></li>
+                                            <li><a href="{{route('detail_pembelian')}}">Detail Pembelian</a>
+                                            <li><a href="{{route('retur')}}" class="dropdown-item">Retur Pembelian</a></li>
+                                            <li><a href="{{route('hutang')}}" class="dropdown-item">Hutang Pembelian</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -330,28 +330,28 @@
 
     function checkKey(key) {
         if (key.keyCode == "118") {
-            window.location.href = "/barang";
+            window.location.href = "{{route('barang')}}";
         }
         if (key.keyCode == "115") {
-            window.location.href = "/supplier";
+            window.location.href = "{{route('supplier')}}";
         }
         if (key.keyCode == "117") {
-            window.location.href = "/customer";
+            window.location.href = "{{route('customer')}}";
         }
         if (key.keyCode == "119") {
-            window.location.href = "/kartu_stok";
+            window.location.href = "{{route('kartu_stok')}}";
         }
         if (key.keyCode == "113") {
-            window.location.href = "/pembelian";
+            window.location.href = "{{route('pembelian')}}";
         }
         if (key.keyCode == "120") {
-            window.location.href = "/detail_pembelian";
+            window.location.href = "{{route('detail_pembelian')}}";
         }
         if (key.keyCode == "121") {
-            window.location.href = "/penjualan";
+            window.location.href = "{{route('penjualan')}}";
         }
         if (key.keyCode == "122") {
-            window.location.href = "/detail_penjualan";
+            window.location.href = "{{route('detail_penjualan')}}";
         }
         if (key.keyCode == "112") {
             document.getElementById("petunjuk").click();

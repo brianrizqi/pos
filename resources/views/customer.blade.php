@@ -15,7 +15,7 @@
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
                                 <div id="toolbar">
-                                    <a href="/customer/create" class="btn btn-sm btn-primary login-submit-cs">
+                                    <a href="{{route('create_customer')}}" class="btn btn-sm btn-primary login-submit-cs">
                                         Tambah
                                     </a>
                                 </div>
@@ -44,13 +44,13 @@
                                             <td>{{$item->telepon}}</td>
                                             <td>{{$item->keterangan}}</td>
                                             <td>
-                                                <form action="/customer/edit/{{$item->id_customer}}"
+                                                <form action="{{route('edit_customer', ['id'=>$item->id_customer])}}"
                                                       style="display: inline">
                                                     <button class="btn btn-primary" style="width: 37px;">
                                                         <i class="fa fa-pencil-square-o"></i>
                                                     </button>
                                                 </form>
-                                                <form action="/customer/{{$item->id_customer}}" method="POST"
+                                                <form action="{{route('destroy_customer', ['id'=>$item->id_customer])}}" method="POST"
                                                       style="display: inline">
                                                     <button class="btn btn-danger">
                                                         <i class="fa fa-trash"></i>
@@ -81,7 +81,7 @@
 
         function checkKey(key) {
             if (key.keyCode == "116") {
-                window.location.href = "/customer/create";
+                window.location.href = "{{route('detail_penjualan')}}";
             }
         }
     </script>

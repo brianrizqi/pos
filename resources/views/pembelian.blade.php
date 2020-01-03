@@ -2,7 +2,7 @@
 @section('title','POS')
 @section('fitur','Pembelian')
 @section('content')
-    <form method="post" action="/pembelian">
+    <form method="post" action="{{route('store_pembelian')}}">
         <div class="static-table-area mg-b-15">
             <div class="container-fluid">
                 <div class="row">
@@ -360,7 +360,7 @@
 
                                         </div>
                                         <div class="col-lg-2" style="margin-top: 10px;">
-                                            <a href="/pembelian/clear" class="btn btn-sm btn-danger login-submit-cs">
+                                            <a href="{{route('clear_pembelian')}}" class="btn btn-sm btn-danger login-submit-cs">
                                                 Cancel
                                             </a>
                                             {{--<button type="submit"--}}
@@ -384,7 +384,7 @@
             var xmlhttp = new XMLHttpRequest();
             var value = document.getElementById("supplier").value;
             if (value != "") {
-                xmlhttp.open("GET", "/pembelian/fetch/" + value, false);
+                xmlhttp.open("GET", "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/pembelian/fetch/" + value, false);
                 xmlhttp.send(null);
                 document.getElementById("detail_sup").innerHTML = xmlhttp.responseText;
             } else {
@@ -395,7 +395,7 @@
         function onClick() {
             var value = document.getElementById("supplier").value;
             if (value != "") {
-                window.location.href = "/pembelian/create/" + value;
+                window.location.href = "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/pembelian/create" + value;
             } else {
                 alert('Supplier Kosong');
             }
@@ -436,7 +436,7 @@
             var value = document.getElementById("supplier").value;
             if (value == "") {
                 alert("Supplier Kosong");
-                window.location.href = "/pembelian";
+                window.location.href = "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/pembelian";
             }
         }
 

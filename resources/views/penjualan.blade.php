@@ -2,7 +2,7 @@
 @section('title','POS')
 @section('fitur','Penjualan')
 @section('content')
-    <form method="post" action="/penjualan">
+    <form method="post" action="{{route('store_penjualan')}}">
         <div class="static-table-area mg-b-15">
             <div class="container-fluid">
                 <div class="row">
@@ -110,7 +110,7 @@
                                 <div class="datatable-dashv1-list custom-datatable-overright">
                                     <div class="row">
                                         <div class="col-lg-1">
-                                            <a href="/penjualan/create" class="btn btn-sm btn-primary login-submit-cs">
+                                            <a href="{{route('create_penjualan')}}" class="btn btn-sm btn-primary login-submit-cs">
                                                 Tambah
                                             </a>
                                         </div>
@@ -169,7 +169,7 @@
 
                                         </div>
                                         <div class="col-lg-2" style="margin-top: 10px;">
-                                            <a href="/pembelian/clear" class="btn btn-sm btn-danger login-submit-cs">
+                                            <a href="{{route('clear_pembelian')}}" class="btn btn-sm btn-danger login-submit-cs">
                                                 Cancel
                                             </a>
                                             <input type="submit" name="submit" value="Masukkan"
@@ -189,7 +189,7 @@
             var xmlhttp = new XMLHttpRequest();
             var value = document.getElementById("supplier").value;
             if (value != "") {
-                xmlhttp.open("GET", "/penjualan/fetch/" + value, false);
+                xmlhttp.open("GET", "http://c.pbf.ilkom.unej.ac.id/162410101009/pos/public/penjualan/fetch/" + value, false);
                 xmlhttp.send(null);
                 document.getElementById("detail_sup").innerHTML = xmlhttp.responseText;
             } else {

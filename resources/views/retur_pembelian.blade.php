@@ -18,7 +18,7 @@
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
                                             <form method="POST"
-                                                  action="/detail_pembelian/retur/">
+                                                  action="{{route('tambahBarang_detail_pembelian')}}">
                                                 <input type="hidden" name="id_pembelian" value="{{$id}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
@@ -112,7 +112,7 @@
                                     <div class="col-lg-12">
                                         <div class="all-form-element-inner">
                                             <form method="POST"
-                                                  action="/detail_pembelian/returbarang/">
+                                                  action="{{route('returBarang_detail_pembelian')}}">
                                                 <div class="form-group-inner">
                                                     <div class="row">
                                                         <div class="col-lg-3">
@@ -150,7 +150,7 @@
                                                             <td>
                                                                 Rp. {{number_format($item->price * $item->quantity,0,".",".")}}</td>
                                                             <td>
-                                                                <a href="/detail_pembelian/{{$item->id}}/{{$id}}"
+                                                                <a href="{{route('hapusBarang_detail_pembelian', ['id'=>$item->id, 'id_pembelian'=>$id])}}"
                                                                    class="btn btn-danger"><i
                                                                             class="fa fa-trash"></i></a>
                                                             </td>
